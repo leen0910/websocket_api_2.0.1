@@ -4,7 +4,7 @@ class ReadInfo:
     """定义读取配置的类"""
     def __init__(self):
         self.cf=configparser.ConfigParser()
-        self.cf.read('../info.txt')  #配置文件的目录
+        self.cf.read('C:\\Users\\test\\AppData\\Local\\Programs\\Python\\Python36\\autotest\\websocket_api_2.0.1\\info.txt')  #配置文件的目录
 
     def get_device_ip(self):
         device_ip=self.cf.get('info', 'device_ip')

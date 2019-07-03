@@ -34,6 +34,13 @@ class websocket_request(unittest.TestCase):
         c.checkAction(url,data_login)
         time.sleep(1)
 
+        data_clear_error=rm.get_data("清除设备错误","clear_error")
+        url=self.ws
+        print("无论是否有错误，先清除错误。")
+        c.checkAction(url,data_clear_error)
+        time.sleep(3)
+
+
         data_init=rm.get_data("设备初始化","init")
         print("step 2、初始化。")
         c.checkAction(url,data_init)
@@ -80,6 +87,12 @@ class websocket_request(unittest.TestCase):
         print("step 1、管理员登录设备。")
         c.checkAction(url,data_login)
         time.sleep(1)
+
+        data_clear_error=rm.get_data("清除设备错误","clear_error")
+        url=self.ws
+        print("无论是否有错误，先清除错误。")
+        c.checkAction(url,data_clear_error)
+        time.sleep(3)
 
         data_init=rm.get_data("设备初始化","init")
         print("step 2、初始化。")
