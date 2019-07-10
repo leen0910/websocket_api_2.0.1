@@ -20,7 +20,7 @@ class install(unittest.TestCase):
     """安装脚本文件"""
     filename="robot.lua"
     path='../scripts/robot.lua'
-    i=3
+    i=6
     size=300*1024
     def setUp(self):
         rt=read_info.ReadInfo()

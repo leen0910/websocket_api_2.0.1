@@ -22,52 +22,53 @@ posit4={J1= 1,J2=-1,J3= 0,J4=0,J5=0,J6=0}
 -- 预先定义运动速度和过渡参数
 vel =100
 blend=100
+char="你好中国！"
 
 -- 点到点运动,目标点为关节值
---robot.MP(pose1,vel,blend)
-robot.MP(posit1,vel,blend)
-robot.MP(posit2,vel,blend)
-robot.MP(posit3,vel,blend)
-robot.MP(posit2,vel,blend)
-robot.MP(posit1,vel,blend)
-
+--R.MP(pose1,vel,blend)
+R.MP(posit1,vel,blend)
+R.MP(posit2,vel,blend)
+R.MP(posit3,vel,blend)
+R.MP(posit2,vel,blend)
+R.MP(posit1,vel,blend)
+print(char)
 
 loop=200
 while(loop>0)
 do
 loop=loop-1;
 -- 设置1.5s的延时
-robot.DELAY(1)
-robot.DELAY_MS(500)
+R.DELAY(1)
+R.DELAY_MS(500)
 -- 设置参考坐标系
 if loop==1 then
 -- 设置参考坐标系1
-robot.RCS(pose_ref1)
+R.RCS(pose_ref1)
 else
 -- 改变参考坐标系尝试一下
-robot.RCS(pose_ref2)
+R.RCS(pose_ref2)
 end
 -- 点到点运动,目标点为世界值,采用世界值进行运动时,建议设置参考坐标系
-robot.MP(posel2,vel,blend)
+R.MP(posel2,vel,blend)
 -- 直线运动
-robot.ML(pose1,vel,blend)
+R.ML(pose1,vel,blend)
 -- 圆弧运动
-robot.MC(posem1,pose2,vel,blend)
-robot.MC(posem2,pose1,vel,blend)
+R.MC(posem1,pose2,vel,blend)
+R.MC(posem2,pose1,vel,blend)
 -- 直线运动
-robot.ML(posel1,vel,blend)
+R.ML(posel1,vel,blend)
 end
 -- 等待运动结束
-robot.WAIT()
+R.WAIT()
 -- 设置为世界坐标系
-robot.RCS(pose_ref1)
+R.RCS(pose_ref1)
 
 -- 调节运动速度
 vel=80
 
-robot.WAIT()
+R.WAIT()
 
 -- 回到开始点
-robot.MP(posit1,vel,blend)
+R.MP(posit1,vel,blend)
 
 -- 结束
