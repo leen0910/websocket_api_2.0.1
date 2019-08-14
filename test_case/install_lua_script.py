@@ -10,6 +10,7 @@ from common import read_message
 from common import check_action as c
 from common import Base_64
 from common import split_read as s
+from common import to_md5
 import time
 import json
 
@@ -18,9 +19,9 @@ import json
 
 class install(unittest.TestCase):
     """安装脚本文件"""
-    filename="robot.lua"
-    path='../scripts/robot.lua'
-    i=6
+    filename="test1.lua"
+    path='../scripts/io_plc.lua'
+    i=7
     size=300*1024
     def setUp(self):
         rt=read_info.ReadInfo()
@@ -72,6 +73,9 @@ class install(unittest.TestCase):
         """分包写入文件"""
         Block_Size=self.size
         total=s.total_count(path,Block_Size)
+        str_md5=s.read_a_file(path)
+        md5=to_md5.md5(str_md5)
+        print("md5:"+md5)
         print("总包数为：%s"%total)
         index=1
         for content in s.read_file(path,Block_Size):
@@ -84,6 +88,7 @@ class install(unittest.TestCase):
                     "file_name":filename,
                     "total":total,
                     "index":index,
+                    "md5":"%s"%md5,
                     "value":script_base64
                     }
                 }

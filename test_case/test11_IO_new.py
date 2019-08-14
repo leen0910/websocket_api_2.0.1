@@ -32,11 +32,11 @@ class websocket_request(unittest.TestCase):
         c.checkAction(url,data_login)
         time.sleep(0.5)
 
-        data_io_read=rm.get_data("读取本地IO","io_read_local_relayflag")
-        print("step 2、读取Z0的io。")
-        t=c.checkAction(url,data_io_read)
-        self.assertEqual(t["success"],True)
-        time.sleep(0.5)
+        # data_io_read=rm.get_data("读取本地IO","io_read_local_relayflag")
+        # print("step 2、读取Z0的io。")
+        # t=c.checkAction(url,data_io_read)
+        # self.assertEqual(t["success"],True)
+        # time.sleep(0.5)
 
         data_io_read=rm.get_data("读取本地IO","io_read_local_X0")
         print("step 3、读取X0的io。")
@@ -89,7 +89,7 @@ class websocket_request(unittest.TestCase):
 
         data_io_set=rm.get_data("设置本地IO","io_write_local_off")
         print("step 2、设置io:")
-        io_list=["relayflag","output_0","output_1","output_2","output_3","output_4","output_5","output_6","output_7"]
+        io_list=["output_0","output_1","output_2","output_3","output_4","output_5","output_6","output_7","red","yellow","green","relay"]
 
         data_dict=json.loads(data_io_set)
         for name in io_list:
@@ -118,7 +118,7 @@ class websocket_request(unittest.TestCase):
 
         data_io_set=rm.get_data("设置本地IO","io_write_local_on")
         print("step 2、设置io:")
-        io_list=["relayflag","output_0","output_1","output_2","output_3","output_4","output_5","output_6","output_7"]
+        io_list=["output_0","output_1","output_2","output_3","output_4","output_5","output_6","output_7","red","yellow","green","relay"]
 
         data_dict=json.loads(data_io_set)
         for name in io_list:
@@ -136,41 +136,48 @@ class websocket_request(unittest.TestCase):
         print("step 3、退出登录。")
         c.checkAction(url,data_logout)
 
-    def test04_write_io_pulse(self):
-        """2、设置本地IO_pulse """
-        rm=read_message.ReadMessage()
-        data_login=rm.get_data("登录设备","login_admin")
-        url=self.ws
-        print("step 1、管理员登录。")
-        c.checkAction(url,data_login)
-        time.sleep(0.1)
-
-        data_io_set=rm.get_data("设置本地IO","io_write_local_on")
-        print("step 2、设置io:")
-        io_list=["pulse_0","pulse_1","pulse_2","pulse_3","pulse_4","pulse_5"]
-        numbers=[3,15,30,68,125,385,1420]
-
-        data_dict=json.loads(data_io_set)
-        for name in io_list:
-            data_dict["data"]["name"]=name
-            for state in numbers:
-                data_dict["data"]["state"]=state
-                print("修改io：%s"%name )
-                data_io_set=json.dumps(data_dict)
-                t=c.checkAction(url,data_io_set)
-                if t["success"]==True:
-                    print("%s 的脉冲个数为：%s"%(name,state))
-                else:
-                    print("%s的脉冲个数设置失败。"%name)
-                time.sleep(0.1)
-
-        data_logout=rm.get_data("退出登录","logout")
-        print("step 3、退出登录。")
-        c.checkAction(url,data_logout)
+    # def test04_write_io_pulse(self):
+    #     """2、设置本地IO_pulse """
+    #     rm=read_message.ReadMessage()
+    #     data_login=rm.get_data("登录设备","login_admin")
+    #     url=self.ws
+    #     print("step 1、管理员登录。")
+    #     c.checkAction(url,data_login)
+    #     time.sleep(0.1)
+    #
+    #     data_io_set=rm.get_data("设置本地IO","io_write_local_on")
+    #     print("step 2、设置io:")
+    #     io_list=["pulse_0","pulse_1","pulse_2","pulse_3","pulse_4","pulse_5"]
+    #     numbers=[3,15,30,68,125,385,1420]
+    #
+    #     data_dict=json.loads(data_io_set)
+    #     for name in io_list:
+    #         data_dict["data"]["name"]=name
+    #         for state in numbers:
+    #             data_dict["data"]["state"]=state
+    #             print("修改io：%s"%name )
+    #             data_io_set=json.dumps(data_dict)
+    #             t=c.checkAction(url,data_io_set)
+    #             if t["success"]==True:
+    #                 print("%s 的脉冲个数为：%s"%(name,state))
+    #             else:
+    #                 print("%s的脉冲个数设置失败。"%name)
+    #             time.sleep(0.1)
+    #
+    #     data_logout=rm.get_data("退出登录","logout")
+    #     print("step 3、退出登录。")
+    #     c.checkAction(url,data_logout)
 
 
     def tearDown(self):
         self.ws.close()
 
 if __name__ == "__main__":
-    unittest.main()
+    # unittest.main()
+    for i in range(1,100000):
+        suite = unittest.TestSuite()
+        suite.addTest(websocket_request('setUp'))
+        suite.addTest(websocket_request('test01_read_io'))
+        suite.addTest(websocket_request('test02_write_io_off'))
+        suite.addTest(websocket_request('test03_write_io_on'))
+        unittest.TextTestRunner(verbosity=2).run(suite)

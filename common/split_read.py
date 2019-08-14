@@ -22,6 +22,14 @@ def read_file(fpath,Block_Size):
             else:
                 return
 
+def read_a_file(fpath):
+    # f = open(fpath,'rb')
+    # file=f.read()
+    # f.close()
+    # return file
+    with open(fpath,"r",encoding="utf-8") as f:
+        return f.read()
+
 # fpath='../scripts/move.lua'
 # Block_Size =1024
 # print(total_count(fpath,Block_Size))
