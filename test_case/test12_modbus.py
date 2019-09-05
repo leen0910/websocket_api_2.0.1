@@ -9,14 +9,14 @@ import time
 import json
 
 class websocket_request(unittest.TestCase):
-    """IO控制"""
+    """与index=3设备之间的modbus通讯"""
     def setUp(self):
         rt=read_info.ReadInfo()
         web=rt.get_device_ip()
         port=rt.get_port()
         url=web+":"+port
         try:
-            self.ws=create_connection(url,timeout=5)    #建立设备连接
+            self.ws=create_connection(url,timeout=10)    #建立设备连接
             if self.ws.connected:
                 print("服务：%s连接成功!"%url)
         except Exception as e:
@@ -237,6 +237,7 @@ class websocket_request(unittest.TestCase):
 
 
     def tearDown(self):
+        time.sleep(3)
         self.ws.close()
 
 if __name__ == "__main__":

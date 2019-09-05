@@ -3,7 +3,7 @@
 login_monitor={
     "action":"permission.login",
     "data":{
-        "user_name":"Monitor",
+        "username":"Monitor",
         "identity":"monitor",
         "password":"MTIzNDU2"
     }
@@ -11,7 +11,7 @@ login_monitor={
 login_operator={
     "action":"permission.login",
     "data":{
-        "user_name":"Operator",
+        "username":"Operator",
         "identity":"operator",
         "password":"MTIzNDU2"
     }
@@ -19,7 +19,7 @@ login_operator={
 login_admin={
     "action":"permission.login",
     "data":{
-        "user_name":"Admin",
+        "username":"Admin",
         "identity":"root",
         "password":"MTIzNDU2"
     }
@@ -82,7 +82,7 @@ file_send_log={
     "data" :
     {
         "type" : "log",
-        "file_name" : "",
+        "file_name" : "qxlog.log",
         "index" : 1
     }
     }
@@ -238,16 +238,12 @@ adjust_velocity={
     }
 [紧急停止]
 emergency_stop={
-    "action":"device.emergency.stop"
-    }
-
+  "action": "device.emergency.stop",
+  "data": {}
+  }
 [设备关机]
 power_off={
     "action":"device.power.off"
-    }
-[设备初始化]
-init={
-    "action":"device.init"
     }
 [清除设备错误]
 clear_error={
@@ -346,10 +342,10 @@ script_query_script_default={
 
 [IO控制]
 [读取本地IO]
-io_read_local_relayflag={
+io_read_local_Z0={
     "action":"io.read.local",
     "data":{
-        "name":"relayflag"
+        "name":"Z0"
     }
     }
 io_read_local_X0={

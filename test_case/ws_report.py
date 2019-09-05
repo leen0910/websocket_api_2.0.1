@@ -24,7 +24,7 @@ def ws_connect():
     port=rt.get_port()
     url=web+":"+port
     try:
-        ws=create_connection(url,timeout=5)    #建立设备连接
+        ws=create_connection(url,timeout=10)    #建立设备连接
 
         rm=read_message.ReadMessage()
         data_login=rm.get_data("登录设备","login_monitor")

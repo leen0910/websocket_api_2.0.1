@@ -19,9 +19,9 @@ import json
 
 class install(unittest.TestCase):
     """安装脚本文件"""
-    filename="test1.lua"
-    path='../scripts/io_plc.lua'
-    i=7
+    filename="test123.lua"
+    path='../scripts/tutorial.lua'
+    i=10
     size=300*1024
     def setUp(self):
         rt=read_info.ReadInfo()
@@ -29,8 +29,7 @@ class install(unittest.TestCase):
         port=rt.get_port()
         url=web+":"+port
         try:
-            # self.ws=create_connection(url,timeout=5)
-            self.ws=create_connection(url)    #建立设备连接
+            self.ws=create_connection(url,timeout=10)    #建立设备连接
             if self.ws.connected:
                 print("服务：%s连接成功!"%url)
         except Exception as e:
@@ -75,7 +74,6 @@ class install(unittest.TestCase):
         total=s.total_count(path,Block_Size)
         str_md5=s.read_a_file(path)
         md5=to_md5.md5(str_md5)
-        print("md5:"+md5)
         print("总包数为：%s"%total)
         index=1
         for content in s.read_file(path,Block_Size):
@@ -159,6 +157,7 @@ class install(unittest.TestCase):
 
 
     def tearDown(self):
+        time.sleep(3)
         self.ws.close()
 
 if __name__ == "__main__":

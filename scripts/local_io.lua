@@ -1,4 +1,5 @@
 R.DELAY(3)
+while(1)
 do
 repeat
 until(LX5==0)
@@ -16,4 +17,6 @@ LY8=1
 LY9=1
 LY10=1
 LZ0=1
+LM12=126
+print(LM12)
 end

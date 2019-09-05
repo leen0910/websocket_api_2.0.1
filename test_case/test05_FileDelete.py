@@ -17,7 +17,7 @@ class websocket_request(unittest.TestCase):
         port=rt.get_port()
         url=web+":"+port
         try:
-            self.ws=create_connection(url,timeout=5)    #建立设备连接
+            self.ws=create_connection(url,timeout=10)    #建立设备连接
             if self.ws.connected:
                 print("服务：%s连接成功!"%url)
         except Exception as e:
@@ -81,7 +81,7 @@ class websocket_request(unittest.TestCase):
     #     print("step 3、释放设备：")
     #     c.checkAction(url,data_logout)
 
-    def test04_reduce_test01(self):
+    def test04_reduce_FileReceive(self):
         """再次执行一次 test01_FileReceive.py 文件，生成temp文件。"""
         os.system("python C:\\Users\\test\\AppData\\Local\\Programs\\Python\\Python36\\autotest\\websocket_api_2.0.1\\test_case\\test01_FileReceive.py")
         print("已写入tempFile文件。")
@@ -144,6 +144,7 @@ class websocket_request(unittest.TestCase):
         c.checkAction(url,data_logout)
 
     def tearDown(self):
+        time.sleep(3)
         self.ws.close()
 
 if __name__ == "__main__":

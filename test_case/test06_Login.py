@@ -18,7 +18,7 @@ class websocket_request(unittest.TestCase):
         port=rt.get_port()
         url=web+":"+port
         try:
-            self.ws=create_connection(url,timeout=5)    #建立设备连接
+            self.ws=create_connection(url,timeout=10)    #建立设备连接
             if self.ws.connected:
                 print("服务：%s连接成功!"%url)
         except Exception as e:
@@ -157,6 +157,7 @@ class websocket_request(unittest.TestCase):
         self.assertEqual(t["success"],True)
 
     def tearDown(self):
+        time.sleep(3)
         self.ws.close()
 
 if __name__ == "__main__":

@@ -5,7 +5,7 @@ pose_ref2={X = 10, Y = 10, Z = 0, A = 0, B = 0, C = math.pi/2}
 
 -- 预先定义一些坨scara机械臂中,有效的是[X,Y,Z,c]
 pose1 ={X = 350, Y =  0, Z = -50,A = 0,B = 0,C = 0}
-posem1={X = 400, Y = 50, Z = -50,A = 0,B = 0,C = 0}
+posem1={X = 350, Y = 50, Z = -50,A = 0,B = 0,C = 0}
 pose2 ={X = 450, Y =  0, Z = -50,A = 0,B = 0,C = 0}
 posem2={X = 400, Y =-50, Z = -50,A = 0,B = 0,C = 0}
 posel1 ={X = 350, Y =  100, Z = -50,A = 0,B = 0,C = 0}
@@ -119,7 +119,6 @@ do
 -- 等待运动结束
   R.WAIT()
 -- 设置为世界坐标系
-  R.RCS(pose_ref1)
   R.ML(posel1,30,blend4)
 -- 调节运动速度
 --vel=80

@@ -9,14 +9,14 @@ import time
 import json
 
 class websocket_request(unittest.TestCase):
-    """IO控制"""
+    """本地IO控制"""
     def setUp(self):
         rt=read_info.ReadInfo()
         web=rt.get_device_ip()
         port=rt.get_port()
         url=web+":"+port
         try:
-            self.ws=create_connection(url,timeout=5)    #建立设备连接
+            self.ws=create_connection(url,timeout=10)    #建立设备连接
             if self.ws.connected:
                 print("服务：%s连接成功!"%url)
         except Exception as e:
@@ -32,11 +32,11 @@ class websocket_request(unittest.TestCase):
         c.checkAction(url,data_login)
         time.sleep(0.5)
 
-        # data_io_read=rm.get_data("读取本地IO","io_read_local_relayflag")
-        # print("step 2、读取Z0的io。")
-        # t=c.checkAction(url,data_io_read)
-        # self.assertEqual(t["success"],True)
-        # time.sleep(0.5)
+        data_io_read=rm.get_data("读取本地IO","io_read_local_Z0")
+        print("step 2、读取Z0的io。")
+        t=c.checkAction(url,data_io_read)
+        self.assertEqual(t["success"],True)
+        time.sleep(0.5)
 
         data_io_read=rm.get_data("读取本地IO","io_read_local_X0")
         print("step 3、读取X0的io。")
@@ -62,17 +62,17 @@ class websocket_request(unittest.TestCase):
         self.assertEqual(t["success"],True)
         time.sleep(0.5)
 
-        data_io_read=rm.get_data("读取本地IO","io_read_local_X4")
-        print("step 7、读取X4的io。")
-        t=c.checkAction(url,data_io_read)
-        self.assertEqual(t["success"],True)
-        time.sleep(0.5)
+        # data_io_read=rm.get_data("读取本地IO","io_read_local_X4")
+        # print("step 7、读取X4的io。")
+        # t=c.checkAction(url,data_io_read)
+        # self.assertEqual(t["success"],True)
+        # time.sleep(0.5)
 
-        data_io_read=rm.get_data("读取本地IO","io_read_local_X5")
-        print("step 8、读取X5的io。")
-        t=c.checkAction(url,data_io_read)
-        self.assertEqual(t["success"],True)
-        time.sleep(0.5)
+        # data_io_read=rm.get_data("读取本地IO","io_read_local_X5")
+        # print("step 8、读取X5的io。")
+        # t=c.checkAction(url,data_io_read)
+        # self.assertEqual(t["success"],True)
+        # time.sleep(0.5)
 
         data_logout=rm.get_data("退出登录","logout")
         print("step 3、退出登录。")
@@ -89,7 +89,7 @@ class websocket_request(unittest.TestCase):
 
         data_io_set=rm.get_data("设置本地IO","io_write_local_off")
         print("step 2、设置io:")
-        io_list=["output_0","output_1","output_2","output_3","output_4","output_5","output_6","output_7","red","yellow","green","relay"]
+        io_list=["red","yellow","green","stop_key","Y0","Y1","Y2","Y3","Y4","Y5","Y6","Y7","Y8","Y9","Y10","Z0"]
 
         data_dict=json.loads(data_io_set)
         for name in io_list:
@@ -118,7 +118,7 @@ class websocket_request(unittest.TestCase):
 
         data_io_set=rm.get_data("设置本地IO","io_write_local_on")
         print("step 2、设置io:")
-        io_list=["output_0","output_1","output_2","output_3","output_4","output_5","output_6","output_7","red","yellow","green","relay"]
+        io_list=["red","yellow","green","stop_key","Y0","Y1","Y2","Y3","Y4","Y5","Y6","Y7","Y8","Y9","Y10","Z0"]
 
         data_dict=json.loads(data_io_set)
         for name in io_list:
@@ -170,14 +170,15 @@ class websocket_request(unittest.TestCase):
 
 
     def tearDown(self):
+        time.sleep(3)
         self.ws.close()
 
 if __name__ == "__main__":
-    # unittest.main()
-    for i in range(1,100000):
-        suite = unittest.TestSuite()
-        suite.addTest(websocket_request('setUp'))
-        suite.addTest(websocket_request('test01_read_io'))
-        suite.addTest(websocket_request('test02_write_io_off'))
-        suite.addTest(websocket_request('test03_write_io_on'))
-        unittest.TextTestRunner(verbosity=2).run(suite)
+    unittest.main()
+    # for i in range(1,100000):
+    #     suite = unittest.TestSuite()
+    #     suite.addTest(websocket_request('setUp'))
+    #     suite.addTest(websocket_request('test01_read_io'))
+    #     suite.addTest(websocket_request('test02_write_io_off'))
+    #     suite.addTest(websocket_request('test03_write_io_on'))
+    #     unittest.TextTestRunner(verbosity=2).run(suite)
