@@ -19,9 +19,9 @@ import json
 
 class install(unittest.TestCase):
     """安装脚本文件"""
-    filename="test123.lua"
-    path='../scripts/tutorial.lua'
-    i=10
+    filename="io.lua"
+    path='../scripts/local_io.lua'
+    i=7
     size=300*1024
     def setUp(self):
         rt=read_info.ReadInfo()
