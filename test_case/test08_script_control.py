@@ -26,7 +26,7 @@ class websocket_request(unittest.TestCase):
             pass
 
     def test01_script_control(self):
-        """脚本运行控制相关操作。 """
+        """脚本运行控制相关操作。step 2-step 5 """
         rm=read_message.ReadMessage()
         data_login=rm.get_data("登录设备","login_admin")
         url=self.ws
@@ -44,7 +44,7 @@ class websocket_request(unittest.TestCase):
         data_servo_enable=rm.get_data("伺服使能","servo_enable")
         print("step 2、伺服使能。")
         c.checkAction(url,data_servo_enable)
-        time.sleep(4)
+        time.sleep(2)
 
 
         data_script_start=rm.get_data("脚本运行控制","script_start")
@@ -63,19 +63,35 @@ class websocket_request(unittest.TestCase):
         print("step 5、暂停脚本运行：")
         t3=c.checkAction(url,data_script_pause)
         # self.assertEqual(t3["success"],True)
-        time.sleep(5)
+        time.sleep(3)
+
+
+        data_logout=rm.get_data("退出登录","logout")
+        print("step 11、退出登录。")
+        c.checkAction(url,data_logout)
+        time.sleep(3)
+
+    def test02_script_control(self):
+        """脚本运行控制相关操作。step 6-step 10 """
+        rm=read_message.ReadMessage()
+        data_login=rm.get_data("登录设备","login_admin")
+        url=self.ws
+        print("step 1、管理员登录设备。")
+        c.checkAction(url,data_login)
+        time.sleep(1)
+
 
         data_script_continue=rm.get_data("脚本运行控制","script_continue")
         print("step 6、暂停后继续脚本运行：")
         t4=c.checkAction(url,data_script_continue)
         # self.assertEqual(t4["success"],True)
-        time.sleep(5)
+        time.sleep(4)
 
         data_script_emergency=rm.get_data("紧急停止","emergency_stop")
         print("step 7、运行过程中急停。")
         t=c.checkAction(url,data_script_emergency)
         # self.assertEqual(t["success"],True)
-        time.sleep(5)
+        time.sleep(2)
 
         data_script_start=rm.get_data("脚本运行控制","script_start")
         print("step 8、运行脚本：tutorial.lua.")
@@ -87,18 +103,21 @@ class websocket_request(unittest.TestCase):
         print("step 9、停止脚本运行：")
         t5=c.checkAction(url,data_script_stop)
         # self.assertEqual(t5["success"],True)
-        time.sleep(5)
+        time.sleep(2)
 
         data_servo_disable=rm.get_data("伺服失能","servo_disable")
         print("step 10、伺服失能.")
         t7=c.checkAction(url,data_servo_disable)
         # self.assertEqual(t7["success"],True)
-        time.sleep(3)
+        time.sleep(2)
 
         data_logout=rm.get_data("退出登录","logout")
         print("step 11、退出登录。")
         c.checkAction(url,data_logout)
-        time.sleep(3)
+        time.sleep(2)
+
+
+
 
     # def test02_script_emergency_stop(self):
     #     """脚本运行时急停 """

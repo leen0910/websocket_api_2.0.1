@@ -7,6 +7,12 @@ def encode(str):
     encodestr=encodestr.decode()
     return encodestr
 
+def encode_b(str):
+    #base64编码
+    encodestr = base64.b64encode(str) #转成bytes string
+    encodestr=encodestr.decode()
+    return encodestr
+
 def decode(str):
     #解码
 
@@ -14,6 +20,12 @@ def decode(str):
     decodestr = decodestr.decode()
     return decodestr
 
+def decode_b(str):
+    #解码
+
+    decodestr = base64.b64decode(str)
+    decodestr = decodestr.decode()
+    return decodestr
 
 if __name__=="__main__":
     print(encode("我是字符串"))

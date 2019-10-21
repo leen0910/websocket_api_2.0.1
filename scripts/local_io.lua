@@ -1,3 +1,4 @@
+--5%%^^5
 RR.DELAY(1)
 while(1)
 do
@@ -5,6 +6,7 @@ repeat
 until(LX0==0)
 R.DELAY_MS(500)
 LY0=0
+-- 中文读写“message"
 R.DELAY_MS(500)
 LY0=1
 R.DELAY_MS(500)
@@ -54,3 +56,4 @@ LY11=1
 LM12=12636
 print(LM12)
 end
+--备注中文

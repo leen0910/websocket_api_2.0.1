@@ -33,10 +33,7 @@ class websocket_request(unittest.TestCase):
         print("发送“查询设备信息”数据。")
         t=c.checkAction(ws,data)
         self.assertEqual(t["success"],True)
-        print("设备网关：%s"%t["data"]["device_gateway"])
-        print("设备ip：%s"%t["data"]["device_ip"])
-        print("设备子网：%s"%t["data"]["device_mask"])
-        print("设备名称：%s"%t["data"]["device_name"])
+
 
     def test02_info_monitor(self):
         """2、监控者登录后，设备信息捕获。 """
@@ -53,14 +50,15 @@ class websocket_request(unittest.TestCase):
         print("step 2、发送“查询设备信息”数据。")
         t=c.checkAction(ws,data)
         self.assertEqual(t["success"],True)
-        print("设备名称：%s"%t["data"]["device_name"])
-        print("分组：%s"%t["data"]["device_group"])
-        print("设备ip：%s"%t["data"]["device_ip"])
-        print("设备网关：%s"%t["data"]["device_gateway"])
-        print("设备子网：%s"%t["data"]["device_mask"])
-        print("是否被占用：%s"%t["data"]["is_occupied"])
-        print("占用者ip：%s"%t["data"]["occupier_ip"])
-        print("占用者名字：%s"%t["data"]["occupier_name"])
+
+        # print("设备名称：%s"%t["data"]["device_name"])
+        # print("分组：%s"%t["data"]["device_group"])
+        # print("设备ip：%s"%t["data"]["device_ip"])
+        # print("设备网关：%s"%t["data"]["device_gateway"])
+        # print("设备子网：%s"%t["data"]["device_mask"])
+        # print("是否被占用：%s"%t["data"]["is_occupied"])
+        # print("占用者ip：%s"%t["data"]["occupier_ip"])
+        # print("占用者名字：%s"%t["data"]["occupier_name"])
 
         data_logout=rm.get_data("退出登录","logout")
         print("step 3、退出登录。")
@@ -82,14 +80,8 @@ class websocket_request(unittest.TestCase):
         print("step 2、发送“查询设备信息”数据。")
         t=c.checkAction(ws,data)
         self.assertEqual(t["success"],True)
-        print("设备名称：%s"%t["data"]["device_name"])
-        print("分组：%s"%t["data"]["device_group"])
-        print("设备ip：%s"%t["data"]["device_ip"])
-        print("设备网关：%s"%t["data"]["device_gateway"])
-        print("设备子网：%s"%t["data"]["device_mask"])
-        print("是否被占用：%s"%t["data"]["is_occupied"])
-        print("占用者ip：%s"%t["data"]["occupier_ip"])
-        print("占用者名字：%s"%t["data"]["occupier_name"])
+
+
 
         data_logout=rm.get_data("退出登录","logout")
         print("step 3、退出登录。")
@@ -111,14 +103,7 @@ class websocket_request(unittest.TestCase):
         print("step 2、发送“查询设备信息”数据。")
         t=c.checkAction(ws,data)
         self.assertEqual(t["success"],True)
-        print("设备名称：%s"%t["data"]["device_name"])
-        print("分组：%s"%t["data"]["device_group"])
-        print("设备ip：%s"%t["data"]["device_ip"])
-        print("设备网关：%s"%t["data"]["device_gateway"])
-        print("设备子网：%s"%t["data"]["device_mask"])
-        print("是否被占用：%s"%t["data"]["is_occupied"])
-        print("占用者ip：%s"%t["data"]["occupier_ip"])
-        print("占用者名字：%s"%t["data"]["occupier_name"])
+
 
         data_logout=rm.get_data("退出登录","logout")
         print("step 3、退出登录。")

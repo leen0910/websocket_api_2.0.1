@@ -119,7 +119,7 @@ class websocket_request(unittest.TestCase):
 
         data_io_set=rm.get_data("设置本地IO","io_write_local_off")
         print("step 2、设置io:")
-        io_list=["output_0","output_1","output_2","output_3","output_4","output_5","output_6","output_7","output_0","Y0","Y1","Y2","Y3","Y4","Y5","Y6","Y7"]
+        io_list=["output_0","output_1","output_2","output_3","output_4","output_5","output_6","output_7","Y0","Y1","Y2","Y3","Y4","Y5","Y6","Y7"]
         data_dict=json.loads(data_io_set)
         data_io_read=rm.get_data("读取本地IO","io_read_local_Z0")
         data_dict_read=json.loads(data_io_read)
@@ -159,7 +159,7 @@ class websocket_request(unittest.TestCase):
 
         data_io_set=rm.get_data("设置本地IO","io_write_local_on")
         print("step 2、设置io:")
-        io_list=["output_0","output_1","output_2","output_3","output_4","output_5","output_6","output_7","output_0","Y0","Y1","Y2","Y3","Y4","Y5","Y6","Y7"]
+        io_list=["output_0","output_1","output_2","output_3","output_4","output_5","output_6","output_7","Y0","Y1","Y2","Y3","Y4","Y5","Y6","Y7"]
 
         data_dict=json.loads(data_io_set)
 
@@ -343,6 +343,10 @@ if __name__ == "__main__":
     #     suite = unittest.TestSuite()
     #     suite.addTest(websocket_request('setUp'))
     #     suite.addTest(websocket_request('test01_read_io'))
-    #     suite.addTest(websocket_request('test02_write_io_off'))
-    #     suite.addTest(websocket_request('test03_write_io_on'))
+    #     suite.addTest(websocket_request('test02_read_io_param'))
+    #     suite.addTest(websocket_request('test03_write_io_off'))
+    #     suite.addTest(websocket_request('test04_write_io_on'))
+    #     suite.addTest(websocket_request('test05_read_io_default'))
+    #     suite.addTest(websocket_request('test06_write_io_default_off'))
+    #     suite.addTest(websocket_request('test07_write_io_default_on'))
     #     unittest.TextTestRunner(verbosity=2).run(suite)

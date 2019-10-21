@@ -104,7 +104,7 @@ file_receive_config={
     "data" :
     {
         "type":"config",
-        "file_name":"test.json",
+        "file_name":"local_io.json",
         "total":1,
         "index":1,
         "md5":"fb89edad146dc6872ac6c7349782803e",
@@ -136,7 +136,7 @@ file_install_config={
     "action":"file.install",
     "data":{
         "type":"config",
-        "file_name":"test.json"
+        "file_name":"local_io.json"
     }
     }
 file_install_update={
@@ -179,7 +179,7 @@ file_remove_temp_config={
     "action":"file.remove",
     "data":{
         "type":"temp_config",
-        "file_name":"test.json"
+        "file_name":"local_io.json"
     }
     }
 file_remove_temp_update={
@@ -226,7 +226,13 @@ file_query_temp_update={
         "type":"temp_update"
     }
     }
-
+[控制器配置文件恢复]
+file_recovery={
+    "action": "file.recovery",
+    "data": {
+        "file_name": "lua.json"
+    }
+    }
 
 [全局参数设置]
 [调整全局速度]
@@ -425,18 +431,21 @@ io_write_modbus={
     }
 [读取总线IO]
 io_read_bus={
-    "action":"io.read.bus",
-    "data":{
-        "待":"定"
+    "action":"io.read.busIO",
+    "data": {
+        "master": 1,
+        "name": "input"
     }
     }
 [设置总线IO]
 io_write_bus={
-    "action":"io.write.bus",
-    "data":{
-        "待":"定"
-    }
-    }
+  "action": "io.write.busIO",
+  "data": {
+    "master": 1,
+    "name": "output",
+    "state": 5
+  }
+  }
 
 [Modbus连接]
 io_modbus_connect={
@@ -452,4 +461,10 @@ io_modbus_disconnect={
     "data":{
         "server_index":3
     }
+    }
+
+[伺服]
+[读取硬限位]
+servo_query_limit={
+    "action": "servo.query.limit.posit"
     }
