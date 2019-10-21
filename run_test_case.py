@@ -16,4 +16,4 @@ fp = open(filename, 'wb')
 # 定义测试报告
 runner = HTMLTestRunner.HTMLTestRunner(stream=fp, title=u'websocket接口自动化测试报告/V_2.0.1', description=u'用例执行情况')
 runner.run(discover)
-fp.close()
+fp.close ()
