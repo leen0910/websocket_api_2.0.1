@@ -46,7 +46,7 @@ class websocket_request(unittest.TestCase):
         print("step 3、解码后保存到files目录。")
         str=t["data"]["value"]
         file_content=Base_64.decode(str)
-        path='C:\\Users\\test\\AppData\\Local\\Programs\\Python\\Python36\\autotest\\websocket_api_2.0.1\\files\\tutorial.lua'
+        path='C:\\Users\\test\\AppData\\Local\\Programs\\Python\\Python36\\autotest\\websocket_api_2.0\\files\\tutorial.lua'
         WR_file.WriteFile(path,file_content)
 
         data_logout=rm.get_data("退出登录","logout")
@@ -71,7 +71,7 @@ class websocket_request(unittest.TestCase):
         print("step 3、解码后保存到files目录。")
         str=t["data"]["value"]
         file_content=Base_64.decode(str)
-        path='C:\\Users\\test\\AppData\\Local\\Programs\\Python\\Python36\\autotest\\websocket_api_2.0.1\\files\\lua.json'
+        path='C:\\Users\\test\\AppData\\Local\\Programs\\Python\\Python36\\autotest\\websocket_api_2.0\\files\\lua.json'
         WR_file.WriteFile(path,file_content)
 
         data_logout=rm.get_data("退出登录","logout")
@@ -101,7 +101,7 @@ class websocket_request(unittest.TestCase):
             print("step 3、解码后保存到files目录。")
             str=t["data"]["value"]
             file_content=Base_64.decode(str)
-            path='C:\\Users\\test\\AppData\\Local\\Programs\\Python\\Python36\\autotest\\websocket_api_2.0.1\\files\\'+log_name
+            path='C:\\Users\\test\\AppData\\Local\\Programs\\Python\\Python36\\autotest\\websocket_api_2.0\\files\\'+log_name
             WR_file.WriteFile(path,file_content)
             print("%s LOG文件保存成功。"%log_name)
 
@@ -120,7 +120,7 @@ class websocket_request(unittest.TestCase):
 
         print("step 2、从设备中读取config目录下所有配置文件。 ")
         print("step 3、解码后保存到files目录。")
-        fpath='C:\\Users\\test\\AppData\\Local\\Programs\\Python\\Python36\\autotest\\websocket_api_2.0.1\\files\\ConfigFile_name.txt'
+        fpath='C:\\Users\\test\\AppData\\Local\\Programs\\Python\\Python36\\autotest\\websocket_api_2.0\\files\\ConfigFile_name.txt'
         for f_name in WR_file.ReadFile(fpath):
             """重新设置安装文件名"""
             data_file_send=rm.get_data("控制器发送文件","file_send_config")
@@ -135,7 +135,7 @@ class websocket_request(unittest.TestCase):
 
             str=t["data"]["value"]
             file_content=Base_64.decode(str)
-            path='C:\\Users\\test\\AppData\\Local\\Programs\\Python\\Python36\\autotest\\websocket_api_2.0.1\\files\\'+f_name
+            path='C:\\Users\\test\\AppData\\Local\\Programs\\Python\\Python36\\autotest\\websocket_api_2.0\\files\\'+f_name
             WR_file.WriteFile(path,file_content)
             print("%s config文件保存成功。"%f_name)
 
