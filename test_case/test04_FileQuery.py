@@ -43,7 +43,7 @@ class websocket_request(unittest.TestCase):
         time.sleep(1)
 
         print("step 3、列出script目录脚本名称：")
-        path='C:\\Users\\test\\AppData\\Local\\Programs\\Python\\Python36\\autotest\\websocket_api_2.0.1\\files\\ScriptFile_name.txt'
+        path='C:\\Users\\test\\AppData\\Local\\Programs\\Python\\Python36\\autotest\\websocket_api_2.0\\files\\ScriptFile_name.txt'
         if os.path.exists(path):
             os.remove(path)   #先删除之前写过的文件
         files=t['data']["file_list"]
@@ -75,7 +75,7 @@ class websocket_request(unittest.TestCase):
         print("step 3、列出config目录文件名称：")
         files=t["data"]["file_list"]
         file_list=list(files)
-        path='C:\\Users\\test\\AppData\\Local\\Programs\\Python\\Python36\\autotest\\websocket_api_2.0.1\\files\\ConfigFile_name.txt'
+        path='C:\\Users\\test\\AppData\\Local\\Programs\\Python\\Python36\\autotest\\websocket_api_2.0\\files\\ConfigFile_name.txt'
         if os.path.exists(path):
             os.remove(path)   #先删除之前写过的文件
         for file in file_list:
@@ -106,7 +106,7 @@ class websocket_request(unittest.TestCase):
         print("step 3、列出log目录文件名称：")
         files=t["data"]["file_list"]
         file_list=list(files)
-        path='C:\\Users\\test\\AppData\\Local\\Programs\\Python\\Python36\\autotest\\websocket_api_2.0.1\\files\\LogFile_name.txt'
+        path='C:\\Users\\test\\AppData\\Local\\Programs\\Python\\Python36\\autotest\\websocket_api_2.0\\files\\LogFile_name.txt'
 
         if os.path.exists(path):
             os.remove(path)   #先删除之前写过的文件
@@ -135,7 +135,7 @@ class websocket_request(unittest.TestCase):
         time.sleep(1)
 
         print("step 3、列出temp_script目录文件名称：")
-        path='C:\\Users\\test\\AppData\\Local\\Programs\\Python\\Python36\\autotest\\websocket_api_2.0.1\\files\\TempScript_name.txt'
+        path='C:\\Users\\test\\AppData\\Local\\Programs\\Python\\Python36\\autotest\\websocket_api_2.0\\files\\TempScript_name.txt'
         if os.path.exists(path):
             os.remove(path)   #先删除之前写过的文件
         files=t["data"]["file_list"]
@@ -166,7 +166,7 @@ class websocket_request(unittest.TestCase):
         time.sleep(1)
 
         print("step 3、列出temp_config目录文件名称：")
-        path='C:\\Users\\test\\AppData\\Local\\Programs\\Python\\Python36\\autotest\\websocket_api_2.0.1\\files\\TempConfig_name.txt'
+        path='C:\\Users\\test\\AppData\\Local\\Programs\\Python\\Python36\\autotest\\websocket_api_2.0\\files\\TempConfig_name.txt'
         if os.path.exists(path):
             os.remove(path)   # 先删除之前写过的文件
         files=t["data"]["file_list"]
@@ -198,7 +198,7 @@ class websocket_request(unittest.TestCase):
         print("step 3、列出temp_update目录文件名称：")
         files=t["data"]["file_list"]
         file_list=list(files)
-        path='C:\\Users\\test\\AppData\\Local\\Programs\\Python\\Python36\\autotest\\websocket_api_2.0.1\\files\\TempUpdate_name.txt'
+        path='C:\\Users\\test\\AppData\\Local\\Programs\\Python\\Python36\\autotest\\websocket_api_2.0\\files\\TempUpdate_name.txt'
 
         if os.path.exists(path):
             os.remove(path)   #先删除之前写过的文件

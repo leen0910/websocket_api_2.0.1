@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 import os
 
 def add_icon():
-    path='/Users/test/AppData/Local/Programs/Python/Python36/autotest/websocket_api_2.0.1'
+    path='/Users/test/AppData/Local/Programs/Python/Python36/autotest/websocket_api_2.0'
     os.chdir(path)
     head_pic = imageio.imread('./pics/head.jpg')
     pic_name=input("请选择你需要的图标（fla、leg、iphone、mate30)")

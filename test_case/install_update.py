@@ -19,8 +19,8 @@ import json
 
 class install(unittest.TestCase):
     """安装升级文件"""
-    filename="QRSP4-034015-00-09-T-2019-09-26.tar.gz"
-    path='../update/QRSP4-034015-00-09-T-2019-09-26.tar.gz'
+    filename="test1.zip"
+    path='../common/test1.zip'
     i=8
     size=300*1024
     def setUp(self):

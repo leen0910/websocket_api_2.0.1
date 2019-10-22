@@ -83,7 +83,7 @@ class websocket_request(unittest.TestCase):
 
     def test04_reduce_FileReceive(self):
         """再次执行一次 test01_FileReceive.py 文件，生成temp文件。"""
-        os.system("python C:\\Users\\test\\AppData\\Local\\Programs\\Python\\Python36\\autotest\\websocket_api_2.0.1\\test_case\\test01_FileReceive.py")
+        os.system("python C:\\Users\\test\\AppData\\Local\\Programs\\Python\\Python36\\autotest\\websocket_api_2.0\\test_case\\test01_FileReceive.py")
         print("已写入tempFile文件。")
 
     def test05_FileRemove_temp_script(self):
