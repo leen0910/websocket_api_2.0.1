@@ -9,9 +9,10 @@ def make_zip(source_dir, output_filename):
             pathfile = os.path.join(parent, filename)
             arcname = pathfile[pre_len:].strip(os.path.sep)   #相对路径
             zipf.write(pathfile, arcname)
+    print("生成zip文件：%s"%output_filename)
     zipf.close()
 
 if __name__=='__main__':
-    source_dir="C:\\Users\\test\\AppData\\Local\\Programs\\Python\\Python36\\autotest\\websocket_api_2.0\\zip"
-    output_filename="test1.zip"
+    source_dir="C:\\Users\\test\\AppData\\Local\\Programs\\Python\\Python36\\autotest\\websocket_api_2.0\\test"
+    output_filename="test.zip"
     make_zip(source_dir, output_filename)

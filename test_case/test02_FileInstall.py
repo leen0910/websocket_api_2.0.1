@@ -26,33 +26,33 @@ class websocket_request(unittest.TestCase):
             print("websocket连接失败：%s"%e)
             pass
 
-    def test01_install_script(self):
-        """3.控制器安装文件/安装script """
-        rm=read_message.ReadMessage()
-        data_login=rm.get_data("登录设备","login_admin")
-        url=self.ws
-        print("step 1、控制设备：")
-        c.checkAction(url,data_login)
-        time.sleep(1)
-
-        data_install_file=rm.get_data("控制器安装文件","file_install_script")
-
-        # """重新设置安装文件名"""
-        # data_dict=json.loads(data_install_file)
-        # data_dict["data"]["index"]=1
-        # data_dict["data"]["file_name"]="test.lua"
-        # print("安装脚本："+data_dict["data"]["file_name"])
-        # data_install_file=json.dumps(data_dict)
-        # print(data_install_file)
-
-        print("step 2、安装script文件: test.lua。")
-        t=c.checkAction(url,data_install_file)
-        self.assertEqual(t["success"],True)
-        time.sleep(1)
-
-        data_logout=rm.get_data("退出登录","logout")
-        print("step 3、释放设备：")
-        c.checkAction(url,data_logout)
+    # def test01_install_script(self):
+    #     """3.控制器安装文件/安装script """
+    #     rm=read_message.ReadMessage()
+    #     data_login=rm.get_data("登录设备","login_admin")
+    #     url=self.ws
+    #     print("step 1、控制设备：")
+    #     c.checkAction(url,data_login)
+    #     time.sleep(1)
+    #
+    #     data_install_file=rm.get_data("控制器安装文件","file_install_script")
+    #
+    #     # """重新设置安装文件名"""
+    #     # data_dict=json.loads(data_install_file)
+    #     # data_dict["data"]["index"]=1
+    #     # data_dict["data"]["file_name"]="test.lua"
+    #     # print("安装脚本："+data_dict["data"]["file_name"])
+    #     # data_install_file=json.dumps(data_dict)
+    #     # print(data_install_file)
+    #
+    #     print("step 2、安装script文件: test.lua。")
+    #     t=c.checkAction(url,data_install_file)
+    #     self.assertEqual(t["success"],True)
+    #     time.sleep(1)
+    #
+    #     data_logout=rm.get_data("退出登录","logout")
+    #     print("step 3、释放设备：")
+    #     c.checkAction(url,data_logout)
 
     def test02_install_config(self):
         """3.控制器安装文件/安装config """

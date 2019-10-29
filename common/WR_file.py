@@ -3,6 +3,11 @@ def WriteFile(path,data):
     with open(path, 'w') as f:
         f.write(data)
 
+
+def WriteFile_b(path,data):
+    with open(path, 'wb') as f:
+        f.write(data)
+
 def WriteFile_add(path,data):
     with open(path, 'a+') as f:
         f.write(data)

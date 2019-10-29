@@ -34,7 +34,7 @@ class websocket_request(unittest.TestCase):
         time.sleep(1)
 
         data_file_delete=rm.get_data("控制器删除文件","file_remove_script")
-        print("step 2、删除script文件：test.lua。")
+        print("step 2、删除script文件：test.zip。")
         t=c.checkAction(url,data_file_delete)
         self.assertEqual(t["success"],True)
         time.sleep(1)
@@ -86,24 +86,24 @@ class websocket_request(unittest.TestCase):
         os.system("python C:\\Users\\test\\AppData\\Local\\Programs\\Python\\Python36\\autotest\\websocket_api_2.0\\test_case\\test01_FileReceive.py")
         print("已写入tempFile文件。")
 
-    def test05_FileRemove_temp_script(self):
-        """4.控制器删除文件/删除temp_script文件 """
-        rm=read_message.ReadMessage()
-        data_login=rm.get_data("登录设备","login_admin")
-        url=self.ws
-        print("step 1、控制设备：")
-        c.checkAction(url,data_login)
-        time.sleep(1)
-
-        data_file_delete=rm.get_data("控制器删除文件","file_remove_temp_script")
-        print("step 2、删除temp_script文件：test.lua。")
-        t=c.checkAction(url,data_file_delete)
-        self.assertEqual(t["success"],True)
-        time.sleep(1)
-
-        data_logout=rm.get_data("退出登录","logout")
-        print("step 3、释放设备：")
-        c.checkAction(url,data_logout)
+    # def test05_FileRemove_temp_script(self):
+    #     """4.控制器删除文件/删除temp_script文件 """
+    #     rm=read_message.ReadMessage()
+    #     data_login=rm.get_data("登录设备","login_admin")
+    #     url=self.ws
+    #     print("step 1、控制设备：")
+    #     c.checkAction(url,data_login)
+    #     time.sleep(1)
+    #
+    #     data_file_delete=rm.get_data("控制器删除文件","file_remove_temp_script")
+    #     print("step 2、删除temp_script文件：test.lua。")
+    #     t=c.checkAction(url,data_file_delete)
+    #     self.assertEqual(t["success"],True)
+    #     time.sleep(1)
+    #
+    #     data_logout=rm.get_data("退出登录","logout")
+    #     print("step 3、释放设备：")
+    #     c.checkAction(url,data_logout)
 
     def test06_FileRemove_temp_temp_config(self):
         """4.控制器删除文件/删除temp_config文件 """

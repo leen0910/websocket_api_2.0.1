@@ -11,6 +11,7 @@ from common import check_action as c
 from common import Base_64
 from common import split_read as s
 from common import to_md5
+from common import to_zip
 import time
 import json
 
@@ -18,11 +19,14 @@ import json
 
 
 class install(unittest.TestCase):
-    """安装脚本文件"""
-    filename="tutorial1.lua"
-    path="../scripts/tutorial.lua"
-    i=10
+    """安装升级文件"""
+    filename="test.zip"
+    path='./test.zip'
+    i=3
     size=300*1024
+    type="script"
+    source_dir="C:\\Users\\test\\AppData\\Local\\Programs\\Python\\Python36\\autotest\\websocket_api_2.0\\test"
+    output_filename="test.zip"
     def setUp(self):
         rt=read_info.ReadInfo()
         web=rt.get_device_ip()
@@ -43,11 +47,18 @@ class install(unittest.TestCase):
         url=self.ws
         path=self.path
         filename=self.filename
+        type=self.type
+        source_dir=self.source_dir
+        output_filename=self.output_filename
         print("step 1、管理员登录设备。")
         c.checkAction(url,data_login)
         time.sleep(1)
 
-        print("step 2、向设备写入脚本：")
+        print("step 2、生成zip文件。")
+        to_zip.make_zip(source_dir, output_filename)
+        time.sleep(3)
+
+        print("step 3、向设备发送zip脚本文件：")
 
         # """一个总包直接传输文件"""
         # f=open(path,'r',encoding='utf-8')
@@ -71,18 +82,18 @@ class install(unittest.TestCase):
 
         """分包写入文件"""
         Block_Size=self.size
-        total=s.total_count(path,Block_Size)
-        str_md5=s.read_a_file(path)
-        md5=to_md5.md5(str_md5)
+        total=s.total_count_b(path,Block_Size)
+        str_md5=s.read_a_file_b(path)
+        md5=to_md5.md5_b(str_md5)
         print("总包数为：%s"%total)
         index=1
-        for content in s.read_file(path,Block_Size):
+        for content in s.read_file_b(path,Block_Size):
             str=content
-            script_base64=Base_64.encode(str)
+            script_base64=Base_64.encode_b(str)
             data_file={
                 "action":"file.receive",
                 "data":{
-                    "type":"script",
+                    "type":type,
                     "file_name":filename,
                     "total":total,
                     "index":index,
@@ -93,7 +104,7 @@ class install(unittest.TestCase):
             data_file=json.dumps(data_file)
             c.checkAction(url,data_file)
             index=index+1
-            print(script_base64)
+            # print(script_base64)
 
 
         data_install_script=rm.get_data("控制器安装文件","file_install_script")
@@ -101,60 +112,19 @@ class install(unittest.TestCase):
         """重新设置安装文件名"""
         data_dict=json.loads(data_install_script)
         data_dict["data"]["index"]=self.i
+        data_dict["data"]["type"]="%s"%type
         data_dict["data"]["file_name"]="%s"%filename
-        print("安装脚本："+data_dict["data"]["file_name"])
+        # print("安装文件："+data_dict["data"]["file_name"])
         data_install_script=json.dumps(data_dict)
         print(data_install_script)
 
-        print("step 3、安装%s文件"%filename)
+        print("step 4、安装：%s文件"%filename)
         c.checkAction(url,data_install_script)
         time.sleep(2)
 
-    #     data_initialize=rm.get_data("3","initialize")
-    #     print("step 3、初始化：")
-    #     c.checkAction(url,data_initialize)
-    #     time.sleep(10)
-    #
-    #     data_mode=rm.get_data("4","move_mode_script")
-    #     print("step 4、切换为脚本mode：")
-    #     c.checkAction(url,data_mode)
-    #     time.sleep(1)
-    #
-    #     print("step 5、运行step 2写入的脚本：")
-    #     data_script_start={
-    # "action" : "device.run.script",
-    # "data" :
-    # {
-    #     "script_name" : filename,
-    #     "cmd" : "start"
-    # }
-    # }
-    #     data_script_start=json.dumps(data_script_start)
-    #     c.checkAction(url,data_script_start)
-    #     time.sleep(500)
-    #
-    #     data_script_stop=rm.get_data("1","run_script_stop")
-    #     print("step 6、停止脚本运行：")
-    #     c.checkAction(url,data_script_stop)
-    #     time.sleep(2)
-    #
-    #     print("step 7、删除step 2写入的脚本：")
-    #     data_delete_script={
-    # "action" : "device.script.delete",
-    # "data" :
-    # {
-    #     "name" : filename
-    # }
-    # }
-    #     data_delete_script=json.dumps(data_delete_script)
-    #     c.checkAction(url,data_delete_script)
-    #
-    #
-    #     data_logout=rm.get_data("退出登录","logout")
-    #     print("step 8、释放设备：")
-    #     c.checkAction(url,data_logout)
-
-
+        data_logout=rm.get_data("退出登录","logout")
+        print("step、释放设备：")
+        c.checkAction(url,data_logout)
 
     def tearDown(self):
         time.sleep(3)

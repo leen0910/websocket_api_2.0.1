@@ -64,7 +64,7 @@ file_send_script={
     "data" :
     {
         "type" : "script",
-        "file_name" : "tutorial.lua",
+        "file_name" : "test.zip",
         "index" : 1
     }
     }
@@ -151,7 +151,7 @@ file_remove_script={
     "action":"file.remove",
     "data":{
         "type":"script",
-        "file_name":"test.lua"
+        "file_name":"test.zip"
     }
     }
 file_remove_config={
@@ -172,7 +172,7 @@ file_remove_temp_script={
     "action":"file.remove",
     "data":{
         "type":"temp_script",
-        "file_name":"test.lua"
+        "file_name":"test.zip"
     }
     }
 file_remove_temp_config={
@@ -278,28 +278,28 @@ set_zero={
 script_start={
     "action":"script.run.control",
     "data":{
-        "script":"tutorial.lua",
+        "script":"tutorial",
         "cmd":"start"
     }
     }
 script_stop={
     "action":"script.run.control",
     "data":{
-        "script":"tutorial.lua",
+        "script":"tutorial",
         "cmd":"stop"
     }
     }
 script_pause={
     "action":"script.run.control",
     "data":{
-        "script":"tutorial.lua",
+        "script":"tutorial",
         "cmd":"pause"
     }
     }
 script_continue={
     "action":"script.run.control",
     "data":{
-        "script":"tutorial.lua",
+        "script":"tutorial",
         "cmd":"continue"
     }
     }
@@ -320,7 +320,7 @@ script_mode_step={
 script_set_default={
     "action":"script.set.default",
     "data":{
-        "script":"tutorial.lua"
+        "script":"tutorial"
     }
     }
 script_set_default_clear={
@@ -333,7 +333,7 @@ script_set_default_clear={
 script_query_script_name={
     "action":"script.query.script",
     "data":{
-        "script":"tutorial.lua"
+        "script":"tutorial"
     }
     }
 script_query_script_default={

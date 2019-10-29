@@ -24,7 +24,7 @@ def decode_b(str):
     #解码
 
     decodestr = base64.b64decode(str)
-    decodestr = decodestr.decode()
+    # decodestr = decodestr.decode()
     return decodestr
 
 if __name__=="__main__":

@@ -38,16 +38,17 @@ class websocket_request(unittest.TestCase):
         time.sleep(1)
 
         data_file_send=rm.get_data("控制器发送文件","file_send_script")
-        print("step 2、从设备读取脚本文件tutorial.lua：")
+        print("step 2、从设备读取脚本文件test.zip：")
         t=c.checkAction(url,data_file_send)
         time.sleep(1)
         self.assertEqual(t["success"],True)
 
         print("step 3、解码后保存到files目录。")
         str=t["data"]["value"]
-        file_content=Base_64.decode(str)
-        path='C:\\Users\\test\\AppData\\Local\\Programs\\Python\\Python36\\autotest\\websocket_api_2.0\\files\\tutorial.lua'
-        WR_file.WriteFile(path,file_content)
+        file_content=Base_64.decode_b(str)
+        print("内容：%s"%file_content)
+        path='C:\\Users\\test\\AppData\\Local\\Programs\\Python\\Python36\\autotest\\websocket_api_2.0\\files\\test.zip'
+        WR_file.WriteFile_b(path,file_content)
 
         data_logout=rm.get_data("退出登录","logout")
         print("step 4、释放设备：")
@@ -143,7 +144,39 @@ class websocket_request(unittest.TestCase):
         print("step 4、释放设备：")
         c.checkAction(url,data_logout)
 
+    def test05_Script_send_all(self):
+        """1. 控制器发送文件/脚本文件/读取所有脚本文件 """
+        rm=read_message.ReadMessage()
+        data_login=rm.get_data("登录设备","login_admin")
+        url=self.ws
+        print("step 1、控制设备：")
+        c.checkAction(url,data_login)
+        time.sleep(1)
 
+        print("step 2、从设备中读取PROGRAME目录下所有脚本文件。 ")
+        fpath='C:\\Users\\test\\AppData\\Local\\Programs\\Python\\Python36\\autotest\\websocket_api_2.0\\files\\ScriptFile_name.txt'
+        for f_name in WR_file.ReadFile(fpath):
+            """重新设置脚本文件名"""
+            data_file_send=rm.get_data("控制器发送文件","file_send_script")
+            data_dict=json.loads(data_file_send)
+            data_dict["data"]["file_name"]="%s"%f_name
+            print("开始读取脚本文件："+data_dict["data"]["file_name"])
+            data_file_send=json.dumps(data_dict)
+            t=c.checkAction(url,data_file_send)
+            time.sleep(1)
+            self.assertEqual(t["success"],True)
+            print("%s 脚本文件读取成功。"%f_name)
+
+            print("step 3、解码后保存到files目录。")
+            str=t["data"]["value"]
+            file_content=Base_64.decode_b(str)
+            path='C:\\Users\\test\\AppData\\Local\\Programs\\Python\\Python36\\autotest\\websocket_api_2.0\\files\\'+f_name
+            WR_file.WriteFile_b(path,file_content)
+            print("%s 脚本文件保存成功。"%f_name)
+
+        data_logout=rm.get_data("退出登录","logout")
+        print("step 4、释放设备：")
+        c.checkAction(url,data_logout)
 
     def tearDown(self):
         time.sleep(3)

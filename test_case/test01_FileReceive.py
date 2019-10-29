@@ -25,24 +25,24 @@ class websocket_request(unittest.TestCase):
             print("websocket连接失败：%s"%e)
             pass
 
-    def test01_file_receive_script(self):
-        """2. 控制器接收文件/发送文件类型：script"""
-        rm=read_message.ReadMessage()
-        data_login=rm.get_data("登录设备","login_admin")
-        url=self.ws
-        print("step 1、控制设备：")
-        c.checkAction(url,data_login)
-        time.sleep(1)
-
-        data_file_receive=rm.get_data("控制器接收文件","file_receive_script")
-        print("step 2、向设备写入脚本文件test.lua。")
-        t=c.checkAction(url,data_file_receive)
-        self.assertEqual(t["success"],True)
-        time.sleep(1)
-
-        data_logout=rm.get_data("退出登录","logout")
-        print("step 3、释放设备：")
-        c.checkAction(url,data_logout)
+    # def test01_file_receive_script(self):
+    #     """2. 控制器接收文件/发送文件类型：script"""
+    #     rm=read_message.ReadMessage()
+    #     data_login=rm.get_data("登录设备","login_admin")
+    #     url=self.ws
+    #     print("step 1、控制设备：")
+    #     c.checkAction(url,data_login)
+    #     time.sleep(1)
+    #
+    #     data_file_receive=rm.get_data("控制器接收文件","file_receive_script")
+    #     print("step 2、向设备写入脚本文件test.lua。")
+    #     t=c.checkAction(url,data_file_receive)
+    #     self.assertEqual(t["success"],True)
+    #     time.sleep(1)
+    #
+    #     data_logout=rm.get_data("退出登录","logout")
+    #     print("step 3、释放设备：")
+    #     c.checkAction(url,data_logout)
 
     def test02_file_receive_config(self):
         """2. 控制器接收文件/发送文件类型：config"""
