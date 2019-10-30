@@ -20,13 +20,13 @@ import json
 
 class install(unittest.TestCase):
     """安装升级文件"""
-    filename="test.zip"
-    path='./test.zip'
+    filename="test1.zip"
+    path='C:\\Users\\test\\AppData\\Local\\Programs\\Python\\Python36\\autotest\\websocket_api_2.0\\test.zip'
     i=3
     size=300*1024
     type="script"
     source_dir="C:\\Users\\test\\AppData\\Local\\Programs\\Python\\Python36\\autotest\\websocket_api_2.0\\test"
-    output_filename="test.zip"
+    output_filename="C:\\Users\\test\\AppData\\Local\\Programs\\Python\\Python36\\autotest\\websocket_api_2.0\\test.zip"
     def setUp(self):
         rt=read_info.ReadInfo()
         web=rt.get_device_ip()

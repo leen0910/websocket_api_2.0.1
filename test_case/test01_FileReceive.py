@@ -54,7 +54,7 @@ class websocket_request(unittest.TestCase):
         time.sleep(1)
 
         data_file_receive=rm.get_data("控制器接收文件","file_receive_config")
-        print("step 2、向设备写入配置文件test.json。")
+        print("step 2、向设备写入配置文件permission.json。")
         t=c.checkAction(url,data_file_receive)
         self.assertEqual(t["success"],True)
         time.sleep(1)

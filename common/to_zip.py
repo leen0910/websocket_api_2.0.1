@@ -14,5 +14,5 @@ def make_zip(source_dir, output_filename):
 
 if __name__=='__main__':
     source_dir="C:\\Users\\test\\AppData\\Local\\Programs\\Python\\Python36\\autotest\\websocket_api_2.0\\test"
-    output_filename="test.zip"
+    output_filename="C:\\Users\\test\\AppData\\Local\\Programs\\Python\\Python36\\autotest\\websocket_api_2.0\\test.zip"
     make_zip(source_dir, output_filename)

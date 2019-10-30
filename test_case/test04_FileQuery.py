@@ -46,8 +46,14 @@ class websocket_request(unittest.TestCase):
         path='C:\\Users\\test\\AppData\\Local\\Programs\\Python\\Python36\\autotest\\websocket_api_2.0\\files\\ScriptFile_name.txt'
         if os.path.exists(path):
             os.remove(path)   #先删除之前写过的文件
-        files=t['data']["file_list"]
-        file_list=list(files)
+
+        num=len(t['data']["file_list"])
+        id=0
+        file_list=[]
+        while id<num:
+            file_list.append(t['data']["file_list"][id]["file_name"])
+            id=id+1
+
         for file in file_list:
             print(file)
             WR_file.WriteFile_add(path,file)    #追加写入脚本文件名
@@ -73,11 +79,19 @@ class websocket_request(unittest.TestCase):
         time.sleep(1)
 
         print("step 3、列出config目录文件名称：")
-        files=t["data"]["file_list"]
-        file_list=list(files)
+        # files=t["data"]["file_list"]
+        # file_list=list(files)
+        num=len(t['data']["file_list"])
+        id=0
+        file_list=[]
+        while id<num:
+            file_list.append(t['data']["file_list"][id]["file_name"])
+            id=id+1
+
         path='C:\\Users\\test\\AppData\\Local\\Programs\\Python\\Python36\\autotest\\websocket_api_2.0\\files\\ConfigFile_name.txt'
         if os.path.exists(path):
             os.remove(path)   #先删除之前写过的文件
+
         for file in file_list:
             print(file)
             WR_file.WriteFile_add(path,file)    #追加写入脚本文件名
@@ -104,12 +118,20 @@ class websocket_request(unittest.TestCase):
         time.sleep(1)
 
         print("step 3、列出log目录文件名称：")
-        files=t["data"]["file_list"]
-        file_list=list(files)
+        # files=t["data"]["file_list"]
+        # file_list=list(files)
         path='C:\\Users\\test\\AppData\\Local\\Programs\\Python\\Python36\\autotest\\websocket_api_2.0\\files\\LogFile_name.txt'
 
         if os.path.exists(path):
             os.remove(path)   #先删除之前写过的文件
+
+        num=len(t['data']["file_list"])
+        id=0
+        file_list=[]
+        while id<num:
+            file_list.append(t['data']["file_list"][id]["file_name"])
+            id=id+1
+
         for file in file_list:
             print(file)
             WR_file.WriteFile_add(path,file)    #追加写入脚本文件名
@@ -138,8 +160,15 @@ class websocket_request(unittest.TestCase):
         path='C:\\Users\\test\\AppData\\Local\\Programs\\Python\\Python36\\autotest\\websocket_api_2.0\\files\\TempScript_name.txt'
         if os.path.exists(path):
             os.remove(path)   #先删除之前写过的文件
-        files=t["data"]["file_list"]
-        file_list=list(files)
+        # files=t["data"]["file_list"]
+        # file_list=list(files)
+
+        num=len(t['data']["file_list"])
+        id=0
+        file_list=[]
+        while id<num:
+            file_list.append(t['data']["file_list"][id]["file_name"])
+            id=id+1
 
         for file in file_list:
             print(file)
@@ -169,8 +198,16 @@ class websocket_request(unittest.TestCase):
         path='C:\\Users\\test\\AppData\\Local\\Programs\\Python\\Python36\\autotest\\websocket_api_2.0\\files\\TempConfig_name.txt'
         if os.path.exists(path):
             os.remove(path)   # 先删除之前写过的文件
-        files=t["data"]["file_list"]
-        file_list=list(files)
+        # files=t["data"]["file_list"]
+        # file_list=list(files)
+
+        num=len(t['data']["file_list"])
+        id=0
+        file_list=[]
+        while id<num:
+            file_list.append(t['data']["file_list"][id]["file_name"])
+            id=id+1
+
         for file in file_list:
             print(file)
             WR_file.WriteFile_add(path,file)    #追加写入脚本文件名
@@ -180,7 +217,7 @@ class websocket_request(unittest.TestCase):
         print("step 5、释放设备：")
         c.checkAction(url,data_logout)
 
-    def test06_FileQuery_temp_config(self):
+    def test06_FileQuery_temp_update(self):
         """5. 控制器查询文件列表/查询temp_update目录 """
         rm=read_message.ReadMessage()
         data_login=rm.get_data("登录设备","login_admin")
@@ -196,12 +233,19 @@ class websocket_request(unittest.TestCase):
         time.sleep(1)
 
         print("step 3、列出temp_update目录文件名称：")
-        files=t["data"]["file_list"]
-        file_list=list(files)
+
         path='C:\\Users\\test\\AppData\\Local\\Programs\\Python\\Python36\\autotest\\websocket_api_2.0\\files\\TempUpdate_name.txt'
 
         if os.path.exists(path):
             os.remove(path)   #先删除之前写过的文件
+
+        num=len(t['data']["file_list"])
+        id=0
+        file_list=[]
+        while id<num:
+            file_list.append(t['data']["file_list"][id]["file_name"])
+            id=id+1
+
         for file in file_list:
             print(file)
             WR_file.WriteFile_add(path,file)    #追加写入脚本文件名

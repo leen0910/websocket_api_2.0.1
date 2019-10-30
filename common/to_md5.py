@@ -14,4 +14,3 @@ def md5_b(src):
 if __name__=="__main__":
 
     print(md5("123"))
-

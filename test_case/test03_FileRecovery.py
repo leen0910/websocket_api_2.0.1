@@ -34,7 +34,7 @@ class websocket_request(unittest.TestCase):
 
         data_file_recovery=rm.get_data("控制器配置文件恢复","file_recovery")
         print("step 2、控制配置文件恢复：")
-        files=["bus.json","local_io.json","modbus_connect.json","motion_param_config.json","permission.json"]
+        files=["motion_param_config.json","modbus_other_robot.json","modbus_Delta_plc.json","modbus_connect.json","modbus_4_way_relay.json","local_io.json","permission.json","canopen_1.json","bus_connect.json"]
 
         data_dict=json.loads(data_file_recovery)
         for file in files:

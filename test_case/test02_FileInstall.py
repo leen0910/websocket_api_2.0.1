@@ -65,7 +65,7 @@ class websocket_request(unittest.TestCase):
 
         data_install_file=rm.get_data("控制器安装文件","file_install_config")
 
-        print("step 2、安装config文件: local_io.json 。")
+        print("step 2、安装config文件: permission.json 。")
         t=c.checkAction(url,data_install_file)
         self.assertEqual(t["success"],True)
         time.sleep(1)

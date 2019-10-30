@@ -46,7 +46,7 @@ class websocket_request(unittest.TestCase):
         print("step 3、解码后保存到files目录。")
         str=t["data"]["value"]
         file_content=Base_64.decode_b(str)
-        print("内容：%s"%file_content)
+        # print("内容：%s"%file_content)
         path='C:\\Users\\test\\AppData\\Local\\Programs\\Python\\Python36\\autotest\\websocket_api_2.0\\files\\test.zip'
         WR_file.WriteFile_b(path,file_content)
 

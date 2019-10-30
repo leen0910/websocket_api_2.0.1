@@ -115,7 +115,7 @@ class websocket_request(unittest.TestCase):
         time.sleep(1)
 
         data_file_delete=rm.get_data("控制器删除文件","file_remove_temp_config")
-        print("step 2、删除temp_config文件：test.json。")
+        print("step 2、删除temp_config文件：permission.json。")
         t=c.checkAction(url,data_file_delete)
         self.assertEqual(t["success"],True)
         time.sleep(1)
