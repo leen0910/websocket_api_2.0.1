@@ -18,15 +18,15 @@ import json
 
 
 
-class install(unittest.TestCase):
-    """安装升级文件"""
-    filename="test.zip"
-    path='C:\\Users\\test\\AppData\\Local\\Programs\\Python\\Python36\\autotest\\websocket_api_2.0\\test.zip'
-    i=3
-    size=300*1024
-    type="script"
-    source_dir="C:\\Users\\test\\AppData\\Local\\Programs\\Python\\Python36\\autotest\\websocket_api_2.0\\test"
-    output_filename="C:\\Users\\test\\AppData\\Local\\Programs\\Python\\Python36\\autotest\\websocket_api_2.0\\test.zip"
+class ReceiveFiles(unittest.TestCase):
+    """向设备端写入文件"""
+    filename="modbus_connect.json"    #写入文件的名字
+    path='C:\\Users\\test\\AppData\\Local\\Programs\\Python\\Python36\\autotest\\websocket_api_2.0\\files\\modbus_connect.json'  #需要写入设备端的文件
+    i=3       #安装脚本文件时的序列号
+    size=300*1024    #分包大小
+    type="config"       #发送文件类型
+    source_dir="C:\\Users\\test\\AppData\\Local\\Programs\\Python\\Python36\\autotest\\websocket_api_2.0\\test"  #需要打包生成zip的文件目录
+    output_filename="C:\\Users\\test\\AppData\\Local\\Programs\\Python\\Python36\\autotest\\websocket_api_2.0\\test.zip"     #zip文件的输出目录
     def setUp(self):
         rt=read_info.ReadInfo()
         web=rt.get_device_ip()
@@ -40,7 +40,7 @@ class install(unittest.TestCase):
             print("websocket连接失败：%s"%e)
             pass
 
-    def test_install(self):
+    def test_ReceiveFiles(self):
         """控制器接收文件"""
         rm=read_message.ReadMessage()
         data_login=rm.get_data("登录设备","login_admin")
@@ -54,11 +54,11 @@ class install(unittest.TestCase):
         c.checkAction(url,data_login)
         time.sleep(1)
 
-        print("step 2、生成zip文件。")
-        to_zip.make_zip(source_dir, output_filename)
-        time.sleep(3)
+        # print("step 2、生成zip文件。")
+        # to_zip.make_zip(source_dir, output_filename)
+        # time.sleep(3)
 
-        print("step 3、向设备发送%s文件："%type)
+        print("step 3、向设备发送zip脚本文件：")
 
         # """一个总包直接传输文件"""
         # f=open(path,'r',encoding='utf-8')

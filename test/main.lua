@@ -1,3 +1,4 @@
+
 R.MP(P[5], 100, 0)
 --中国测试
 while (true) do

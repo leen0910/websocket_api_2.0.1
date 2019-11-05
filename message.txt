@@ -411,10 +411,8 @@ io_write_local_on={
 io_read_modbus={
     "action":"io.read.modbus",
     "data":{
-        "agreement":"T",
-        "server_index":3,
-        "type":0,
-        "address":20
+        "server_index":1,
+        "nick_name":"input_coil_0"
     }
     }
 
@@ -422,26 +420,25 @@ io_read_modbus={
 io_write_modbus={
     "action":"io.write.modbus",
     "data":{
-        "agreement":"T",
-        "server_index":3,
-        "type":1,
-        "address":20,
-        "value":10
+        "server_index":1,
+        "nick_name":"output_coil_0",
+        "value": 10
     }
     }
+
 [读取总线IO]
 io_read_bus={
-    "action":"io.read.busIO",
+    "action":"io.read.bus",
     "data": {
-        "master": 1,
-        "name": "input"
+        "client_index": 0,
+        "nick_name": "V1"
     }
     }
 [设置总线IO]
 io_write_bus={
-  "action": "io.write.busIO",
+  "action": "io.write.bus",
   "data": {
-    "master": 1,
+    "client_index": 1,
     "name": "output",
     "state": 5
   }
