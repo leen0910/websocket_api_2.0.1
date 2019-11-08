@@ -7,6 +7,6 @@ R.MP(P[3], 100, 100)
 R.MP(P[2], 100, 100)
 R.WAIT()
 R.MP(P[1], 100, 100)
-R.DELAY(3)
+R.DELAY(1)
 R.MP(P[2], 100, 100)
 end
