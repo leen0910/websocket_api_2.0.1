@@ -20,8 +20,8 @@ import json
 
 class ReceiveFiles(unittest.TestCase):
     """向设备端写入文件"""
-    filename="modbus_own_qxrobot.json"    #写入文件的名字
-    path='C:\\Users\\test\\AppData\\Local\\Programs\\Python\\Python36\\autotest\\websocket_api_2.0\\files\\modbus_own_qxrobot.json'  #需要写入设备端的文件
+    filename="modbus_connect.json"    #写入文件的名字
+    path='C:\\Users\\test\\AppData\\Local\\Programs\\Python\\Python36\\autotest\\websocket_api_2.0\\files\\modbus_connect.json'  #需要写入设备端的文件
     i=3       #安装脚本文件时的序列号
     size=300*1024    #分包大小
     type="config"       #发送文件类型
@@ -132,6 +132,16 @@ class ReceiveFiles(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
-    # t=install()
+    # t=ReceiveFiles()
     # t.setUp()
-    # t.install_lua_script()
+    # for i in range(1,100):
+    #     t.test_ReceiveFiles()
+    # for i in range(1,5):
+    #     suite = unittest.TestSuite()
+    #     suite.addTest(websocket_request('test01_read_io'))
+    #     suite.addTest(websocket_request('test02_write_io_off'))
+    #     suite.addTest(websocket_request('test03_write_io_on'))
+    #     suite.addTest(websocket_request('test04_read_io_default'))
+    #     suite.addTest(websocket_request('test05_write_io_default_off'))
+    #     suite.addTest(websocket_request('test06_write_io_default_on'))
+    #     unittest.TextTestRunner(verbosity=2).run(suite)

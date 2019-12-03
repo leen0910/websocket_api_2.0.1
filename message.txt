@@ -278,28 +278,28 @@ set_zero={
 script_start={
     "action":"script.run.control",
     "data":{
-        "script":"tutorial",
+        "script":"test",
         "cmd":"start"
     }
     }
 script_stop={
     "action":"script.run.control",
     "data":{
-        "script":"tutorial",
+        "script":"test",
         "cmd":"stop"
     }
     }
 script_pause={
     "action":"script.run.control",
     "data":{
-        "script":"tutorial",
+        "script":"test",
         "cmd":"pause"
     }
     }
 script_continue={
     "action":"script.run.control",
     "data":{
-        "script":"tutorial",
+        "script":"test",
         "cmd":"continue"
     }
     }
@@ -320,7 +320,7 @@ script_mode_step={
 script_set_default={
     "action":"script.set.default",
     "data":{
-        "script":"tutorial"
+        "script":"test"
     }
     }
 script_set_default_clear={
@@ -333,7 +333,7 @@ script_set_default_clear={
 script_query_script_name={
     "action":"script.query.script",
     "data":{
-        "script":"tutorial"
+        "script":"test"
     }
     }
 script_query_script_default={

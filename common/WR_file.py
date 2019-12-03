@@ -15,7 +15,7 @@ def WriteFile_add(path,data):
 
 
 def ReadFile(path):
-    with open(path,"r",encoding="utf-8") as f1:
+    with open(path,"r",encoding="gbk") as f1:
         list = f1.readlines()
         for i in range(0, len(list)):
             list[i] = list[i].rstrip('\n')

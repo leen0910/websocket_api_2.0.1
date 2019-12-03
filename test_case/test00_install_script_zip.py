@@ -102,6 +102,7 @@ class install(unittest.TestCase):
                     }
                 }
             data_file=json.dumps(data_file)
+            # print("发送包：%s"%data_file)
             c.checkAction(url,data_file)
             index=index+1
             # print(script_base64)
@@ -116,6 +117,7 @@ class install(unittest.TestCase):
         data_dict["data"]["file_name"]="%s"%filename
         # print("安装文件："+data_dict["data"]["file_name"])
         data_install_script=json.dumps(data_dict)
+        # print("安装文件包：%s"%data_install_script)
         print(data_install_script)
 
         print("step 4、安装：%s文件"%filename)

@@ -9,6 +9,7 @@ import time
 import json
 
 class websocket_request(unittest.TestCase):
+    server_index=[0,2]
     """modbus通讯"""
     def setUp(self):
         rt=read_info.ReadInfo()
@@ -36,7 +37,7 @@ class websocket_request(unittest.TestCase):
         data_modbus_connect=rm.get_data("Modbus连接","io_modbus_connect")
         print("step 2、激活配置文件的modbus连接。")
 
-        index_list=[0,2]
+        index_list=self.server_index
 
         data_dict=json.loads(data_modbus_connect)
         for server_index in index_list:
@@ -62,7 +63,7 @@ class websocket_request(unittest.TestCase):
         data_modbus_read=rm.get_data("读取MODBUS","io_read_modbus")
         print("step 2、读取线圈。")
 
-        server_index=[0,2]
+        server_index=self.server_index
         name_list=["input_coil_0","X0","input_coil_1","X1"]
 
         data_dict=json.loads(data_modbus_read)
@@ -103,7 +104,7 @@ class websocket_request(unittest.TestCase):
         "nick_name":"output_coil_0",
         "value": 10
         """
-        server_index=[0,2]
+        server_index=self.server_index
         name_list=["output_coil_0","Y0","output_coil_1","Y1"]
         values=[0,1]
         data_dict=json.loads(data_modbus_set)
@@ -147,7 +148,7 @@ class websocket_request(unittest.TestCase):
         data_modbus_read=rm.get_data("读取MODBUS","io_read_modbus")
         print("step 2、读取寄存器。")
 
-        server_index=[0,2]
+        server_index=self.server_index
         name_list=["input_reg_0","C0","input_reg_1","C1"]
 
         data_dict=json.loads(data_modbus_read)
@@ -189,7 +190,7 @@ class websocket_request(unittest.TestCase):
         "nick_name":"output_coil_0",
         "value": 10
         """
-        server_index=[0,2]
+        server_index=self.server_index
         name_list=["output_reg_0","D0","output_reg_1","D1"]
         values=[3541,15.234]
         data_dict=json.loads(data_modbus_set)
@@ -232,7 +233,7 @@ class websocket_request(unittest.TestCase):
         data_modbus_connect=rm.get_data("Modbus断开连接","io_modbus_disconnect")
         url=self.ws
 
-        index_list=[0,2]
+        index_list=self.server_index
         data_dict=json.loads(data_modbus_connect)
         for server_index in index_list:
             data_dict["data"]["server_index"]=server_index
@@ -253,3 +254,14 @@ class websocket_request(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+    # for i in range(1,500):
+    #     suite = unittest.TestSuite()
+    #     # suite.addTest(websocket_request('setUp'))
+    #     suite.addTest(websocket_request('test01_modbus_connect'))
+    #     suite.addTest(websocket_request('test02_read_modbus_coil'))
+    #     suite.addTest(websocket_request('test03_write_modbus_coil_Robot'))
+    #     suite.addTest(websocket_request('test04_read_modbus_register'))
+    #     suite.addTest(websocket_request('test05_write_modbus_register'))
+    #     suite.addTest(websocket_request('test06_modbus_disconnect'))
+    #     # suite.addTest(websocket_request('tearDown'))
+    #     unittest.TextTestRunner(verbosity=2).run(suite)

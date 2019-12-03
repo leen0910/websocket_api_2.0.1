@@ -25,7 +25,7 @@ def ws_connect():
     url=web+":"+port
     try:
         ws=create_connection(url,timeout=10)    #建立设备连接
-
+0
         rm=read_message.ReadMessage()
         data_login=rm.get_data("登录设备","login_monitor")
         print("step 1、登录设备/监控者")
