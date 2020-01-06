@@ -1,6 +1,0 @@
-R.DELAY(3)
-LY1=100
-b=LY1
-print(b)
-R.DELAY_MS(500)
-

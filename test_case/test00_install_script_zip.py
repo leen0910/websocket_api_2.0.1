@@ -19,7 +19,7 @@ import json
 
 
 class install(unittest.TestCase):
-    """安装升级文件"""
+    """安装test脚本程序"""
     filename="test.zip"
     path='C:\\Users\\test\\AppData\\Local\\Programs\\Python\\Python36\\autotest\\websocket_api_2.0\\test.zip'
     i=3

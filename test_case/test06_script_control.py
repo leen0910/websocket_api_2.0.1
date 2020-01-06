@@ -51,13 +51,13 @@ class websocket_request(unittest.TestCase):
         print("step 3、运行脚本：tutorial.zip.")
         t1=c.checkAction(url,data_script_start)
         self.assertEqual(t1["success"],True)
-        time.sleep(5)
+        time.sleep(4)
 
         data_velocity=rm.get_data("调整全局速度","adjust_velocity")
         print("step 4、调节运行速度为40%")
         t2=c.checkAction(url,data_velocity)
         self.assertEqual(t2["success"],True)
-        time.sleep(5)
+        time.sleep(4)
 
         data_logout=rm.get_data("退出登录","logout")
         print("step 11、退出登录。")
@@ -77,7 +77,7 @@ class websocket_request(unittest.TestCase):
         print("step 5、暂停脚本运行：")
         t3=c.checkAction(url,data_script_pause)
         self.assertEqual(t3["success"],True)
-        time.sleep(5)
+        time.sleep(4)
 
 
         data_logout=rm.get_data("退出登录","logout")
@@ -99,7 +99,7 @@ class websocket_request(unittest.TestCase):
         print("step 6、暂停后继续脚本运行：")
         t4=c.checkAction(url,data_script_continue)
         self.assertEqual(t4["success"],True)
-        time.sleep(5)
+        time.sleep(4)
 
         data_logout=rm.get_data("退出登录","logout")
         print("step 、退出登录。")
@@ -119,7 +119,7 @@ class websocket_request(unittest.TestCase):
         print("step 7、运行过程中急停。")
         t=c.checkAction(url,data_script_emergency)
         self.assertEqual(t["success"],True)
-        time.sleep(5)
+        time.sleep(4)
 
         data_logout=rm.get_data("退出登录","logout")
         print("step 、退出登录。")
@@ -139,7 +139,7 @@ class websocket_request(unittest.TestCase):
         print("step 8、运行脚本：tutorial.zip.")
         t6=c.checkAction(url,data_script_start)
         self.assertEqual(t6["success"],True)
-        time.sleep(5)
+        time.sleep(4)
 
         data_script_stop=rm.get_data("脚本运行控制","script_stop")
         print("step 9、停止脚本运行：")
