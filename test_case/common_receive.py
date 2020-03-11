@@ -20,8 +20,8 @@ import json
 
 class ReceiveFiles(unittest.TestCase):
     """向设备端写入文件"""
-    filename="modbus_connect.json"    #写入文件的名字
-    path='C:\\Users\\test\\AppData\\Local\\Programs\\Python\\Python36\\autotest\\websocket_api_2.0\\files\\modbus_connect.json'  #需要写入设备端的文件
+    filename="modbus_own_qxrobot.json"    #写入文件的名字
+    path='C:\\Users\\test\\AppData\\Local\\Programs\\Python\\Python36\\autotest\\websocket_api_2.0\\files\\modbus_own_qxrobot.json'  #需要写入设备端的文件
     i=3       #安装脚本文件时的序列号
     size=300*1024    #分包大小
     type="config"       #发送文件类型

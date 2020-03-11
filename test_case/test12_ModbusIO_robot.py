@@ -9,7 +9,7 @@ import time
 import json
 
 class websocket_request(unittest.TestCase):
-    server_index=[0]
+    server_index=[0,2]
     """modbus通讯"""
     def setUp(self):
         rt=read_info.ReadInfo()
@@ -192,7 +192,7 @@ class websocket_request(unittest.TestCase):
         """
         server_index=self.server_index
         name_list=["output_reg_0","D0","output_reg_1","D1"]
-        values=[3541,15.234]
+        values=[69541,17.258414]
         data_dict=json.loads(data_modbus_set)
         data_dict1=json.loads(data_modbus_read)
         for index in server_index:

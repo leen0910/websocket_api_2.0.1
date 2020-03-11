@@ -107,7 +107,7 @@ class websocket_request(unittest.TestCase):
         "value": 10
         """
         server_index=self.server_index
-        name_list=["output_coil_0","Y0","output_coil_1","Y1","output_coil_2","Y2","output_coil_3","Y3","output_coil_4","Y4","output_coil_5","Y5","output_coil_6","Y6","output_coil_7","Y7","output_coil_8","Y8","output_coil_9","Y9","output_coil_10","Y10","output_coil_11","Y11","output_coil_12","Y12","output_coil_13","Y13","output_coil_14","Y14","output_coil_15","Y15","output_coil_16","Y16"]
+        name_list=["output_coil_0","Y0","output_coil_1","Y1","output_coil_2","Y2","output_coil_3","Y3","output_coil_4","Y4","output_coil_5","Y5","output_coil_6","Y6","output_coil_7","Y7","output_coil_8","Y8","output_coil_9","Y9","output_coil_10","Y10","output_coil_11","Y11","output_coil_12","Y12","output_coil_13","Y13","output_coil_14","Y14","output_coil_15","Y15","output_coil_16","Y16","Y17","output_coil_17",]
         values=[0,1]
         data_dict=json.loads(data_modbus_set)
         data_dict1=json.loads(data_modbus_read)
