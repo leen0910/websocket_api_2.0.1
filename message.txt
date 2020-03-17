@@ -431,16 +431,16 @@ io_read_bus={
     "action":"io.read.bus",
     "data": {
         "client_index": 0,
-        "nick_name": "V1"
+        "name": "X0"
     }
     }
 [设置总线IO]
 io_write_bus={
   "action": "io.write.bus",
   "data": {
-    "client_index": 1,
-    "name": "output",
-    "state": 5
+    "client_index": 0,
+    "name": "Y1",
+    "value": 1
   }
   }
 

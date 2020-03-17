@@ -9,7 +9,7 @@ import time
 import json
 
 class websocket_request(unittest.TestCase):
-    """总线IO"""
+    """总线IO:module_name: bus_extio_can_v1"""
     def setUp(self):
         rt=read_info.ReadInfo()
         web=rt.get_device_ip()
@@ -34,7 +34,7 @@ class websocket_request(unittest.TestCase):
 
         data_io_read=rm.get_data("读取总线IO","io_read_bus")
         print("step 2、按配置参数读取总线io：")
-        io_list=["V1","V2","input"]
+        io_list=["X0","X1","X2","X3","X4","X5","X6","X7","X8","X9","input_0","input_1","input_2","input_3","input_4","input_5","input_6","input_7","pulse_f","pulse_c"]
 
         data_dict=json.loads(data_io_read)
         for name in io_list:
@@ -43,7 +43,7 @@ class websocket_request(unittest.TestCase):
             data_io_set=json.dumps(data_dict)
             t=c.checkAction(url,data_io_set)
             if t["success"]==True:
-                print("读取busIO: %s 的state值：%s"%(t["data"]["name"],t["data"]["state"]))
+                print("读取busIO: %s 的state值：%s"%(t["data"]["name"],t["data"]["value"]))
             else:
                 print("读取busIO失败。")
             time.sleep(0.1)
@@ -64,18 +64,18 @@ class websocket_request(unittest.TestCase):
 
         data_io_set=rm.get_data("设置总线IO","io_write_bus")
         print("step 2、设置io:")
-        io_list=["output"]
-        values=["3","5"]
+        io_list=["Y0","Y1","Y2","Y3","Y4","Y5","Y6","Y7","output_0","output_1","output_2","output_3","output_4","output_5","output_6","output_7"]
+        values=[0,1]
         data_dict=json.loads(data_io_set)
         data_io_read=rm.get_data("读取总线IO","io_read_bus")
         data_dict_read=json.loads(data_io_read)
-        for name in io_list:
-            for value in values:
+        for value in values:
+            for name in io_list:
                 data_dict["data"]["name"]=name
-                data_dict["data"]["rate_value"]=value
+                data_dict["data"]["value"]=value
                 data_io_set=json.dumps(data_dict)
-                t=c.checkAction(url,data_io_set)
-                if t["success"]==True:
+                t1=c.checkAction(url,data_io_set)
+                if t1["success"]==True:
                     print("设置busIO：%s的值：%s"%(name,value))
                 else:
                     print("设置busIO失败。")
@@ -84,9 +84,9 @@ class websocket_request(unittest.TestCase):
                 data_dict_read["data"]["name"]=name
                 print("读取io：%s"%name )
                 data_io_read=json.dumps(data_dict_read)
-                t=c.checkAction(url,data_io_read)
-                if t["success"]==True:
-                    print("busIO: %s 的state值为：%s。"%(name,t["data"]["state"]))
+                t2=c.checkAction(url,data_io_read)
+                if t2["success"]==True:
+                    print("busIO: %s 的state值为：%s。"%(name,t2["data"]["value"]))
                 else:
                     print("io：%s读取失败。"%name)
                 time.sleep(0.1)
