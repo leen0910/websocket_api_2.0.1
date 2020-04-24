@@ -9,7 +9,7 @@ import time
 import json
 
 class websocket_request(unittest.TestCase):
-    server_index=[0,2]
+    server_index=[0]
     """modbus通讯"""
     def setUp(self):
         rt=read_info.ReadInfo()
@@ -51,7 +51,7 @@ class websocket_request(unittest.TestCase):
         print("step 3、退出登录。")
         c.checkAction(url,data_logout)
 
-    def test02_read_modbus_coil(self):
+    def test03_read_modbus_coil(self):
         """读取MODBUS/本机&其它设备 /读线圈"""
         rm=read_message.ReadMessage()
         data_login=rm.get_data("登录设备","login_admin")
@@ -64,7 +64,7 @@ class websocket_request(unittest.TestCase):
         print("step 2、读取线圈。")
 
         server_index=self.server_index
-        name_list=["input_coil_0","X0","input_coil_1","X1"]
+        name_list=["motor_on","Y0","motor_off","Y1","lua_start","Y2","lua_stop","Y3","lua_pause","Y4","lua_resume","Y5","brake","Y6","motion_flag","Y7"]
 
         data_dict=json.loads(data_modbus_read)
         for index in server_index:
@@ -86,7 +86,7 @@ class websocket_request(unittest.TestCase):
         print("step 3、退出登录。")
         c.checkAction(url,data_logout)
 
-    def test03_write_modbus_coil_Robot(self):
+    def test02_write_modbus_coil_Robot(self):
         """设置MODBUS/本设备&其它设备/写线圈 """
         rm=read_message.ReadMessage()
         data_login=rm.get_data("登录设备","login_admin")
@@ -105,7 +105,7 @@ class websocket_request(unittest.TestCase):
         "value": 10
         """
         server_index=self.server_index
-        name_list=["output_coil_0","Y0","output_coil_1","Y1"]
+        name_list=["motor_on","Y0","motor_off","Y1","lua_start","Y2","lua_stop","Y3","lua_pause","Y4","lua_resume","Y5","brake","Y6","motion_flag","Y7"]
         values=[0,1]
         data_dict=json.loads(data_modbus_set)
         data_dict1=json.loads(data_modbus_read)
@@ -136,7 +136,7 @@ class websocket_request(unittest.TestCase):
         c.checkAction(url,data_logout)
 
 
-    def test04_read_modbus_register(self):
+    def test05_read_modbus_register(self):
         """读取MODBUS/本机&其它设备 /读寄存器"""
         rm=read_message.ReadMessage()
         data_login=rm.get_data("登录设备","login_admin")
@@ -149,7 +149,7 @@ class websocket_request(unittest.TestCase):
         print("step 2、读取寄存器。")
 
         server_index=self.server_index
-        name_list=["input_reg_0","C0","input_reg_1","C1"]
+        name_list=["motor_speed","D0","follow_ref_X","D10","follow_ref_Y","D11","follow_ref_Z","D12","follow_ref_A","D13","follow_ref_B","D14","follow_ref_C","D15","follow_dir_X","D16","follow_dir_Y","D17","follow_dir_Z","D18","follow_dir_A","D19","follow_dir_B","D20","follow_dir_C","D21","follow_vel","D22","error_time","D23","start_length","D24","end_length","D25","type_id","D26"]
 
         data_dict=json.loads(data_modbus_read)
         for index in server_index:
@@ -172,7 +172,7 @@ class websocket_request(unittest.TestCase):
         print("step 3、退出登录。")
         c.checkAction(url,data_logout)
 
-    def test05_write_modbus_register(self):
+    def test04_write_modbus_register(self):
         """设置MODBUS/本机&其它设备/写寄存器 """
         rm=read_message.ReadMessage()
         data_login=rm.get_data("登录设备","login_admin")
@@ -191,7 +191,7 @@ class websocket_request(unittest.TestCase):
         "value": 10
         """
         server_index=self.server_index
-        name_list=["output_reg_0","D0","output_reg_1","D1"]
+        name_list=["motor_speed","D0","follow_ref_X","D10","follow_ref_Y","D11","follow_ref_Z","D12","follow_ref_A","D13","follow_ref_B","D14","follow_ref_C","D15","follow_dir_X","D16","follow_dir_Y","D17","follow_dir_Z","D18","follow_dir_A","D19","follow_dir_B","D20","follow_dir_C","D21","follow_vel","D22","error_time","D23","start_length","D24","end_length","D25","type_id","D26"]
         values=[69541,17.258414]
         data_dict=json.loads(data_modbus_set)
         data_dict1=json.loads(data_modbus_read)

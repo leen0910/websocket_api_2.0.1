@@ -34,7 +34,7 @@ class websocket_request(unittest.TestCase):
 
         data_io_read=rm.get_data("读取总线IO","io_read_bus")
         print("step 2、按配置参数读取总线io：")
-        io_list=["X0","X1","X2","X3","X4","X5","X6","X7","X8","X9","input_0","input_1","input_2","input_3","input_4","input_5","input_6","input_7","pulse_f","pulse_c"]
+        io_list=["X0","X1","X2","X3","X4","X5","X6","X7","X8","X9","X10","X11","X12","X13","X17","input_0","input_1","input_2","input_3","input_4","input_5","input_6","input_7","input_8","input_9","input_10","input_11","input_12","pulse_f","pulse_c"]
 
         data_dict=json.loads(data_io_read)
         for name in io_list:
@@ -64,7 +64,7 @@ class websocket_request(unittest.TestCase):
 
         data_io_set=rm.get_data("设置总线IO","io_write_bus")
         print("step 2、设置io:")
-        io_list=["Y0","Y1","Y2","Y3","Y4","Y5","Y6","Y7","output_0","output_1","output_2","output_3","output_4","output_5","output_6","output_7"]
+        io_list=["Y0","Y1","Y2","Y3","Y4","Y5","Y6","Y7","Y8","Y9","Y10","Y11","Y12","Y13","Y14","Y15","output_0","output_1","output_2","output_3","output_4","output_5","output_6","output_7","output_8","output_9","output_10","output_11","output_12","output_13","output_14","output_15"]
         values=[0,1]
         data_dict=json.loads(data_io_set)
         data_io_read=rm.get_data("读取总线IO","io_read_bus")
