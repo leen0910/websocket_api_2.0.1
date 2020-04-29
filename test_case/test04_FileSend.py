@@ -71,9 +71,9 @@ class websocket_request(unittest.TestCase):
 
         print("step 3、解码后保存到files目录。")
         str=t["data"]["value"]
-        file_content=Base_64.decode(str)
+        file_content=Base_64.decode_b(str)
         path='C:\\Users\\test\\AppData\\Local\\Programs\\Python\\Python36\\autotest\\websocket_api_2.0\\files\\lua.json'
-        WR_file.WriteFile(path,file_content)
+        WR_file.WriteFile_b(path,file_content)
 
         data_logout=rm.get_data("退出登录","logout")
         print("step 4、释放设备：")
@@ -101,9 +101,9 @@ class websocket_request(unittest.TestCase):
 
             print("step 3、解码后保存到files目录。")
             str=t["data"]["value"]
-            file_content=Base_64.decode(str)
+            file_content=Base_64.decode_b(str)
             path='C:\\Users\\test\\AppData\\Local\\Programs\\Python\\Python36\\autotest\\websocket_api_2.0\\files\\'+log_name
-            WR_file.WriteFile(path,file_content)
+            WR_file.WriteFile_b(path,file_content)
             print("%s LOG文件保存成功。"%log_name)
 
         data_logout=rm.get_data("退出登录","logout")
@@ -135,9 +135,9 @@ class websocket_request(unittest.TestCase):
             print("%s config文件读取成功。"%f_name)
 
             str=t["data"]["value"]
-            file_content=Base_64.decode(str)
+            file_content=Base_64.decode_b(str)
             path='C:\\Users\\test\\AppData\\Local\\Programs\\Python\\Python36\\autotest\\websocket_api_2.0\\files\\'+f_name
-            WR_file.WriteFile(path,file_content)
+            WR_file.WriteFile_b(path,file_content)
             print("%s config文件保存成功。"%f_name)
 
         data_logout=rm.get_data("退出登录","logout")

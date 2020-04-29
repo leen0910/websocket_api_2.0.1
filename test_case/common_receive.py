@@ -20,8 +20,8 @@ import json
 
 class ReceiveFiles(unittest.TestCase):
     """向设备端写入文件"""
-    filename="modbus_connect.json"    #写入文件的名字
-    path='C:\\Users\\test\\AppData\\Local\\Programs\\Python\\Python36\\autotest\\websocket_api_2.0\\files\\modbus_connect.json'  #需要写入设备端的文件
+    filename="dev_modifiable_info.json"    #写入文件的名字
+    path='C:\\Users\\test\\AppData\\Local\\Programs\\Python\\Python36\\autotest\\websocket_api_2.0\\files\\dev_modifiable_info.json'  #需要写入设备端的文件
     i=3       #安装脚本文件时的序列号
     size=300*1024    #分包大小
     type="config"       #发送文件类型
@@ -102,6 +102,7 @@ class ReceiveFiles(unittest.TestCase):
                     }
                 }
             data_file=json.dumps(data_file)
+            print(""+data_file)
             c.checkAction(url,data_file)
             index=index+1
             # print(script_base64)

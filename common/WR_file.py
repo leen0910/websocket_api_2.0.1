@@ -2,16 +2,19 @@
 def WriteFile(path,data):
     with open(path, 'w') as f:
         f.write(data)
+        f.close()
 
 
 def WriteFile_b(path,data):
     with open(path, 'wb') as f:
         f.write(data)
+        f.close()
 
 def WriteFile_add(path,data):
     with open(path, 'a+') as f:
         f.write(data)
         f.write('\n')
+        f.close()
 
 
 def ReadFile(path):
