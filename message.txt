@@ -1,27 +1,127 @@
+[硬件测试]
+[本地IO测试]
+hardware_test_io_start={
+    "action":"hardware.test.io",
+    "data":{
+        "cmd":"start"
+    }
+    }
+hardware_test_io_stop={
+    "action":"hardware.test.io",
+    "data":{
+        "cmd":"stop"
+    }
+    }
+
+[CAN通讯测试]
+hardware_test_can={
+    "action":"hardware.test.can"
+    }
+
+
+[出厂配置]
+[设定控制器型号]
+factory_config_board={
+    "action":"factory.config.board",
+    "data":{
+        "type":"ctrl_v1"
+    }
+    }
+
+[配置机器型号]
+factory_config_robot_01={
+    "action":"factory.config.robot",
+    "data":{
+        "type":"QRSP4-056020-00-01"
+    }
+    }
+factory_config_robot_02={
+    "action":"factory.config.robot",
+    "data":{
+        "type":"QRSP4-056020-00-02"
+    }
+    }
+factory_config_robot_09={
+    "action":"factory.config.robot",
+    "data":{
+        "type":"QRSP4-034015-00-09"
+    }
+    }
+factory_config_robot_10={
+    "action":"factory.config.robot",
+    "data":{
+        "type":"QRSP4-034015-00-10"
+    }
+    }
+factory_config_robot_21={
+    "action":"factory.config.robot",
+    "data":{
+        "type":"QRSP3-056010-00-21"
+    }
+    }
+
+[配置扩展IO]
+factory_config_extended_io={
+    "action":"factory.config.extended.io",
+    "data":{
+        "type":"user_custom",
+        "is_add":false
+    }
+    }
+
+[配置系统时间]
+factory_config_system_time={
+    "action":"factory.config.system.time",
+    "data":
+    {
+        "date":"2020/04/22",
+        "time":"16:31:22"
+    }
+    }
+
+[设备标定]
+[硬限位标定]
+calibration_limit_hard={
+    "action":"calibration.limit.hard",
+    "data":{
+        "driver_id":0,
+        "miminum":true
+    }
+    }
+[零位标定]
+calibration_zero={
+    "action":"calibration.zero",
+    }
+[参数矫正]
+calibration_correct_type0_pose={
+    "action":"calibration.correct.type0",
+    "date":{
+        "point":[
+            [0,0,0,0],[0,0,0,0]
+        ]
+    }
+    }
+calibration_correct_type0_arm={
+    "action":"calibration.correct.type0",
+    "date":{
+        "point1":[
+            [0,0,0,0],[0,0,0,0]
+        ],
+        "point2":[
+            [0,0,0,0],[0,0,0,0]
+        ],
+        "distance":30
+    }
+    }
+
 [权限管理]
 [登录设备]
-login_monitor={
+login_debug={
     "action":"permission.login",
-    "data":{
-        "username":"Monitor",
-        "identity":"monitor",
-        "password":"MTIzNDU2"
-    }
-    }
-login_operator={
-    "action":"permission.login",
-    "data":{
-        "username":"Operator",
-        "identity":"operator",
-        "password":"MTIzNDU2"
-    }
-    }
-login_admin={
-    "action":"permission.login",
-    "data":{
-        "username":"Admin",
-        "identity":"root",
-        "password":"MTIzNDU2"
+    "data":
+    {
+        "identity":"debug",
+        "password":""
     }
     }
 
@@ -30,50 +130,24 @@ logout={
     "action":"permission.logout"
     }
 
-[修改密码]
-password_reset_monitor={
+[设置密码]
+password_reset_debug={
     "action":"permission.password.reset",
     "data":{
-        "identity":"monitor",
-        "old_password":"MTIzNDU2",
-        "new_password":"MTIzNDU2"
-    }
-    }
-password_reset_operator={
-    "action":"permission.password.reset",
-    "data":{
-        "identity":"operator",
-        "old_password":"MTIzNDU2",
-        "new_password":"MTIzNDU2"
-    }
-    }
-password_reset_admin={
-    "action":"permission.password.reset",
-    "data":{
-        "identity":"root",
-        "old_password":"MTIzNDU2",
-        "new_password":"MTIzNDU2"
+        "identity":"debug",
+        "password":""
     }
     }
 
 
 [文件管理]
 [控制器发送文件]
-file_send_script={
-    "action" : "file.send",
-    "data" :
-    {
-        "type" : "script",
-        "file_name" : "test.zip",
-        "index" : 1
-    }
-    }
 file_send_config={
     "action" : "file.send",
     "data" :
     {
         "type" : "config",
-        "file_name" : "lua.json",
+        "file_name" : "",
         "index" : 1
     }
     }
@@ -82,120 +156,49 @@ file_send_log={
     "data" :
     {
         "type" : "log",
-        "file_name" : "qxlog.log",
+        "file_name" : "",
         "index" : 1
     }
     }
+file_send_temconfig={
+    "action" : "file.send",
+    "data" :
+    {
+        "type" : "temp_config",
+        "file_name" : "",
+        "index" : 1
+    }
+    }
+file_send_temupdate={
+    "action" : "file.send",
+    "data" :
+    {
+        "type" : "temp_update",
+        "file_name" : "",
+        "index" : 1
+    }
+    }
+
 [控制器接收文件]
-file_receive_script={
-    "action" : "file.receive",
-    "data" :
-    {
-        "type":"script",
-        "file_name":"test.lua",
-        "total":1,
-        "index":1,
-        "md5":"fb89edad146dc6872ac6c7349782803e",
-        "value":"LS0geyJtb3ZlX3AycF9wb3NpdCIsIG1vdmVfcDJwX3Bvc2l0fSwKLS0geyJtb3ZlX2xpbmVfcG9zZSIsIG1vdmVfbGluZV9wb3NlfSwKLS0geyJtb3ZlX2FyY19wb3NlIiwgbW92ZV9hcmNfcG9zZX0sCi0tIHsid2FpdF9tb3ZlX2RvbmUiLCB3YWl0X21vdmVfZG9uZX0sCi0tIHsic2V0X2RlZmF1bHRfc2NyaXB0Iiwgc2V0X2RlZmF1bHRfc2NyaXB0fSwKLS0geyJzZXRfZGVsYXlfc2VjIiwgc2V0X2RlbGF5X3NlY30sCgotLSDlhbPoioLlnZDmoIcKcG9zZV94PTI1MApsZW5ndGg9MTcuNjc3NjY5NTMKdmVsPTEwMDsKYmxlbmQ9MDsKCnBvc2UxPXtbIngiXSA9IHBvc2VfeCwgWyJ5Il0gPS0xNTAsIFsieiJdID0gLTEwMCxbImEiXSA9IDAsWyJiIl0gPSAwLFsiYyJdID0gMH0KcG9zZW0xPXtbIngiXSA9IHBvc2VfeCwgWyJ5Il0gPS0xMjUtbGVuZ3RoLCBbInoiXSA9IC0xMDArbGVuZ3RoLFsiYSJdID0gMCxbImIiXSA9IDAsWyJjIl0gPSAwfQpwb3NlMj17WyJ4Il0gPSBwb3NlX3gsIFsieSJdID0tMTUwKzI1LCBbInoiXSA9IC03NSxbImEiXSA9IDAsWyJiIl0gPSAwLFsiYyJdID0gMH0KcG9zZTM9e1sieCJdID0gcG9zZV94LCBbInkiXSA9MTUwLTI1LCBbInoiXSA9IC03NSxbImEiXSA9IDAsWyJiIl0gPSAwLFsiYyJdID0gMH0KcG9zZW0yPXtbIngiXSA9IHBvc2VfeCwgWyJ5Il0gPTEyNStsZW5ndGgsIFsieiJdID0gLTEwMCtsZW5ndGgsWyJhIl0gPSAwLFsiYiJdID0gMCxbImMiXSA9IDB9CnBvc2U0PXtbIngiXSA9IHBvc2VfeCwgWyJ5Il0gPTE1MCwgWyJ6Il0gPSAtMTAwLFsiYSJdID0gMCxbImIiXSA9IDAsWyJjIl0gPSAwfQpwb3NldDE9e1sieCJdID0gcG9zZV94LCBbInkiXSA9LTUwLCBbInoiXSA9IC0xMDAsWyJhIl0gPSAwLFsiYiJdID0gMCxbImMiXSA9IDB9CnBvc2V0Mj17WyJ4Il0gPSBwb3NlX3gsIFsieSJdID0tNTArbGVuZ3RoLCBbInoiXSA9IC0xMDArbGVuZ3RoLFsiYSJdID0gMCxbImIiXSA9IDAsWyJjIl0gPSAwfQpwb3NldDM9e1sieCJdID0gcG9zZV94KzAuMDAxLCBbInkiXSA9MCwgWyJ6Il0gPSAtNzUsWyJhIl0gPSAwLFsiYiJdID0gMCxbImMiXSA9IDB9Cgpwb3NpdDE9e1siajEiXT0xLFsiajIiXT0tMSxbImozIl09MCxbImo0Il09MCxbImo1Il09MCxbImo2Il09MH0Kcm9ib3QubW92ZV9wMnBfcG9zaXQocG9zaXQxLHZlbCxibGVuZCkKcm9ib3QubW92ZV9saW5lX3Bvc2UocG9zZTEsdmVsLGJsZW5kKQp3aGlsZSgxKQpkbwoJcm9ib3QubW92ZV9hcmNfcG9zZShwb3NlbTEscG9zZTIsdmVsLGJsZW5kKQoJcm9ib3QubW92ZV9saW5lX3Bvc2UocG9zZTMsdmVsLGJsZW5kKQoJcm9ib3QubW92ZV9hcmNfcG9zZShwb3NlbTIscG9zZTQsdmVsLGJsZW5kKQoKCXJvYm90Lm1vdmVfYXJjX3Bvc2UocG9zZW0yLHBvc2UzLHZlbCxibGVuZCkKCXJvYm90Lm1vdmVfbGluZV9wb3NlKHBvc2UyLHZlbCxibGVuZCkKCXJvYm90Lm1vdmVfYXJjX3Bvc2UocG9zZW0xLHBvc2UxLHZlbCxibGVuZCkKZW5k"
-    }
-    }
-file_receive_config={
-    "action" : "file.receive",
-    "data" :
-    {
-        "type":"config",
-        "file_name":"permission.json",
-        "total":1,
-        "index":1,
-        "md5":"ea8a0ddf82a53e2090e54aab765af3be",
-        "value":"ewoJIm1vbml0b3IiIDogIjEyMzQ1NiIsCgkib3BlcmF0b3IiIDogIjEyMzQ1NiIsCgkicm9vdCIgOiAiMTIzNDU2Igp9"
-    }
-    }
-file_receive_update={
-    "action" : "file.receive",
-    "data" :
-    {
-        "type":"update",
-        "file_name":"test.reb",
-        "total":1,
-        "index":1,
-        "md5":"fb89edad146dc6872ac6c7349782803e",
-        "value":"LS0geyJtb3ZlX3AycF9wb3NpdCIsIG1vdmVfcDJwX3Bvc2l0fSwKLS0geyJtb3ZlX2xpbmVfcG9zZSIsIG1vdmVfbGluZV9wb3NlfSwKLS0geyJtb3ZlX2FyY19wb3NlIiwgbW92ZV9hcmNfcG9zZX0sCi0tIHsid2FpdF9tb3ZlX2RvbmUiLCB3YWl0X21vdmVfZG9uZX0sCi0tIHsic2V0X2RlZmF1bHRfc2NyaXB0Iiwgc2V0X2RlZmF1bHRfc2NyaXB0fSwKLS0geyJzZXRfZGVsYXlfc2VjIiwgc2V0X2RlbGF5X3NlY30sCgotLSDlhbPoioLlnZDmoIcKcG9zZV94PTI1MApsZW5ndGg9MTcuNjc3NjY5NTMKdmVsPTEwMDsKYmxlbmQ9MDsKCnBvc2UxPXtbIngiXSA9IHBvc2VfeCwgWyJ5Il0gPS0xNTAsIFsieiJdID0gLTEwMCxbImEiXSA9IDAsWyJiIl0gPSAwLFsiYyJdID0gMH0KcG9zZW0xPXtbIngiXSA9IHBvc2VfeCwgWyJ5Il0gPS0xMjUtbGVuZ3RoLCBbInoiXSA9IC0xMDArbGVuZ3RoLFsiYSJdID0gMCxbImIiXSA9IDAsWyJjIl0gPSAwfQpwb3NlMj17WyJ4Il0gPSBwb3NlX3gsIFsieSJdID0tMTUwKzI1LCBbInoiXSA9IC03NSxbImEiXSA9IDAsWyJiIl0gPSAwLFsiYyJdID0gMH0KcG9zZTM9e1sieCJdID0gcG9zZV94LCBbInkiXSA9MTUwLTI1LCBbInoiXSA9IC03NSxbImEiXSA9IDAsWyJiIl0gPSAwLFsiYyJdID0gMH0KcG9zZW0yPXtbIngiXSA9IHBvc2VfeCwgWyJ5Il0gPTEyNStsZW5ndGgsIFsieiJdID0gLTEwMCtsZW5ndGgsWyJhIl0gPSAwLFsiYiJdID0gMCxbImMiXSA9IDB9CnBvc2U0PXtbIngiXSA9IHBvc2VfeCwgWyJ5Il0gPTE1MCwgWyJ6Il0gPSAtMTAwLFsiYSJdID0gMCxbImIiXSA9IDAsWyJjIl0gPSAwfQpwb3NldDE9e1sieCJdID0gcG9zZV94LCBbInkiXSA9LTUwLCBbInoiXSA9IC0xMDAsWyJhIl0gPSAwLFsiYiJdID0gMCxbImMiXSA9IDB9CnBvc2V0Mj17WyJ4Il0gPSBwb3NlX3gsIFsieSJdID0tNTArbGVuZ3RoLCBbInoiXSA9IC0xMDArbGVuZ3RoLFsiYSJdID0gMCxbImIiXSA9IDAsWyJjIl0gPSAwfQpwb3NldDM9e1sieCJdID0gcG9zZV94KzAuMDAxLCBbInkiXSA9MCwgWyJ6Il0gPSAtNzUsWyJhIl0gPSAwLFsiYiJdID0gMCxbImMiXSA9IDB9Cgpwb3NpdDE9e1siajEiXT0xLFsiajIiXT0tMSxbImozIl09MCxbImo0Il09MCxbImo1Il09MCxbImo2Il09MH0Kcm9ib3QubW92ZV9wMnBfcG9zaXQocG9zaXQxLHZlbCxibGVuZCkKcm9ib3QubW92ZV9saW5lX3Bvc2UocG9zZTEsdmVsLGJsZW5kKQp3aGlsZSgxKQpkbwoJcm9ib3QubW92ZV9hcmNfcG9zZShwb3NlbTEscG9zZTIsdmVsLGJsZW5kKQoJcm9ib3QubW92ZV9saW5lX3Bvc2UocG9zZTMsdmVsLGJsZW5kKQoJcm9ib3QubW92ZV9hcmNfcG9zZShwb3NlbTIscG9zZTQsdmVsLGJsZW5kKQoKCXJvYm90Lm1vdmVfYXJjX3Bvc2UocG9zZW0yLHBvc2UzLHZlbCxibGVuZCkKCXJvYm90Lm1vdmVfbGluZV9wb3NlKHBvc2UyLHZlbCxibGVuZCkKCXJvYm90Lm1vdmVfYXJjX3Bvc2UocG9zZW0xLHBvc2UxLHZlbCxibGVuZCkKZW5k"
-    }
-    }
+
 [控制器安装文件]
-file_install_script={
-    "action":"file.install",
-    "data":{
-        "type":"script",
-        "index":11,
-        "file_name":"test.lua"
-    }
-    }
-file_install_config={
+file_install={
     "action":"file.install",
     "data":{
         "type":"config",
-        "file_name":"permission.json"
-    }
-    }
-file_install_update={
-    "action":"file.install",
-    "data":{
-        "type":"update",
-        "file_name":"test.reb"
+        "file_name":"",
+        "target":0
     }
     }
 [控制器删除文件]
-file_remove_script={
-    "action":"file.remove",
-    "data":{
-        "type":"script",
-        "file_name":"test.zip"
-    }
-    }
-file_remove_config={
-    "action":"file.remove",
-    "data":{
-        "type":"config",
-        "file_name":"test.json"
-    }
-    }
-file_remove_log={
-    "action":"file.remove",
-    "data":{
-        "type":"log",
-        "file_name":"test.log"
-    }
-    }
-file_remove_temp_script={
-    "action":"file.remove",
-    "data":{
-        "type":"temp_script",
-        "file_name":"test.zip"
-    }
-    }
-file_remove_temp_config={
+file_remove={
     "action":"file.remove",
     "data":{
         "type":"temp_config",
         "file_name":"permission.json"
     }
     }
-file_remove_temp_update={
-    "action":"file.remove",
-    "data":{
-        "type":"temp_update",
-        "file_name":"test.reb"
-    }
-    }
 [控制器查询文件列表]
-file_query_script={
-    "action":"file.query",
-    "data":{
-        "type":"script"
-    }
-    }
 file_query_config={
     "action":"file.query",
     "data":{
@@ -206,12 +209,6 @@ file_query_log={
     "action":"file.query",
     "data":{
         "type":"log"
-    }
-    }
-file_query_temp_script={
-    "action":"file.query",
-    "data":{
-        "type":"temp_script"
     }
     }
 file_query_temp_config={
@@ -226,242 +223,32 @@ file_query_temp_update={
         "type":"temp_update"
     }
     }
-[控制器配置文件恢复]
-file_recovery={
-    "action": "file.recovery",
-    "data": {
-        "file_name": "lua.json"
-    }
-    }
-
-[全局参数设置]
-[调整全局速度]
-adjust_velocity={
-    "action":"device.adjust.velocity",
-    "data":{
-        "velocity":40
-    }
-    }
-[紧急停止]
-emergency_stop={
-  "action": "device.emergency.stop",
-  "data": {}
-  }
-[设备关机]
-power_off={
-    "action":"device.power.off"
-    }
-[清除设备错误]
-clear_error={
-    "action":"device.clear.error"
-    }
-[捕获设备信息]
-info={
-    "action":"device.info"
-    }
-[伺服使能]
-servo_enable={
-    "action":"device.servo.enable"
-    }
-[伺服失能]
-servo_disable={
-    "action":"device.servo.disable"
-    }
-[设备标零]
-set_zero={
-    "action":"device.set.zero"
-    }
 
 
-[脚本控制]
-[脚本运行控制]
-script_start={
-    "action":"script.run.control",
+[授权管理]
+[生成注册码]
+create_regis_code={
+    "action":"create.regis.code",
+    "data":{}
+    }
+[设备授权]
+device_activate={
+    "action":"device.activate",
     "data":{
-        "script":"test",
-        "cmd":"start"
+        "activation_code":""
     }
     }
-script_stop={
-    "action":"script.run.control",
+[驱动器绑定]
+device_bind_driver_single={
+    "action":"device.bind.driver",
     "data":{
-        "script":"test",
-        "cmd":"stop"
+        "is_single":true,
+        "bind_id":1
     }
     }
-script_pause={
-    "action":"script.run.control",
+device_bind_driver_all={
+    "action":"device.bind.driver",
     "data":{
-        "script":"test",
-        "cmd":"pause"
+        "is_single":false
     }
-    }
-script_continue={
-    "action":"script.run.control",
-    "data":{
-        "script":"test",
-        "cmd":"continue"
-    }
-    }
-[脚本模式选择]
-script_mode_auto={
-    "action":"script.mode.select",
-    "data":{
-        "mode":"auto"
-    }
-    }
-script_mode_step={
-    "action":"script.mode.select",
-    "data":{
-        "mode":"step"
-    }
-    }
-[设置默认脚本]
-script_set_default={
-    "action":"script.set.default",
-    "data":{
-        "script":"test"
-    }
-    }
-script_set_default_clear={
-    "action":"script.set.default",
-    "data":{
-        "script":""
-    }
-    }
-[查询脚本信息]
-script_query_script_name={
-    "action":"script.query.script",
-    "data":{
-        "script":"test"
-    }
-    }
-script_query_script_default={
-    "action":"script.query.script",
-    "data":{
-        "script":""
-    }
-    }
-
-
-
-
-[IO控制]
-[读取本地IO]
-io_read_local_Z0={
-    "action":"io.read.local",
-    "data":{
-        "name":"Z0"
-    }
-    }
-io_read_local_X0={
-    "action":"io.read.local",
-    "data":{
-        "name":"input_0"
-    }
-    }
-io_read_local_X1={
-    "action":"io.read.local",
-    "data":{
-        "name":"input_1"
-    }
-    }
-io_read_local_X2={
-    "action":"io.read.local",
-    "data":{
-        "name":"input_2"
-    }
-    }
-io_read_local_X3={
-    "action":"io.read.local",
-    "data":{
-        "name":"input_3"
-    }
-    }
-io_read_local_X4={
-    "action":"io.read.local",
-    "data":{
-        "name":"input_4"
-    }
-    }
-io_read_local_X5={
-    "action":"io.read.local",
-    "data":{
-        "name":"input_5"
-    }
-    }
-
-[设置本地IO]
-io_write_local_off={
-    "action":"io.write.local",
-    "data":{
-        "name":"red",
-        "state":0
-    }
-    }
-io_write_local_on={
-    "action":"io.write.local",
-    "data":{
-        "name":"red",
-        "state":1
-    }
-    }
-
-[读取MODBUS]
-io_read_modbus={
-    "action":"io.read.modbus",
-    "data":{
-        "server_index":1,
-        "nick_name":"input_coil_0"
-    }
-    }
-
-[设置MODBUS]
-io_write_modbus={
-    "action":"io.write.modbus",
-    "data":{
-        "server_index":1,
-        "nick_name":"output_coil_0",
-        "value": 10
-    }
-    }
-
-[读取总线IO]
-io_read_bus={
-    "action":"io.read.bus",
-    "data": {
-        "client_index": 0,
-        "name": "X0"
-    }
-    }
-[设置总线IO]
-io_write_bus={
-  "action": "io.write.bus",
-  "data": {
-    "client_index": 0,
-    "name": "Y1",
-    "value": 1
-  }
-  }
-
-[Modbus连接]
-io_modbus_connect={
-    "action":"io.modbus.connect",
-    "data":{
-        "server_index":3
-    }
-    }
-
-[Modbus断开连接]
-io_modbus_disconnect={
-    "action":"io.modbus.disconnect",
-    "data":{
-        "server_index":3
-    }
-    }
-
-[伺服]
-[读取硬限位]
-servo_query_limit={
-    "action": "servo.query.limit.posit"
     }
