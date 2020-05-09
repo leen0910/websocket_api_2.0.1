@@ -88,6 +88,12 @@ calibration_limit_hard={
         "miminum":true
     }
     }
+calibration_limit_auto={
+    "action":"calibration.limit.auto",
+    "data":{
+        "driver_id":0
+    }
+    }
 [零位标定]
 calibration_zero={
     "action":"calibration.zero",
@@ -250,5 +256,28 @@ device_bind_driver_all={
     "action":"device.bind.driver",
     "data":{
         "is_single":false
+    }
+    }
+
+[信息查询]
+[查询关节信息]
+query_joint_all={
+    "action":"query.joint.all",
+    }
+
+[io管理]
+[读取localIo]
+read_localIo={
+    "action":"io.read.localIo",
+    "data":{
+        "name":""
+    }
+    }
+[设置localIo]
+write_localIo={
+    "action":"io.write.localIo",
+    "data":{
+        "name":"",
+        "state":1
     }
     }

@@ -9,7 +9,10 @@ import time
 import json
 
 class websocket_request(unittest.TestCase):
-    """硬件测试：CAN通讯测试"""
+    """设备标定：硬限位标定"""
+    # 驱动id
+    driver_id=0
+
     def setUp(self):
         rt=read_info.ReadInfo()
         web=rt.get_device_ip()
@@ -23,8 +26,8 @@ class websocket_request(unittest.TestCase):
             print("websocket连接失败：%s"%e)
             pass
 
-    def test01_testCAN(self):
-        """ CAN通讯测试 """
+    def test01_set_hardLimit(self):
+        """ 自动硬限位标定"""
         rm=read_message.ReadMessage()
         data_login=rm.get_data("登录设备","login_debug")
         url=self.ws
@@ -32,12 +35,17 @@ class websocket_request(unittest.TestCase):
         c.checkAction(url,data_login)
         time.sleep(1)
 
-        data_test_can=rm.get_data("CAN通讯测试","hardware_test_can")
-        print("step 2、开始can通信测试")
-        t=c.checkAction(url,data_test_can)
+        data_set_hardLimit=rm.get_data("硬限位标定","calibration_limit_auto")
+        print("step 2、硬限位标定")
+        driver_id=self.driver_id
+        data_dict=json.loads(data_set_hardLimit)
+
+        data_dict["data"]["driver_id"]=driver_id
+        data_set_hardLimit=json.dumps(data_dict)
+        t=c.checkAction(url,data_set_hardLimit)
         self.assertEqual(t["success"],True)
-        print("can通信测试结束。")
-        time.sleep(10)
+        print("关节:%s 硬限位设定成功。"%driver_id)
+        time.sleep(1)
 
         data_logout=rm.get_data("退出登录","logout")
         print("step 3、退出登录。")

@@ -9,11 +9,7 @@ import time
 import json
 
 class websocket_request(unittest.TestCase):
-    """设备标定：硬限位标定"""
-    # 驱动id
-    driver_id=0
-    # true 最小硬限位,false 最大硬限位
-    miminum=bool(1)
+    """7 信息查询：7.1 查询关节信息"""
     def setUp(self):
         rt=read_info.ReadInfo()
         web=rt.get_device_ip()
@@ -27,8 +23,8 @@ class websocket_request(unittest.TestCase):
             print("websocket连接失败：%s"%e)
             pass
 
-    def test01_set_hardLimit(self):
-        """ 硬限位标定"""
+    def test01_QueryDriver(self):
+        """ 查询关节信息 """
         rm=read_message.ReadMessage()
         data_login=rm.get_data("登录设备","login_debug")
         url=self.ws
@@ -36,19 +32,24 @@ class websocket_request(unittest.TestCase):
         c.checkAction(url,data_login)
         time.sleep(1)
 
-        data_set_hardLimit=rm.get_data("硬限位标定","calibration_limit_hard")
-        print("step 2、硬限位标定")
-        driver_id=self.driver_id
-        miminum=self.miminum
-        data_dict=json.loads(data_set_hardLimit)
-
-        data_dict["data"]["driver_id"]=driver_id
-        data_dict["data"]["miminum"]=miminum
-        data_set_hardLimit=json.dumps(data_dict)
-        t=c.checkAction(url,data_set_hardLimit)
+        data_query_joint=rm.get_data("查询关节信息","query_joint_all")
+        print("step 2、查询所有关节信息。")
+        t=c.checkAction(url,data_query_joint)
         self.assertEqual(t["success"],True)
-        print("关节:%s 的最%s 硬限位设定成功。"%(driver_id,miminum))
-        time.sleep(1)
+        lenth=len(t["data"])
+        for i in range(0,lenth):
+            print("关节名称：%s，关节id：%s，的驱动信息："%(t["data"][i]["name"],t["data"]["id"]))
+            print("驱动id：%s。"%(t["data"][i]["driver"]["id"]))
+            print("驱动类型：%s。"%(t["data"][i]["driver"]["type"]))
+            print("驱动节点号：%s。"%(t["data"][i]["driver"]["node_id"]))
+            print("最大硬限位：%s。"%(t["data"][i]["driver"]["limit_maxinum"]))
+            print("最小硬限位：%s。"%(t["data"][i]["driver"]["limit_minimum"]))
+            print("序列号：%s。"%(t["data"][i]["driver"]["serial_num"]))
+            print("软件版本：%s。"%(t["data"][i]["driver"]["soft_version"]))
+            print("硬件版本：%s。"%(t["data"][i]["driver"]["hardware_version"]))
+            print("-"*30)
+
+        time.sleep(2)
 
         data_logout=rm.get_data("退出登录","logout")
         print("step 3、退出登录。")

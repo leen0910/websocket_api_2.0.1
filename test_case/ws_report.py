@@ -7,6 +7,7 @@ import json
 import signal
 from common import read_message
 from common import check_action as c
+import time
 def stop(signum, frame):
 
   global is_sigint_up
@@ -26,8 +27,8 @@ def ws_connect():
     try:
         ws=create_connection(url,timeout=10)    #建立设备连接
         rm=read_message.ReadMessage()
-        data_login=rm.get_data("登录设备","login_debug")
-        print("step 1、debug登录。")
+        data_login=rm.get_data("登录设备","login_monitor")
+        print("step 1、monitor登录。")
         c.checkAction(ws,data_login)
 
         while(is_sigint_up==False):
@@ -39,6 +40,21 @@ def ws_connect():
                     print("状态机状态为：%s"%t["data"]["state_machine"])
                 if t["action"]=="publish.motion.info":
                     print("末端世界坐标系的位置：%s"%t["data"]["cart_pose"])
+                    lenth=len(t["data"]["joint_info"]["arm_joint"])
+                    i=0
+                    arm_joint=[]
+                    while i < lenth:
+                        arm_joint.append(t["data"]["joint_info"]["arm_joint"][i]["posit"])
+                        id=t["data"]["joint_info"]["arm_joint"][i]["driver_id"]
+                        v=t["data"]["joint_info"]["arm_joint"][i]["velocity"]
+                        torque=t["data"]["joint_info"]["arm_joint"][i]["torque"]
+                        hard_limit=t["data"]["joint_info"]["arm_joint"][i]["hard_limit"]
+                        vol=t["data"]["joint_info"]["arm_joint"][i]["voltage"]
+                        tem=t["data"]["joint_info"]["arm_joint"][i]["temperature"]
+                        print("关节id：%s，速度：%s，扭矩：%s，电压：%s，温度：%s，硬限位：%s"%(id,v,torque,vol,tem,hard_limit))
+                        i=i+1
+                    print("关节位置：%s"%arm_joint)
+                    print("扩展轴坐标：%s"%t["data"]["joint_info"]["ext_joint"])
                 if t["action"]=="publish.error":
                     print("错误码：%s"%t["data"]["code"])
                 if t["action"]=="publish.io.state":
@@ -46,8 +62,8 @@ def ws_connect():
                     print("本地IO输出：%s"%t["data"]["localIO"]["output"])
                     print("CanIO输入：%s"%t["data"]["canIO"]["input"])
                     print("CanIO输出：%s"%t["data"]["canIO"]["output"])
-                else:
-                    print(t)
+
+                time.sleep(5)
 
 
         ws.close()

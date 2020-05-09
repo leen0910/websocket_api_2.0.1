@@ -9,7 +9,8 @@ import time
 import json
 
 class websocket_request(unittest.TestCase):
-    """硬件测试：CAN通讯测试"""
+    """8 io管理：8.1 读取localIo"""
+    name=["X0","X1"]
     def setUp(self):
         rt=read_info.ReadInfo()
         web=rt.get_device_ip()
@@ -23,8 +24,8 @@ class websocket_request(unittest.TestCase):
             print("websocket连接失败：%s"%e)
             pass
 
-    def test01_testCAN(self):
-        """ CAN通讯测试 """
+    def test01_read_localIO(self):
+        """ 读取localIo"""
         rm=read_message.ReadMessage()
         data_login=rm.get_data("登录设备","login_debug")
         url=self.ws
@@ -32,12 +33,17 @@ class websocket_request(unittest.TestCase):
         c.checkAction(url,data_login)
         time.sleep(1)
 
-        data_test_can=rm.get_data("CAN通讯测试","hardware_test_can")
-        print("step 2、开始can通信测试")
-        t=c.checkAction(url,data_test_can)
-        self.assertEqual(t["success"],True)
-        print("can通信测试结束。")
-        time.sleep(10)
+        data_read_localIo=rm.get_data("读取localIo","read_localIo")
+        print("step 2、准备读取localIo：")
+        names=self.name
+        for name in names:
+            data_dict=json.loads(data_read_localIo)
+            data_dict["data"]["name"]=name
+            data_read_localIo=json.dumps(data_dict)
+            t=c.checkAction(url,data_read_localIo)
+            self.assertEqual(t["success"],True)
+            print("读取localIO:%s,状态值：%s"%(name,t["data"]["state"]))
+            time.sleep(0.5)
 
         data_logout=rm.get_data("退出登录","logout")
         print("step 3、退出登录。")
