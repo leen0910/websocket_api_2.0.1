@@ -38,8 +38,28 @@ def ws_connect():
                 t=json.loads(ws.recv())
                 if t["action"]=="publish.status":
                     print("状态机状态为：%s"%t["data"]["state_machine"])
+                    print("motion模块状态：%s"%t["data"]["motion_state"])
+                    print("系统当前全局速度：%s"%t["data"]["global_vel"])
+                    print("系统当前示教速度：%s"%t["data"]["teach_vel"])
+                    print("lua模块状态：%s"%t["data"]["lua_state"])
+                    print("脚本运行模式：%s"%t["data"]["lua_run_mode"])
+                    print("脚本当前运行的行数：%s"%t["data"]["lua_current_line"])
                 if t["action"]=="publish.motion.info":
                     print("末端世界坐标系的位置：%s"%t["data"]["cart_pose"])
+                    lenth=len(t["data"]["joint_info"])
+                    i=0
+                    arm_joint=[]
+                    while i < lenth:
+                        arm_joint.append(t["data"]["joint_info"][i]["posit"])
+                        id=t["data"]["joint_info"][i]["id"]
+                        v=t["data"]["joint_info"][i]["velocity"]
+                        torque=t["data"]["joint_info"][i]["torque"]
+                        vol=t["data"]["joint_info"][i]["voltage"]
+                        tem=t["data"]["joint_info"][i]["temperature"]
+                        print("关节id：%s，速度：%s，扭矩：%s，电压：%s，温度：%s。"%(id,v,torque,vol,tem))
+                        i=i+1
+                    print("关节位置：%s"%arm_joint)
+
                 if t["action"]=="publish.error":
                     print("错误码：%s"%t["data"]["code"])
                 if t["action"]=="publish.io.state":
