@@ -78,6 +78,10 @@ factory_config_system_time={
         "time":"16:31:22"
     }
     }
+[退出出厂模式]
+factory_exit={
+    "action":"factory.exit"
+    }
 
 [设备标定]
 [硬限位标定]
