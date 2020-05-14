@@ -62,7 +62,18 @@ def ws_connect():
                     print("本地IO输出：%s"%t["data"]["localIO"]["output"])
                     print("CanIO输入：%s"%t["data"]["canIO"]["input"])
                     print("CanIO输出：%s"%t["data"]["canIO"]["output"])
-
+                if t["action"]=="publish.config.info":
+                    print("设备id：%s"%t["data"]["identity"])
+                    print("机器型号是否已配置：%s"%t["data"]["robot_is_config"])
+                    print("机器型号：%s"%t["data"]["robot_type"])
+                    print(" 驱动是否已设置：%s"%t["data"]["driver_is_config"])
+                    print(" 驱动型号：%s"%t["data"]["driver_type"])
+                    print(" 控制器型号是否已设置：%s"%t["data"]["board_is_config"])
+                    print(" 控制器型号：%s"%t["data"]["board_type"])
+                    print(" 扩展io是否已设置：%s"%t["data"]["extend_io_is_config"])
+                    print(" 扩展io型号：%s"%t["data"]["extend_io_type"])
+                if t["action"]=="publish.authorization.info":
+                    print("是否已激活：%s"%t["data"]["identity"])
                 time.sleep(5)
 
 
