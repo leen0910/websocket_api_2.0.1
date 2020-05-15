@@ -20,9 +20,9 @@ import json
 
 class ReceiveFiles(unittest.TestCase):
     """当type为config时指定index值，index为1代表modbus子文件，为0代表其他配置文件"""
-    filename0=["permission.json","motion_param_config.json","modbus_connect.json","IO_bind.json","dev_modifiable_info.json","bus_connect.json"]
-    # filename0=["joints_config.json","lua.json","authorization.json","local_default_io.json","motion_base_config.json"]
-    filename1=["modbus_qxVision.json","modbus_own_qxrobot.json","modbus_other_qxrobot.json","modbus_Delta_plc.json","modbus_DAQM_4302.json","modbus_8_way_relay.json","modbus_4_way_relay.json","bus_extio_can_v1.json"]
+    filename0=["modbus_info.json","motion_param_config.json","lua.json","device_custom.json"]
+    # filenameX=["io_extend.json","io_local.json","io_bind.json","motion_base_config.json","device_info.json","driver_config.json"]
+    filename1=["modbus_4_way_relay.json","modbus_8_way_relay.json","modbus_Delta_plc.json","modbus_other_qxrobot.json","modbus_DAQM_4302.json","modbus_own_expandIO.json","modbus_qxVision.json","modbus_own_defaultIO.json"]
     path='C:\\Users\\test\\AppData\\Local\\Programs\\Python\\Python36\\autotest\\websocket_api_2.0\\files\\'  #需要写入设备端的文件的目录
 
     size=300*1024    #分包大小
@@ -96,7 +96,7 @@ class ReceiveFiles(unittest.TestCase):
             data_install_script=json.dumps(data_dict)
             # print(data_install_script)
 
-            print("step 3、安装：%s文件"%filename)
+            print("step 3、安装index=0：%s文件"%filename)
             c.checkAction(url,data_install_script)
             time.sleep(2)
 
@@ -159,7 +159,7 @@ class ReceiveFiles(unittest.TestCase):
             data_install_script=json.dumps(data_dict)
             # print(data_install_script)
 
-            print("step 3、安装：%s文件"%filename)
+            print("step 3、安装index=1：%s文件"%filename)
             c.checkAction(url,data_install_script)
             time.sleep(2)
 

@@ -27,8 +27,8 @@ def ws_connect():
     try:
         ws=create_connection(url,timeout=10)    #建立设备连接
         rm=read_message.ReadMessage()
-        data_login=rm.get_data("登录设备","login_debug")
-        print("step 1、debug登录。")
+        data_login=rm.get_data("登录设备","login_monitor")
+        print("step 1、monitor登录。")
         c.checkAction(ws,data_login)
 
         while(is_sigint_up==False):
@@ -65,8 +65,8 @@ def ws_connect():
                 if t["action"]=="publish.io.state":
                     print("本地IO输入：%s"%t["data"]["localIO"]["input"])
                     print("本地IO输出：%s"%t["data"]["localIO"]["output"])
-                    print("CanIO输入：%s"%t["data"]["canIO"]["input"])
-                    print("CanIO输出：%s"%t["data"]["canIO"]["output"])
+                    print("扩展IO输入：%s"%t["data"]["extendIO"]["input"])
+                    print("扩展IO输出：%s"%t["data"]["extendIO"]["output"])
 
                 time.sleep(5)
 
