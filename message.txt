@@ -78,6 +78,15 @@ factory_config_system_time={
         "time":"16:31:22"
     }
     }
+[配置设备id]
+factory_config_identity={
+    "action":"factory.config.identity",
+    "data":
+    {
+        "identity":""
+    }
+    }
+
 [退出出厂模式]
 factory_exit={
     "action":"factory.exit"
@@ -280,6 +289,21 @@ read_localIo={
 [设置localIo]
 write_localIo={
     "action":"io.write.localIo",
+    "data":{
+        "name":"",
+        "state":1
+    }
+    }
+[读取extendIo]
+read_extendIo={
+    "action":"io.read.extend",
+    "data":{
+        "name":""
+    }
+    }
+[设置extendIo]
+write_extendIo={
+    "action":"io.write.extend",
     "data":{
         "name":"",
         "state":1

@@ -10,7 +10,7 @@ import json
 
 class websocket_request(unittest.TestCase):
     """8 io管理：8.2 设置localIo"""
-    name=["Y0","Y1"]
+    name=["Y0","output0","Y1","output1","Y2","output2","Y3","output3","Y4","output4","Y5","output5","Y6","output6","Y7","output7","Y8","em_stop_out","Y9","sys_red","Y10","sys_green","Y11","sys_yellow"]
     state=[0,1]
 
     def setUp(self):
