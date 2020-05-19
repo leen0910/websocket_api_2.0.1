@@ -148,7 +148,7 @@ class websocket_request(unittest.TestCase):
 
         data_io_read=rm.get_data("读取本地IO","io_read_local_Z0")
         print("step 2、读取default_io：")
-        io_list=["X0","lua_start_stop_in","X1","lua_pa_re_in","X2","speed_sub_in","X3","X4","motor_power_on_in","X5","speed_add_in","X6","em_stop_in"]
+        io_list=["X0","lua_start_stop_in","X1","lua_pa_re_in","X2","speed_sub_in","X3","break_flag_in","X4","motor_power_on_in","X5","speed_add_in","X6","em_stop_in"]
 
         data_dict=json.loads(data_io_read)
         for name in io_list:
@@ -177,7 +177,7 @@ class websocket_request(unittest.TestCase):
 
         data_io_set=rm.get_data("设置本地IO","io_write_local_off")
         print("step 2、设置io:")
-        io_list=["Y0","output_0","Y1","output_1","Y2","output_2","Y3","extio_red","Y4","extio_green","Y5","output_5","Y6","output_6","Y7","output_7","Y8","sys_red","Y9","sys_green","Y10","sys_yellow","Y11","em_stop_out"]
+        io_list=["Y0","output0","Y1","output1","Y2","output2","Y3","output3","Y4","output4","Y5","output5","Y6","output6","Y7","output7","Y8","em_stop_out","Y9","sys_red","Y10","sys_green","Y11","sys_yellow"]
         data_dict=json.loads(data_io_set)
         data_io_read=rm.get_data("读取本地IO","io_read_local_Z0")
         data_dict_read=json.loads(data_io_read)
@@ -217,7 +217,7 @@ class websocket_request(unittest.TestCase):
 
         data_io_set=rm.get_data("设置本地IO","io_write_local_on")
         print("step 2、设置io:")
-        io_list=["Y0","output_0","Y1","output_1","Y2","output_2","Y3","extio_red","Y4","extio_green","Y5","output_5","Y6","output_6","Y7","output_7","Y8","sys_red","Y9","sys_green","Y10","sys_yellow","Y11","em_stop_out"]
+        io_list=["Y0","output0","Y1","output1","Y2","output2","Y3","output3","Y4","output4","Y5","output5","Y6","output6","Y7","output7","Y8","em_stop_out","Y9","sys_red","Y10","sys_green","Y11","sys_yellow"]
 
         data_dict=json.loads(data_io_set)
         data_io_read=rm.get_data("读取本地IO","io_read_local_Z0")

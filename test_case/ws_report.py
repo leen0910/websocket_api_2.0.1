@@ -33,7 +33,7 @@ def ws_connect():
 
         while(is_sigint_up==False):
             if ws.connected:
-                print("服务：%s连接成功!"%url)
+                print("服务：%s连接中..."%url)
                 # t=ws.recv()
                 t=json.loads(ws.recv())
                 if t["action"]=="publish.status":
@@ -69,9 +69,12 @@ def ws_connect():
                     print("扩展IO输出：%s"%t["data"]["extendIO"]["output"])
 
                 time.sleep(5)
+            else:
+                print("服务：%s连接断开"%url)
 
 
-        ws.close()
+
+        # ws.close()
     except Exception as e:
         print("websocket连接失败：%s"%e)
         pass
@@ -79,3 +82,4 @@ def ws_connect():
 
 if __name__ == "__main__":
     ws_connect()
+

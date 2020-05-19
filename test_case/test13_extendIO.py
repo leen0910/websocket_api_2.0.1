@@ -9,7 +9,7 @@ import time
 import json
 
 class websocket_request(unittest.TestCase):
-    """总线IO:module_name: bus_extio_can_v1"""
+    """extendIO:module_name: io_extend.json"""
     def setUp(self):
         rt=read_info.ReadInfo()
         web=rt.get_device_ip()
@@ -23,8 +23,8 @@ class websocket_request(unittest.TestCase):
             print("websocket连接失败：%s"%e)
             pass
 
-    def test01_read_busIO(self):
-        """1、读取总线IO """
+    def test01_read_extendIO(self):
+        """1、读取extendIO """
         rm=read_message.ReadMessage()
         data_login=rm.get_data("登录设备","login_admin")
         url=self.ws
@@ -32,9 +32,9 @@ class websocket_request(unittest.TestCase):
         c.checkAction(url,data_login)
         time.sleep(1)
 
-        data_io_read=rm.get_data("读取总线IO","io_read_bus")
+        data_io_read=rm.get_data("读取extendIO","io_read_extend")
         print("step 2、按配置参数读取总线io：")
-        io_list=["X0","X1","X2","X3","X4","X5","X6","X7","X8","X9","X10","X11","X12","X13","X17","input_0","input_1","input_2","input_3","input_4","input_5","input_6","input_7","input_8","input_9","input_10","input_11","input_12","pulse_f","pulse_c"]
+        io_list=["X0","X1","X2","X3","X4","X5","X6","X7","X8","X9","X10","X11","X12","X13","X14","input0","input1","input2","input3","input4","input5","input6","input7","input8","input9","input10","input11","input12","pulseF","pulseC"]
 
         data_dict=json.loads(data_io_read)
         for name in io_list:
@@ -43,9 +43,9 @@ class websocket_request(unittest.TestCase):
             data_io_set=json.dumps(data_dict)
             t=c.checkAction(url,data_io_set)
             if t["success"]==True:
-                print("读取busIO: %s 的state值：%s"%(t["data"]["name"],t["data"]["value"]))
+                print("读取extendIO: %s 的state值：%s"%(t["data"]["name"],t["data"]["state"]))
             else:
-                print("读取busIO失败。")
+                print("读取extendIO失败。")
             time.sleep(0.1)
 
         data_logout=rm.get_data("退出登录","logout")
@@ -53,8 +53,8 @@ class websocket_request(unittest.TestCase):
         c.checkAction(url,data_logout)
 
 
-    def test02_write_busIO(self):
-        """2、设置总线IO"""
+    def test02_write_extendIO(self):
+        """2、设置extendIO"""
         rm=read_message.ReadMessage()
         data_login=rm.get_data("登录设备","login_admin")
         url=self.ws
@@ -62,33 +62,33 @@ class websocket_request(unittest.TestCase):
         c.checkAction(url,data_login)
         time.sleep(1)
 
-        data_io_set=rm.get_data("设置总线IO","io_write_bus")
+        data_io_set=rm.get_data("设置extendIO","io_write_extend")
         print("step 2、设置io:")
         io_list=["Y0","Y1","Y2","Y3","Y4","Y5","Y6","Y7","Y8","Y9","Y10","Y11","Y12","Y13","Y14","Y15","output_0","output_1","output_2","output_3","output_4","output_5","output_6","output_7","output_8","output_9","output_10","output_11","output_12","output_13","output_14","output_15"]
         values=[0,1]
         data_dict=json.loads(data_io_set)
-        data_io_read=rm.get_data("读取总线IO","io_read_bus")
+        data_io_read=rm.get_data("读取extendIO","io_read_extend")
         data_dict_read=json.loads(data_io_read)
         for value in values:
             for name in io_list:
                 data_dict["data"]["name"]=name
-                data_dict["data"]["value"]=value
+                data_dict["data"]["state"]=value
                 data_io_set=json.dumps(data_dict)
                 t1=c.checkAction(url,data_io_set)
                 if t1["success"]==True:
-                    print("设置busIO：%s的值：%s"%(name,value))
+                    print("设置extendIO：%s的值：%s"%(name,value))
                 else:
-                    print("设置busIO失败。")
+                    print("设置extendIO失败。")
                 time.sleep(0.1)
 
                 data_dict_read["data"]["name"]=name
-                print("读取io：%s"%name )
+                print("读取extendIO：%s"%name )
                 data_io_read=json.dumps(data_dict_read)
                 t2=c.checkAction(url,data_io_read)
                 if t2["success"]==True:
-                    print("busIO: %s 的state值为：%s。"%(name,t2["data"]["value"]))
+                    print("extendIO: %s 的state值为：%s。"%(name,t2["data"]["state"]))
                 else:
-                    print("io：%s读取失败。"%name)
+                    print("extendIO：%s读取失败。"%name)
                 time.sleep(0.1)
 
         data_logout=rm.get_data("退出登录","logout")

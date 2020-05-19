@@ -19,7 +19,7 @@ class websocket_request(unittest.TestCase):
         try:
             self.ws=create_connection(url,timeout=10)    #建立设备连接
             if self.ws.connected:
-                print("服务：%s连接成功!"%url)
+                print("服务：%s连接成功！"%url)
         except Exception as e:
             print("websocket连接失败：%s"%e)
             pass
@@ -51,41 +51,6 @@ class websocket_request(unittest.TestCase):
         print("step 3、退出登录。")
         c.checkAction(url,data_logout)
 
-    def test03_read_modbus_coil(self):
-        """读取MODBUS/本机&其它设备 /读线圈"""
-        rm=read_message.ReadMessage()
-        data_login=rm.get_data("登录设备","login_admin")
-        url=self.ws
-        print("step 1、管理员登录。")
-        c.checkAction(url,data_login)
-        time.sleep(1)
-
-        data_modbus_read=rm.get_data("读取MODBUS","io_read_modbus")
-        print("step 2、读取线圈。")
-
-        server_index=self.server_index
-        name_list=["motor_on","Y0","motor_off","Y1","lua_start","Y2","lua_stop","Y3","lua_pause","Y4","lua_resume","Y5","brake","Y6","motion_flag","Y7"]
-
-        data_dict=json.loads(data_modbus_read)
-        for index in server_index:
-            data_dict["data"]["server_index"]=index
-            print("modbus机器号：%s"%index )
-            for nick_name in name_list:
-                data_dict["data"]["nick_name"]=nick_name
-                print("读取的线圈地址别名：%s"%nick_name)
-
-                data_modbus_read=json.dumps(data_dict)
-                t=c.checkAction(url,data_modbus_read)
-                if t["success"]==True:
-                    print("%s号机器的%s 线圈地址值读取为：%s。"%(index,nick_name,t["data"]["value"]))
-                else:
-                    print("%s号机器的%s 线圈地址设置失败。"%(index,nick_name))
-                time.sleep(0.5)
-
-        data_logout=rm.get_data("退出登录","logout")
-        print("step 3、退出登录。")
-        c.checkAction(url,data_logout)
-
     def test02_write_modbus_coil_Robot(self):
         """设置MODBUS/本设备&其它设备/写线圈 """
         rm=read_message.ReadMessage()
@@ -105,7 +70,7 @@ class websocket_request(unittest.TestCase):
         "value": 10
         """
         server_index=self.server_index
-        name_list=["motor_on","Y0","motor_off","Y1","lua_start","Y2","lua_stop","Y3","lua_pause","Y4","lua_resume","Y5","brake","Y6","motion_flag","Y7"]
+        name_list=["motor_on","motor_off","lua_start","lua_stop","lua_pause","lua_resume","brake","motion_flag","motor_speed"]
         values=[0,1]
         data_dict=json.loads(data_modbus_set)
         data_dict1=json.loads(data_modbus_read)
@@ -135,9 +100,8 @@ class websocket_request(unittest.TestCase):
         print("step 3、退出登录。")
         c.checkAction(url,data_logout)
 
-
-    def test05_read_modbus_register(self):
-        """读取MODBUS/本机&其它设备 /读寄存器"""
+    def test03_read_modbus_coil(self):
+        """读取MODBUS/本机&其它设备 /读线圈"""
         rm=read_message.ReadMessage()
         data_login=rm.get_data("登录设备","login_admin")
         url=self.ws
@@ -146,10 +110,10 @@ class websocket_request(unittest.TestCase):
         time.sleep(1)
 
         data_modbus_read=rm.get_data("读取MODBUS","io_read_modbus")
-        print("step 2、读取寄存器。")
+        print("step 2、读取线圈。")
 
         server_index=self.server_index
-        name_list=["motor_speed","D0","follow_ref_X","D10","follow_ref_Y","D11","follow_ref_Z","D12","follow_ref_A","D13","follow_ref_B","D14","follow_ref_C","D15","follow_dir_X","D16","follow_dir_Y","D17","follow_dir_Z","D18","follow_dir_A","D19","follow_dir_B","D20","follow_dir_C","D21","follow_vel","D22","error_time","D23","start_length","D24","end_length","D25","type_id","D26"]
+        name_list=["motor_on","motor_off","lua_start","lua_stop","lua_pause","lua_resume","brake","motion_flag","motor_speed"]
 
         data_dict=json.loads(data_modbus_read)
         for index in server_index:
@@ -157,16 +121,15 @@ class websocket_request(unittest.TestCase):
             print("modbus机器号：%s"%index )
             for nick_name in name_list:
                 data_dict["data"]["nick_name"]=nick_name
-                print("读取的寄存器地址别名：%s"%nick_name)
+                print("读取的线圈地址别名：%s"%nick_name)
 
                 data_modbus_read=json.dumps(data_dict)
                 t=c.checkAction(url,data_modbus_read)
                 if t["success"]==True:
-                    print("%s号机器的 %s 寄存器地址值读取为：%s。"%(index,nick_name,t["data"]["value"]))
+                    print("%s号机器的%s 线圈地址值读取为：%s。"%(index,nick_name,t["data"]["value"]))
                 else:
-                    print("%s号机器的%s 寄存器地址设置失败。"%(index,nick_name))
+                    print("%s号机器的%s 线圈地址设置失败。"%(index,nick_name))
                 time.sleep(0.5)
-
 
         data_logout=rm.get_data("退出登录","logout")
         print("step 3、退出登录。")
@@ -191,7 +154,7 @@ class websocket_request(unittest.TestCase):
         "value": 10
         """
         server_index=self.server_index
-        name_list=["motor_speed","D0","follow_ref_X","D10","follow_ref_Y","D11","follow_ref_Z","D12","follow_ref_A","D13","follow_ref_B","D14","follow_ref_C","D15","follow_dir_X","D16","follow_dir_Y","D17","follow_dir_Z","D18","follow_dir_A","D19","follow_dir_B","D20","follow_dir_C","D21","follow_vel","D22","error_time","D23","start_length","D24","end_length","D25","type_id","D26"]
+        name_list=["follow_ref_X","follow_ref_Y","follow_ref_Z","follow_ref_A","follow_ref_B","follow_ref_C","follow_dir_X","follow_dir_Y","follow_dir_Z","follow_dir_A","follow_dir_B","follow_dir_C","follow_vel","error_time","start_length","end_length","type_id"]
         values=[69541,17.258414]
         data_dict=json.loads(data_modbus_set)
         data_dict1=json.loads(data_modbus_read)
@@ -215,6 +178,43 @@ class websocket_request(unittest.TestCase):
                     else:
                         print("%s号机器的%s 寄存器地址设置失败。"%(index,nick_name))
                     time.sleep(0.5)
+        data_logout=rm.get_data("退出登录","logout")
+        print("step 3、退出登录。")
+        c.checkAction(url,data_logout)
+
+
+    def test05_read_modbus_register(self):
+        """读取MODBUS/本机&其它设备 /读寄存器"""
+        rm=read_message.ReadMessage()
+        data_login=rm.get_data("登录设备","login_admin")
+        url=self.ws
+        print("step 1、管理员登录。")
+        c.checkAction(url,data_login)
+        time.sleep(1)
+
+        data_modbus_read=rm.get_data("读取MODBUS","io_read_modbus")
+        print("step 2、读取寄存器。")
+
+        server_index=self.server_index
+        name_list=["follow_ref_X","follow_ref_Y","follow_ref_Z","follow_ref_A","follow_ref_B","follow_ref_C","follow_dir_X","follow_dir_Y","follow_dir_Z","follow_dir_A","follow_dir_B","follow_dir_C","follow_vel","error_time","start_length","end_length","type_id"]
+
+        data_dict=json.loads(data_modbus_read)
+        for index in server_index:
+            data_dict["data"]["server_index"]=index
+            print("modbus机器号：%s"%index )
+            for nick_name in name_list:
+                data_dict["data"]["nick_name"]=nick_name
+                print("读取的寄存器地址别名：%s"%nick_name)
+
+                data_modbus_read=json.dumps(data_dict)
+                t=c.checkAction(url,data_modbus_read)
+                if t["success"]==True:
+                    print("%s号机器的 %s 寄存器地址值读取为：%s。"%(index,nick_name,t["data"]["value"]))
+                else:
+                    print("%s号机器的%s 寄存器地址设置失败。"%(index,nick_name))
+                time.sleep(0.5)
+
+
         data_logout=rm.get_data("退出登录","logout")
         print("step 3、退出登录。")
         c.checkAction(url,data_logout)
