@@ -40,8 +40,8 @@ class websocket_request(unittest.TestCase):
         for name in io_list:
             data_dict["data"]["name"]=name
             print("读取io的参数：%s"%name )
-            data_io_set=json.dumps(data_dict)
-            t=c.checkAction(url,data_io_set)
+            data_io_read=json.dumps(data_dict)
+            t=c.checkAction(url,data_io_read)
             if t["success"]==True:
                 print("读取extendIO: %s 的state值：%s"%(t["data"]["name"],t["data"]["state"]))
             else:

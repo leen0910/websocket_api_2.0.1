@@ -68,6 +68,10 @@ def ws_connect():
                     print("扩展IO输入：%s"%t["data"]["extendIO"]["input"])
                     print("扩展IO输出：%s"%t["data"]["extendIO"]["output"])
 
+                if t["action"]=="publish.custom.info":
+                    print("识别码：%s"%t["data"]["identity"])
+                    print("info值：%s"%t["data"]["value"])
+
                 time.sleep(5)
             else:
                 print("服务：%s连接断开"%url)
