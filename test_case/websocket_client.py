@@ -15,12 +15,12 @@ def on_message(ws, message):  # 服务器有数据更新时，主动推送过来
     message=json.loads(message)
 
     t=time.strftime('%Y/%m/%d %H:%M:%S',time.localtime(time.time()))
-    # f = open("out.txt", "a")
-    with open('out.txt','a',encoding='utf-8') as f:
-        if message["action"]=="publish.status":      #"publish.custom.info"
+    # f = open("out.txt", "a",encoding='utf-8')
+    if message["action"]=="publish.status":      #"publish.custom.info"
             # if message["action"]["identity"]=="打表值":
-
+        with open('out.txt','a',encoding='utf-8') as f:
             print("{} -------打表值： {}".format(t,message["data"]["state_machine"]),file=f)
+    # f.close()
 
 
 
@@ -65,6 +65,7 @@ def connect(a):
     return ws
 
 if __name__ == "__main__":
+
     websocket.enableTrace(True)
     ws = websocket.WebSocketApp("{}".format(url),
                                 # on_message=on_message,
