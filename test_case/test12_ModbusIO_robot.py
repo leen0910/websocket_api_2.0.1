@@ -9,7 +9,7 @@ import time
 import json
 
 class websocket_request(unittest.TestCase):
-    server_index=[0]
+    server_index=[2]
     """modbus通讯"""
     def setUp(self):
         rt=read_info.ReadInfo()
@@ -220,7 +220,7 @@ class websocket_request(unittest.TestCase):
         c.checkAction(url,data_logout)
 
     def test06_modbus_disconnect(self):
-        """断开index_server:3的modbus连接 """
+        """断开index_server的modbus连接 """
         rm=read_message.ReadMessage()
         data_login=rm.get_data("登录设备","login_admin")
         url=self.ws
@@ -238,7 +238,7 @@ class websocket_request(unittest.TestCase):
         for server_index in index_list:
             data_dict["data"]["server_index"]=server_index
             data_modbus_connect=json.dumps(data_dict)
-            print("step 2、断开index_server:3的modbus连接。")
+            print("step 2、断开index_server:{}的modbus连接。".format(server_index))
             t=c.checkAction(url,data_modbus_connect)
             self.assertEqual(t["success"],True)
             time.sleep(1)
@@ -253,15 +253,15 @@ class websocket_request(unittest.TestCase):
         self.ws.close()
 
 if __name__ == "__main__":
-    unittest.main()
-    # for i in range(1,500):
-    #     suite = unittest.TestSuite()
-    #     # suite.addTest(websocket_request('setUp'))
-    #     suite.addTest(websocket_request('test01_modbus_connect'))
-    #     suite.addTest(websocket_request('test02_read_modbus_coil'))
-    #     suite.addTest(websocket_request('test03_write_modbus_coil_Robot'))
-    #     suite.addTest(websocket_request('test04_read_modbus_register'))
-    #     suite.addTest(websocket_request('test05_write_modbus_register'))
-    #     suite.addTest(websocket_request('test06_modbus_disconnect'))
-    #     # suite.addTest(websocket_request('tearDown'))
-    #     unittest.TextTestRunner(verbosity=2).run(suite)
+    # unittest.main()
+    for i in range(1,50000):
+        suite = unittest.TestSuite()
+        # suite.addTest(websocket_request('setUp'))
+        suite.addTest(websocket_request('test01_modbus_connect'))
+        suite.addTest(websocket_request('test02_write_modbus_coil_Robot'))
+        suite.addTest(websocket_request('test03_read_modbus_coil'))
+        suite.addTest(websocket_request('test04_write_modbus_register'))
+        suite.addTest(websocket_request('test05_read_modbus_register'))
+        suite.addTest(websocket_request('test06_modbus_disconnect'))
+        # suite.addTest(websocket_request('tearDown'))
+        unittest.TextTestRunner(verbosity=2).run(suite)

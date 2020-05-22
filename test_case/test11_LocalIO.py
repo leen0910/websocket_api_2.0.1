@@ -148,7 +148,7 @@ class websocket_request(unittest.TestCase):
 
         data_io_read=rm.get_data("读取本地IO","io_read_local_Z0")
         print("step 2、读取default_io：")
-        io_list=["X0","lua_start_stop_in","X1","lua_pa_re_in","X2","speed_sub_in","X3","break_flag_in","X4","motor_power_on_in","X5","speed_add_in","X6","em_stop_in"]
+        io_list=["X0","lua_start_stop_in","X1","lua_pa_re_in","X2","speed_sub_in","X3","break_flag_in","X4","motor_power_on_in","X5","speed_add_in","X6","em_stop_in","Y0","output0","Y1","output1","Y2","output2","Y3","output3","Y4","output4","Y5","output5","Y6","output6","Y7","output7","Y8","em_stop_out","Y9","sys_red","Y10","sys_green","Y11","sys_yellow"]
 
         data_dict=json.loads(data_io_read)
         for name in io_list:
@@ -166,86 +166,86 @@ class websocket_request(unittest.TestCase):
         print("step 3、退出登录。")
         c.checkAction(url,data_logout)
 
-    def test05_write_io_default_off(self):
-        """5、设置本地IO_off：default 不可修改"""
-        rm=read_message.ReadMessage()
-        data_login=rm.get_data("登录设备","login_admin")
-        url=self.ws
-        print("step 1、管理员登录。")
-        c.checkAction(url,data_login)
-        time.sleep(1)
+    # def test05_write_io_default_off(self):
+    #     """5、设置本地IO_off：default 不可修改"""
+    #     rm=read_message.ReadMessage()
+    #     data_login=rm.get_data("登录设备","login_admin")
+    #     url=self.ws
+    #     print("step 1、管理员登录。")
+    #     c.checkAction(url,data_login)
+    #     time.sleep(1)
+    #
+    #     data_io_set=rm.get_data("设置本地IO","io_write_local_off")
+    #     print("step 2、设置io:")
+    #     io_list=["Y0","output0","Y1","output1","Y2","output2","Y3","output3","Y4","output4","Y5","output5","Y6","output6","Y7","output7","Y8","em_stop_out","Y9","sys_red","Y10","sys_green","Y11","sys_yellow"]
+    #     data_dict=json.loads(data_io_set)
+    #     data_io_read=rm.get_data("读取本地IO","io_read_local_Z0")
+    #     data_dict_read=json.loads(data_io_read)
+    #     for name in io_list:
+    #         data_dict["data"]["name"]=name
+    #         print("修改default_io：%s"%name )
+    #         data_io_set=json.dumps(data_dict)
+    #         t=c.checkAction(url,data_io_set)
+    #         if t["success"]==True:
+    #             print("io: %s 状态设置为0。"%name)
+    #         else:
+    #             print("io: %s状态修改失败。"%name)
+    #         time.sleep(0.1)
+    #
+    #         data_dict_read["data"]["name"]=name
+    #         print("读取io：%s"%name )
+    #         data_io_read=json.dumps(data_dict_read)
+    #         t=c.checkAction(url,data_io_read)
+    #         if t["success"]==True:
+    #             print("io: %s 的state值为：%s。"%(name,t["data"]["state"]))
+    #         else:
+    #             print("io：%s读取失败。"%name)
+    #         time.sleep(0.1)
+    #
+    #     data_logout=rm.get_data("退出登录","logout")
+    #     print("step 3、退出登录。")
+    #     c.checkAction(url,data_logout)
 
-        data_io_set=rm.get_data("设置本地IO","io_write_local_off")
-        print("step 2、设置io:")
-        io_list=["Y0","output0","Y1","output1","Y2","output2","Y3","output3","Y4","output4","Y5","output5","Y6","output6","Y7","output7","Y8","em_stop_out","Y9","sys_red","Y10","sys_green","Y11","sys_yellow"]
-        data_dict=json.loads(data_io_set)
-        data_io_read=rm.get_data("读取本地IO","io_read_local_Z0")
-        data_dict_read=json.loads(data_io_read)
-        for name in io_list:
-            data_dict["data"]["name"]=name
-            print("修改default_io：%s"%name )
-            data_io_set=json.dumps(data_dict)
-            t=c.checkAction(url,data_io_set)
-            if t["success"]==True:
-                print("io: %s 状态设置为0。"%name)
-            else:
-                print("io: %s状态修改失败。"%name)
-            time.sleep(0.1)
-
-            data_dict_read["data"]["name"]=name
-            print("读取io：%s"%name )
-            data_io_read=json.dumps(data_dict_read)
-            t=c.checkAction(url,data_io_read)
-            if t["success"]==True:
-                print("io: %s 的state值为：%s。"%(name,t["data"]["state"]))
-            else:
-                print("io：%s读取失败。"%name)
-            time.sleep(0.1)
-
-        data_logout=rm.get_data("退出登录","logout")
-        print("step 3、退出登录。")
-        c.checkAction(url,data_logout)
-
-    def test06_write_io_default_on(self):
-        """6、设置本地IO_on：default 不可修改 """
-        rm=read_message.ReadMessage()
-        data_login=rm.get_data("登录设备","login_admin")
-        url=self.ws
-        print("step 1、管理员登录。")
-        c.checkAction(url,data_login)
-        time.sleep(0.2)
-
-        data_io_set=rm.get_data("设置本地IO","io_write_local_on")
-        print("step 2、设置io:")
-        io_list=["Y0","output0","Y1","output1","Y2","output2","Y3","output3","Y4","output4","Y5","output5","Y6","output6","Y7","output7","Y8","em_stop_out","Y9","sys_red","Y10","sys_green","Y11","sys_yellow"]
-
-        data_dict=json.loads(data_io_set)
-        data_io_read=rm.get_data("读取本地IO","io_read_local_Z0")
-        data_dict_read=json.loads(data_io_read)
-        for name in io_list:
-            data_dict["data"]["name"]=name
-            print("修改default_io：%s"%name )
-            data_io_set=json.dumps(data_dict)
-            t=c.checkAction(url,data_io_set)
-            if t["success"]==True:
-                print("io: %s 状态设置为1。"%name)
-            else:
-                print("io: %s 状态修改失败。"%name)
-            time.sleep(0.1)
-
-            data_dict_read["data"]["name"]=name
-            print("读取io：%s"%name )
-            data_io_read=json.dumps(data_dict_read)
-            t=c.checkAction(url,data_io_read)
-            if t["success"]==True:
-                print("io: %s 的state值为：%s。"%(name,t["data"]["state"]))
-            else:
-                print("io：%s读取失败。"%name)
-            time.sleep(0.1)
-
-        data_logout=rm.get_data("退出登录","logout")
-        print("step 3、退出登录。")
-        c.checkAction(url,data_logout)
+    # def test06_write_io_default_on(self):
+    #     """6、设置本地IO_on：default 不可修改 """
+    #     rm=read_message.ReadMessage()
+    #     data_login=rm.get_data("登录设备","login_admin")
+    #     url=self.ws
+    #     print("step 1、管理员登录。")
+    #     c.checkAction(url,data_login)
+    #     time.sleep(0.2)
+    #
+    #     data_io_set=rm.get_data("设置本地IO","io_write_local_on")
+    #     print("step 2、设置io:")
+    #     io_list=["Y0","output0","Y1","output1","Y2","output2","Y3","output3","Y4","output4","Y5","output5","Y6","output6","Y7","output7","Y8","em_stop_out","Y9","sys_red","Y10","sys_green","Y11","sys_yellow"]
+    #
+    #     data_dict=json.loads(data_io_set)
+    #     data_io_read=rm.get_data("读取本地IO","io_read_local_Z0")
+    #     data_dict_read=json.loads(data_io_read)
+    #     for name in io_list:
+    #         data_dict["data"]["name"]=name
+    #         print("修改default_io：%s"%name )
+    #         data_io_set=json.dumps(data_dict)
+    #         t=c.checkAction(url,data_io_set)
+    #         if t["success"]==True:
+    #             print("io: %s 状态设置为1。"%name)
+    #         else:
+    #             print("io: %s 状态修改失败。"%name)
+    #         time.sleep(0.1)
+    #
+    #         data_dict_read["data"]["name"]=name
+    #         print("读取io：%s"%name )
+    #         data_io_read=json.dumps(data_dict_read)
+    #         t=c.checkAction(url,data_io_read)
+    #         if t["success"]==True:
+    #             print("io: %s 的state值为：%s。"%(name,t["data"]["state"]))
+    #         else:
+    #             print("io：%s读取失败。"%name)
+    #         time.sleep(0.1)
+    #
+    #     data_logout=rm.get_data("退出登录","logout")
+    #     print("step 3、退出登录。")
+    #     c.checkAction(url,data_logout)
 
     # def test04_write_io_pulse(self):
     #     """2、设置本地IO_pulse """

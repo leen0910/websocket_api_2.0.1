@@ -34,7 +34,7 @@ class websocket_request(unittest.TestCase):
 
         data_io_read=rm.get_data("读取extendIO","io_read_extend")
         print("step 2、按配置参数读取总线io：")
-        io_list=["X0","X1","X2","X3","X4","X5","X6","X7","X8","X9","X10","X11","X12","X13","X14","input0","input1","input2","input3","input4","input5","input6","input7","input8","input9","input10","input11","input12","pulseF","pulseC"]
+        io_list=["X0","X1","X2","X3","X4","X5","X6","X7","X8","X9","X10","X11","X12","X13","X14","input0","input1","input2","input3","input4","input5","input6","input7","input8","input9","input10","input11","input12","pulseF","pulseC","Y16","red","Y17","green"]
 
         data_dict=json.loads(data_io_read)
         for name in io_list:
