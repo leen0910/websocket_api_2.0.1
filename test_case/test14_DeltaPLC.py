@@ -9,7 +9,7 @@ import time
 import json
 
 class websocket_request(unittest.TestCase):
-    server_index=[1]
+    server_index=[3]
 
 
     """modbus通讯"""
@@ -66,7 +66,7 @@ class websocket_request(unittest.TestCase):
         print("step 2、读取线圈。")
 
         server_index=self.server_index
-        name_list=["input_coil_0","X0","input_coil_1","X1","input_coil_2","X2","input_coil_3","X3","input_coil_4","X4","input_coil_5","X5","input_coil_6","X6","input_coil_7","X7","input_coil_8","X8","input_coil_9","X9","input_coil_10","X10","input_coil_11","X11","input_coil_12","X12","input_coil_13","X13","input_coil_14","X14","input_coil_15","X15","input_coil_16","X16","input_coil_17","X17","input_coil_18","X18","input_coil_19","X19","input_coil_20","X20","input_coil_21","X21","input_coil_22","X22","input_coil_23","X23","input_coil_24","X24","input_coil_25","X25","input_coil_26","X26","input_coil_27","X27"]
+        name_list=["input_coil_0","input_coil_1","input_coil_2","input_coil_3","input_coil_4","input_coil_5","input_coil_6","input_coil_7","input_coil_8","input_coil_9","input_coil_10","input_coil_11","input_coil_12","input_coil_13","input_coil_14","input_coil_15","input_coil_16","input_coil_17","input_coil_18","input_coil_19","input_coil_20","input_coil_21","input_coil_22","input_coil_23","input_coil_24","input_coil_25","input_coil_26","input_coil_27"]
 
         data_dict=json.loads(data_modbus_read)
         for index in server_index:
@@ -107,7 +107,7 @@ class websocket_request(unittest.TestCase):
         "value": 10
         """
         server_index=self.server_index
-        name_list=["output_coil_0","Y0","output_coil_1","Y1","output_coil_2","Y2","output_coil_3","Y3","output_coil_4","Y4","output_coil_5","Y5","output_coil_6","Y6","output_coil_7","Y7","output_coil_8","Y8","output_coil_9","Y9","output_coil_10","Y10","output_coil_11","Y11","output_coil_12","Y12","output_coil_13","Y13","output_coil_14","Y14","output_coil_15","Y15","output_coil_16","Y16","Y17","output_coil_17",]
+        name_list=["output_coil_0","output_coil_1","output_coil_2","output_coil_3","output_coil_4","output_coil_5","output_coil_6","output_coil_7","output_coil_8","output_coil_9","output_coil_10","output_coil_11","output_coil_12","output_coil_13","output_coil_14","output_coil_15","output_coil_16","output_coil_17"]
         values=[0,1]
         data_dict=json.loads(data_modbus_set)
         data_dict1=json.loads(data_modbus_read)
