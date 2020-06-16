@@ -5,7 +5,7 @@ login_monitor={
     "data":{
         "username":"Monitor",
         "identity":"monitor",
-        "password":"MTIzNDU2"
+        "password":""
     }
     }
 login_operator={
@@ -13,7 +13,7 @@ login_operator={
     "data":{
         "username":"Operator",
         "identity":"operator",
-        "password":"MTIzNDU2"
+        "password":""
     }
     }
 login_admin={
@@ -21,7 +21,7 @@ login_admin={
     "data":{
         "username":"Admin",
         "identity":"root",
-        "password":"MTIzNDU2"
+        "password":""
     }
     }
 
@@ -35,24 +35,24 @@ password_reset_monitor={
     "action":"permission.password.reset",
     "data":{
         "identity":"monitor",
-        "old_password":"MTIzNDU2",
-        "new_password":"MTIzNDU2"
+        "old_password":"",
+        "new_password":""
     }
     }
 password_reset_operator={
     "action":"permission.password.reset",
     "data":{
         "identity":"operator",
-        "old_password":"MTIzNDU2",
-        "new_password":"MTIzNDU2"
+        "old_password":"",
+        "new_password":""
     }
     }
 password_reset_admin={
     "action":"permission.password.reset",
     "data":{
         "identity":"root",
-        "old_password":"MTIzNDU2",
-        "new_password":"MTIzNDU2"
+        "old_password":"",
+        "new_password":""
     }
     }
 

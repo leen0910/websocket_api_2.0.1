@@ -22,7 +22,7 @@ class ReceiveFiles(unittest.TestCase):
     """向设备端写入文件"""
     filename="modbus_info.json"    #写入文件的名字
     path='C:\\Users\\test\\AppData\\Local\\Programs\\Python\\Python36\\autotest\\websocket_api_2.0\\files\\modbus_info.json'  #需要写入设备端的文件
-    i=0      #安装脚本文件时的序列号
+    i=0   #当type为script时需要指定安装的序号，取值范围[0-20)；当type为config时指定index值，index为1代表modbus子文件，为0代表其他配置文件
     size=300*1024    #分包大小
     type="config"       #发送文件类型
     source_dir="C:\\Users\\test\\AppData\\Local\\Programs\\Python\\Python36\\autotest\\websocket_api_2.0\\test"  #需要打包生成zip的文件目录
@@ -124,7 +124,7 @@ class ReceiveFiles(unittest.TestCase):
         time.sleep(2)
 
         data_logout=rm.get_data("退出登录","logout")
-        print("step、释放设备：")
+        print("step5、释放设备：")
         c.checkAction(url,data_logout)
 
     def tearDown(self):
@@ -137,6 +137,7 @@ if __name__ == "__main__":
     # t.setUp()
     # for i in range(1,100):
     #     t.test_ReceiveFiles()
+    # t.tearDown()
     # for i in range(1,5):
     #     suite = unittest.TestSuite()
     #     suite.addTest(websocket_request('test01_read_io'))

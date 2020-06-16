@@ -16,10 +16,11 @@ def on_message(ws, message):  # 服务器有数据更新时，主动推送过来
 
     t=time.strftime('%Y/%m/%d %H:%M:%S',time.localtime(time.time()))
     # f = open("out.txt", "a",encoding='utf-8')
-    if message["action"]=="publish.status":      #"publish.custom.info"
-            # if message["action"]["identity"]=="打表值":
-        with open('out.txt','a',encoding='utf-8') as f:
-            print("{} -------打表值： {}".format(t,message["data"]["state_machine"]),file=f)
+    # if message["action"]=="publish.status":      #"publish.custom.info"
+    if message["action"]=="publish.custom.info":
+        if message["data"]["identity"]=="打表值：":
+            with open('out.txt','a',encoding='utf-8') as f:
+                print("{} -------打表值： {}".format(t,message["data"]["value"]),file=f)
     # f.close()
 
 

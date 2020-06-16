@@ -5,15 +5,18 @@ pose3 ={X = 300, Y =-200, Z = 0,A = 0,B = 0,C = 0}
 pose4 ={X = 100, Y =  -300, Z = 0,A = 0,B = 0,C = 0}
 vel=100
 blend=0
-R.MODBUS_CONNECT(3)
-R.DELAY_MS(500)
+--R.MODBUS_CONNECT(1)
+--R.DELAY_MS(500)
 R.MODBUS_CONNECT(2)
+R.DELAY_MS(500)
+R.MODBUS_CONNECT(3)
 R.DELAY_MS(500)
 R.MODBUS_CONNECT(5)
 R.DELAY_MS(500)
 
 
-while (true) do
+while (true)
+do
  a=M0D10
  b=M0D11
  c=M0D12
@@ -22,6 +25,13 @@ while (true) do
  f=R.INT_TO_DOUBLE(ref_x)
 print("f的值是:",f)
 
+
+--[[
+M1D5=345
+R.DELAY_MS(100)
+R.INFO("打表值：",M1D5)
+R.DELAY_MS(100)
+--]]
 print(EX0)
 R.DELAY_MS(100)
 print(EX1)
@@ -282,7 +292,12 @@ R.DELAY_MS(100)
 print(M3X1031)
 R.DELAY_MS(100)
 
-
+--[[
+M1D5=0
+R.DELAY_MS(100)
+R.INFO("打表值回零：",M1D5)
+R.DELAY_MS(100)
+--]]
 M3Y2048=32
 R.DELAY_MS(100)
 
@@ -300,5 +315,7 @@ R.DELAY_MS(100)
 print(M3D4096)
 R.DELAY_MS(100)
 print(M3D36864)
+
+
 end
 

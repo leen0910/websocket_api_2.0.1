@@ -63,10 +63,10 @@ def ws_connect():
                 if t["action"]=="publish.error":
                     print("错误码：%s"%t["data"]["code"])
                 if t["action"]=="publish.io.state":
-                    print("本地IO输入：%s"%t["data"]["localIO"]["input"])
-                    print("本地IO输出：%s"%t["data"]["localIO"]["output"])
-                    print("扩展IO输入：%s"%t["data"]["extendIO"]["input"])
-                    print("扩展IO输出：%s"%t["data"]["extendIO"]["output"])
+                    print("本地IO输入：%s"%t["data"]["local_io"]["input"])
+                    print("本地IO输出：%s"%t["data"]["local_io"]["output"])
+                    print("扩展IO输入：%s"%t["data"]["extend_io"]["input"])
+                    print("扩展IO输出：%s"%t["data"]["extend_io"]["output"])
 
                 if t["action"]=="publish.custom.info":
                     print("识别码：%s"%t["data"]["identity"])

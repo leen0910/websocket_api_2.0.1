@@ -134,6 +134,8 @@ class install(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
-    # t=install()
-    # t.setUp()
-    # t.install_lua_script()
+
+    # for i in range(1,1000):
+    #     suite = unittest.TestSuite()
+    #     suite.addTest(install('test_install'))
+    #     unittest.TextTestRunner(verbosity=2).run(suite)

@@ -66,7 +66,7 @@ class websocket_request(unittest.TestCase):
         print("step 2、读取线圈。")
 
         server_index=self.server_index
-        name_list=["input_0","X0","input_1","X1","input_2","X2","input_3","X3","input_4","X4","input_5","X5","input_6","X6","input_7","X7"]
+        name_list=["input_0","input_1","input_2","input_3","input_4","input_5","input_6","input_7"]
 
         data_dict=json.loads(data_modbus_read)
         for index in server_index:
@@ -107,7 +107,7 @@ class websocket_request(unittest.TestCase):
         "value": 10
         """
         server_index=self.server_index
-        name_list=["output_0","Y0","output_1","Y1","output_2","Y2","output_3","Y3","output_4","Y4","output_5","Y5","output_6","Y6","output_7","Y7"]
+        name_list=["output_0","output_1","output_2","output_3","output_4","output_5","output_6","output_7"]
         values=[0,1]
         data_dict=json.loads(data_modbus_set)
         data_dict1=json.loads(data_modbus_read)
