@@ -22,7 +22,8 @@ class ReceiveFiles(unittest.TestCase):
     """当type为config时指定index值，index为1代表modbus子文件，为0代表其他配置文件"""
     filename0=["modbus_info.json","motion_param_config.json","lua.json","device_custom.json"]
     # filenameX=["io_extend.json","io_local.json","io_bind.json","motion_base_config.json","device_info.json","driver_config.json"]
-    filename1=["modbus_4_way_relay.json","modbus_8_way_relay.json","modbus_Delta_plc.json","modbus_other_qxrobot.json","modbus_DAQM_4302.json","modbus_own_expandIO.json","modbus_qxVision.json","modbus_own_defaultIO.json"]
+    filename1=["modbus_Delta_plc.json","modbus_other_qxrobot.json","modbus_qxVision.json","modbus_own_defaultIO.json"]
+    filename_base=["device_info.json","driver_config.json","io_bind.json","io_extend.json","io_local.json","motion_base_config.json"]
     path='C:\\Users\\test\\AppData\\Local\\Programs\\Python\\Python36\\autotest\\websocket_api_2.0\\files\\'  #需要写入设备端的文件的目录
 
     size=300*1024    #分包大小
@@ -166,6 +167,70 @@ class ReceiveFiles(unittest.TestCase):
         data_logout=rm.get_data("退出登录","logout")
         print("step、释放设备：")
         c.checkAction(url,data_logout)
+
+    def test03_ConfigFiles_base(self):
+        """debug帐号，写入base目录"""
+        rm=read_message.ReadMessage()
+        data_login=rm.get_data("登录设备","login_debug")
+        url=self.ws
+        filename_base=self.filename_base
+        type=self.type
+
+        print("step 1、debug权限登录设备。")
+        c.checkAction(url,data_login)
+        time.sleep(1)
+
+        for filename in filename_base:
+            path=self.path+filename
+
+            print("step 2、向设备发送config文件：%s"%filename)
+
+            """分包写入文件"""
+            Block_Size=self.size
+            total=s.total_count_b(path,Block_Size)
+            str_md5=s.read_a_file_b(path)
+            md5=to_md5.md5_b(str_md5)
+            print("总包数为：%s"%total)
+            index=1
+            for content in s.read_file_b(path,Block_Size):
+                str=content
+                script_base64=Base_64.encode_b(str)
+                data_file={
+                    "action":"file.receive",
+                    "data":{
+                        "type":type,
+                        "file_name":filename,
+                        "total":total,
+                        "index":index,
+                        "md5":"%s"%md5,
+                        "value":script_base64
+                        }
+                    }
+                data_file=json.dumps(data_file)
+                c.checkAction(url,data_file)
+                index=index+1
+                # print(script_base64)
+
+
+            data_install_script=rm.get_data("控制器安装文件","file_install_script")
+
+            """重新设置安装文件名"""
+            data_dict=json.loads(data_install_script)
+            data_dict["data"]["index"]=0
+            data_dict["data"]["type"]="%s"%type
+            data_dict["data"]["file_name"]="%s"%filename
+            # print("安装文件："+data_dict["data"]["file_name"])
+            data_install_script=json.dumps(data_dict)
+            # print(data_install_script)
+
+            print("step 3、安装index=0：%s文件"%filename)
+            c.checkAction(url,data_install_script)
+            time.sleep(2)
+
+        data_logout=rm.get_data("退出登录","logout")
+        print("step、释放设备：")
+        c.checkAction(url,data_logout)
+
 
 
     def tearDown(self):

@@ -54,25 +54,25 @@ class websocket_request(unittest.TestCase):
     #     print("step 3、释放设备：")
     #     c.checkAction(url,data_logout)
 
-    def test02_install_config(self):
-        """3.控制器安装文件/安装config """
-        rm=read_message.ReadMessage()
-        data_login=rm.get_data("登录设备","login_admin")
-        url=self.ws
-        print("step 1、控制设备：")
-        c.checkAction(url,data_login)
-        time.sleep(1)
-
-        data_install_file=rm.get_data("控制器安装文件","file_install_config")
-
-        print("step 2、安装config文件: permission.json 。")
-        t=c.checkAction(url,data_install_file)
-        self.assertEqual(t["success"],True)
-        time.sleep(1)
-
-        data_logout=rm.get_data("退出登录","logout")
-        print("step 3、释放设备：")
-        c.checkAction(url,data_logout)
+    # def test02_install_config(self):
+    #     """3.控制器安装文件/安装config """
+    #     rm=read_message.ReadMessage()
+    #     data_login=rm.get_data("登录设备","login_admin")
+    #     url=self.ws
+    #     print("step 1、控制设备：")
+    #     c.checkAction(url,data_login)
+    #     time.sleep(1)
+    #
+    #     data_install_file=rm.get_data("控制器安装文件","file_install_config")
+    #
+    #     print("step 2、安装config文件: permission.json 。")
+    #     t=c.checkAction(url,data_install_file)
+    #     self.assertEqual(t["success"],True)
+    #     time.sleep(1)
+    #
+    #     data_logout=rm.get_data("退出登录","logout")
+    #     print("step 3、释放设备：")
+    #     c.checkAction(url,data_logout)
 
     def test03_install_update(self):
         """3.控制器安装文件/安装update """

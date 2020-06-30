@@ -41,7 +41,7 @@ def on_open(ws):  # 连接到服务器之后就会触发on_open事件，这里�
     "data":{
         "username":"Monitor",
         "identity":"monitor",
-        "password":"MTIzNDU2"
+        "password":""
     }
     }'''
     print(data)

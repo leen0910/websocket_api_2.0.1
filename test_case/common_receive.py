@@ -135,7 +135,7 @@ if __name__ == "__main__":
     unittest.main()
     # t=ReceiveFiles()
     # t.setUp()
-    # for i in range(1,100):
+    # for i in range(1,10):
     #     t.test_ReceiveFiles()
     # t.tearDown()
     # for i in range(1,5):

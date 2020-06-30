@@ -35,6 +35,7 @@ def ws_connect():
             if ws.connected:
                 print("服务：%s连接中..."%url)
                 # t=ws.recv()
+
                 t=json.loads(ws.recv())
                 if t["action"]=="publish.status":
                     print("状态机状态为：%s"%t["data"]["state_machine"])
@@ -45,7 +46,7 @@ def ws_connect():
                     print("脚本运行模式：%s"%t["data"]["lua_run_mode"])
                     print("脚本当前运行的行数：%s"%t["data"]["lua_current_line"])
                 if t["action"]=="publish.motion.info":
-                    print("末端世界坐标系的位置：%s"%t["data"]["cart_pose"])
+                    print("末端世界坐标系的位置：%s"%t["data"]["chain_info"][0]["pose"])
                     lenth=len(t["data"]["joint_info"])
                     i=0
                     arm_joint=[]

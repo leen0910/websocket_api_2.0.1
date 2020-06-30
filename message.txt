@@ -24,7 +24,14 @@ login_admin={
         "password":""
     }
     }
-
+login_debug={
+    "action":"permission.login",
+    "data":{
+        "username":"Debug",
+        "identity":"debug",
+        "password":""
+    }
+    }
 [退出登录]
 logout={
     "action":"permission.logout"
@@ -230,10 +237,18 @@ file_query_temp_update={
 file_recovery={
     "action": "file.recovery",
     "data": {
+        "is_all":false,
         "file_name": "lua.json"
     }
     }
-
+[控制器配置文件备份]
+file_backup={
+    "action":"file.backup",
+    "data":{
+        "is_all":false,
+        "file_name":"lua.json"
+    }
+    }
 [全局参数设置]
 [调整全局速度]
 adjust_velocity={
@@ -412,17 +427,18 @@ io_read_modbus={
     "action":"io.read.modbus",
     "data":{
         "server_index":1,
-        "nick_name":"input_coil_0"
+        "IO_type":"D",
+        "address":10
     }
     }
-
 [设置MODBUS]
 io_write_modbus={
     "action":"io.write.modbus",
     "data":{
         "server_index":1,
-        "nick_name":"output_coil_0",
-        "value": 10
+        "IO_type":"D",
+        "address":10,
+        "value":1
     }
     }
 
