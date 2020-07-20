@@ -93,6 +93,16 @@ file_send_log={
         "index" : 1
     }
     }
+file_send_expansion={
+    "action" : "file.send",
+    "data" :
+    {
+        "type" : "expansion",
+        "file_name" : "test.zip",
+        "index" : 1
+    }
+    }
+
 [控制器接收文件]
 file_receive_script={
     "action" : "file.receive",
@@ -233,6 +243,14 @@ file_query_temp_update={
         "type":"temp_update"
     }
     }
+
+file_query_expansion={
+    "action":"file.query",
+    "data":{
+        "type":"expansion"
+    }
+    }
+
 [控制器配置文件恢复]
 file_recovery={
     "action": "file.recovery",

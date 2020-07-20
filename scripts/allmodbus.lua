@@ -5,14 +5,7 @@ pose3 ={X = 300, Y =-200, Z = 0,A = 0,B = 0,C = 0}
 pose4 ={X = 100, Y =  -300, Z = 0,A = 0,B = 0,C = 0}
 vel=100
 blend=0
---R.MODBUS_CONNECT(1)
---R.DELAY_MS(500)
-R.MODBUS_CONNECT(2)
-R.DELAY_MS(500)
-R.MODBUS_CONNECT(3)
-R.DELAY_MS(500)
-R.MODBUS_CONNECT(5)
-R.DELAY_MS(500)
+
 
 
 while (true)
@@ -22,16 +15,17 @@ do
  c=M0D12
  d=M0D13
  ref_x={a,b,c,d}
- f=R.INT_TO_DOUBLE(ref_x)
-print("f的值是:",f)
 
 
---[[
+R.MODBUS_CONNECT(5)
+R.DELAY_MS(500)
+
+
 M1D5=345
 R.DELAY_MS(100)
 R.INFO("打表值：",M1D5)
 R.DELAY_MS(100)
---]]
+
 print(EX0)
 R.DELAY_MS(100)
 print(EX1)
@@ -133,8 +127,8 @@ R.DELAY_MS(100)
 EY15=1
 R.DELAY_MS(100)
 
-R.DELAY_MS(500)
 
+--[[
 R.MODBUS_WRITE(2,"motor_speed",25)
 R.DELAY_MS(100)
 
@@ -168,14 +162,14 @@ print(R.MODBUS_READ(0,"follow_ref_X"))
 R.DELAY_MS(100)
 print(R.MODBUS_READ(0,"type_id"))
 
-
+]]--
 
 print(M2D62)
 R.DELAY_MS(1000)
 
-a=M0D62
+a=M0D3
 R.DELAY_MS(1000)
-R.WAIT_IO("M0D62",a)
+R.WAIT_IO("M0D3",a)
 
 
 R.MP(pose1,vel,blend)
@@ -184,6 +178,7 @@ R.ML(pose3,vel,blend)
 R.ML(pose4,vel,blend)
 R.ML(pose1,vel,blend)
 
+R.DELAY_MS(100)
 
 print(M5X0)
 R.DELAY_MS(100)
@@ -200,7 +195,6 @@ R.DELAY_MS(100)
 print(M5X6)
 R.DELAY_MS(100)
 print(M5X7)
-R.DELAY_MS(100)
 
 M5Y0=0
 R.DELAY_MS(100)
@@ -292,12 +286,12 @@ R.DELAY_MS(100)
 print(M3X1031)
 R.DELAY_MS(100)
 
---[[
+
 M1D5=0
 R.DELAY_MS(100)
 R.INFO("打表值回零：",M1D5)
 R.DELAY_MS(100)
---]]
+
 M3Y2048=32
 R.DELAY_MS(100)
 

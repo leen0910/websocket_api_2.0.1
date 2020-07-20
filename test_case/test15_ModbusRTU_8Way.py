@@ -55,6 +55,11 @@ class websocket_request(unittest.TestCase):
 
     def test02_read_modbus_coil(self):
         """读取MODBUS/四路继电器 /读线圈"""
+        """
+        "server_index":1,
+        "IO_type":"D",
+        "address":10
+        """
         rm=read_message.ReadMessage()
         data_login=rm.get_data("登录设备","login_admin")
         url=self.ws
@@ -66,22 +71,23 @@ class websocket_request(unittest.TestCase):
         print("step 2、读取线圈。")
 
         server_index=self.server_index
-        name_list=["input_0","input_1","input_2","input_3","input_4","input_5","input_6","input_7"]
+        addresses=[0,1,2,3,4,5,6,7]
 
         data_dict=json.loads(data_modbus_read)
         for index in server_index:
             data_dict["data"]["server_index"]=index
+            data_dict["data"]["IO_type"]="X"
             print("modbus机器号：%s"%index )
-            for nick_name in name_list:
-                data_dict["data"]["nick_name"]=nick_name
-                print("读取的线圈地址别名：%s"%nick_name)
+            for address in addresses:
+                data_dict["data"]["address"]=address
+                print("读取的线圈地址：%s"%address)
 
                 data_modbus_read=json.dumps(data_dict)
                 t=c.checkAction(url,data_modbus_read)
                 if t["success"]==True:
-                    print("%s号机器的%s 线圈地址值读取为：%s。"%(index,nick_name,t["data"]["value"]))
+                    print("%s号机器的%s 线圈地址值读取为：%s。"%(index,address,t["data"]["value"]))
                 else:
-                    print("%s号机器的%s 线圈地址设置失败。"%(index,nick_name))
+                    print("%s号机器的%s 线圈地址设置失败。"%(index,address))
                 time.sleep(0.5)
 
         data_logout=rm.get_data("退出登录","logout")
@@ -90,6 +96,12 @@ class websocket_request(unittest.TestCase):
 
     def test03_write_modbus_coil_Robot(self):
         """设置MODBUS/四路继电器/写线圈 """
+        """
+        "server_index":1,
+        "IO_type":"D",
+        "address":10,
+        "value":1
+        """
         rm=read_message.ReadMessage()
         data_login=rm.get_data("登录设备","login_admin")
         url=self.ws
@@ -99,38 +111,36 @@ class websocket_request(unittest.TestCase):
 
         data_modbus_read=rm.get_data("读取MODBUS","io_read_modbus")
         data_modbus_set=rm.get_data("设置MODBUS","io_write_modbus")
+
         print("step 2、写入线圈。")
 
-        """
-        "server_index":5,
-        "nick_name":"output_0",
-        "value": 10
-        """
         server_index=self.server_index
-        name_list=["output_0","output_1","output_2","output_3","output_4","output_5","output_6","output_7"]
+        addresses=[0,1,2,3,4,5,6,7]
         values=[0,1]
         data_dict=json.loads(data_modbus_set)
         data_dict1=json.loads(data_modbus_read)
         for index in server_index:
             data_dict["data"]["server_index"]=index
             data_dict1["data"]["server_index"]=index
+            data_dict["data"]["IO_type"]="Y"
+            data_dict1["data"]["IO_type"]="X"
             print("modbus机器号：%s"%index )
-            for nick_name in name_list:
-                data_dict["data"]["nick_name"]=nick_name
-                data_dict1["data"]["nick_name"]=nick_name
-                print("写入的线圈地址别名：%s"%nick_name)
+            for address in addresses:
+                data_dict["data"]["address"]=address
+                data_dict1["data"]["address"]=address
+                print("写入的线圈地址：%s"%address)
                 for value in values:
                     data_dict["data"]["value"]=value
                     data_modbus_set=json.dumps(data_dict)
                     t=c.checkAction(url,data_modbus_set)
                     if t["success"]==True:
-                        print("%s号机器的%s 线圈地址别名，值设置：%s成功。"%(index,nick_name,value))
+                        print("%s号机器的%s 线圈地址，值设置：%s成功。"%(index,address,value))
                         data_modbus_read=json.dumps(data_dict1)
                         t1=c.checkAction(url,data_modbus_read)
-                        print("%s号机器的%s 线圈地址值读取为：%s。"%(index,nick_name,t1["data"]["value"]))
+                        print("%s号机器的%s 线圈地址值读取为：%s。"%(index,address,t1["data"]["value"]))
 
                     else:
-                        print("%s号机器的%s 线圈地址设置失败。"%(index,nick_name))
+                        print("%s号机器的%s 线圈地址设置失败。"%(index,address))
                     time.sleep(0.5)
 
         data_logout=rm.get_data("退出登录","logout")

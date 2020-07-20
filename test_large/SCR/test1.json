@@ -1,0 +1,134 @@
+{
+    "input_coil": [],
+    "output_coil": [],
+    "input_register": [],
+    "output_register": [
+        {
+            "index": 0,
+            "address": 0,
+            "data_type": "uint16"
+        },
+        {
+            "index": 1,
+            "address": 1,
+            "data_type": "uint16"
+        },
+        {
+            "index": 2,
+            "address": 3,
+            "data_type": "uint16"
+        },
+        {
+            "index": 3,
+            "address": 4,
+            "data_type": "uint16"
+        },
+        {
+            "index": 4,
+            "address": 5,
+            "vir_name": "Y5",
+            "num": 1,
+            "data_type": "uint16"
+        },
+        {
+            "index": 5,
+            "address": 6,
+            "data_type": "uint16"
+        },
+        {
+            "index": 6,
+            "address": 7,
+            "data_type": "uint16"
+        },
+        {
+            "index": 7,
+            "address": 8,
+            "data_type": "uint16"
+        },
+        {
+            "index": 8,
+            "address": 10,
+            "data_type": "double"
+        },
+        {
+            "index": 9,
+            "address": 14,
+            "data_type": "double"
+        },
+        {
+            "index": 10,
+            "address": 18,
+            "data_type": "double"
+        },
+        {
+            "index": 11,
+            "address": 22,
+            "data_type": "double"
+        },
+        {
+            "index": 12,
+            "address": 26,
+            "data_type": "double"
+        },
+        {
+            "index": 13,
+            "address": 30,
+            "data_type": "double"
+        },
+        {
+            "index": 14,
+            "address": 34,
+            "data_type": "double"
+        },
+        {
+            "index": 15,
+            "address": 38,
+            "data_type": "double"
+        },
+        {
+            "index": 16,
+            "address": 42,
+            "data_type": "double"
+        },
+        {
+            "index": 17,
+            "address": 46,
+            "data_type": "double"
+        },
+        {
+            "index": 18,
+            "address": 50,
+            "data_type": "double"
+        },
+        {
+            "index": 19,
+            "address": 54,
+            "data_type": "double"
+        },
+        {
+            "index": 20,
+            "address": 58,
+            "data_type": "double"
+        },
+        {
+            "index": 21,
+            "address": 62,
+            "data_type": "int"
+        },
+        {
+            "index": 22,
+            "address": 64,
+            "data_type": "double"
+        },
+        {
+            "index": 23,
+            "address": 68,
+            "data_type": "double"
+        },
+        {
+            "index": 24,
+            "address": 72,
+            "data_type": "int"
+        }
+    ]
+}
