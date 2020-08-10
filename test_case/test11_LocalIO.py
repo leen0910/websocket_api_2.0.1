@@ -293,6 +293,6 @@ if __name__ == "__main__":
     #     # suite.addTest(websocket_request('test02_write_io_off'))
     #     # suite.addTest(websocket_request('test03_write_io_on'))
     #     suite.addTest(websocket_request('test04_read_io_default'))
-    #     suite.addTest(websocket_request('test05_write_io_default_off'))
-    #     suite.addTest(websocket_request('test06_write_io_default_on'))
+    #     # suite.addTest(websocket_request('test05_write_io_default_off'))
+    #     # suite.addTest(websocket_request('test06_write_io_default_on'))
     #     unittest.TextTestRunner(verbosity=2).run(suite)

@@ -7,7 +7,7 @@ if __name__ == "__main__":
     HOST = "192.168.1.110"
     POST = 4321
 
-    registration_code = "b5opFGrVi1CLFPTBKOzEbShXSmIm/jR2omo61bF7YpqLQeOicVlySSKvEcL2qvC2fFmmelbDIZveLhIrW6F3XZzXvMuDTUhqseDsWn4qMM3XUJIlf2JSnx13lGiBIHneLyPpyfJQMSFodmgMdJnPaX4Kn2OTUw10UtIZ+nh11hA="
+    registration_code = "tDaY8cV/aSqqFMP/FGiMhh09m+S+Lgc82qmrs7cCUH5CDKGQ5t5Mr2pPouvRspgTIZltksINpnRkcBv4Y3SdIPzj/2mhVKDpI9w0GO3qG3mUjiUR1ltEDHBt74H+83xVFT9FmI4pUMgc1ndrs2kQBdOT+20n1BakssITk2nTEj8="
     expiration_time = "2050-05-21.12:00:00"
     #
     dic_active = {"registration_code": registration_code,

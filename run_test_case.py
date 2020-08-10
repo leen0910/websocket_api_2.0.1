@@ -15,6 +15,6 @@ for i in range(1,2):
     # 二进制打开，准备写入文件
     fp = open(filename, 'wb')
     # 定义测试报告
-    runner = HTMLTestRunner.HTMLTestRunner(stream=fp, title=u'websocket接口自动化测试报告/V_2.4', description=u'用例执行情况')
+    runner = HTMLTestRunner.HTMLTestRunner(stream=fp, title=u'websocket接口自动化测试报告/V_2.4.1', description=u'用例执行情况')
     runner.run(discover)
     fp.close()

@@ -361,15 +361,13 @@ class websocket_request(unittest.TestCase):
         self.ws.close()
 
 if __name__ == "__main__":
-    unittest.main()
-    # for i in range(1,50000):
-    #     suite = unittest.TestSuite()
-    #     # suite.addTest(websocket_request('setUp'))
-    #     suite.addTest(websocket_request('test01_modbus_connect'))
-    #     suite.addTest(websocket_request('test02_write_modbus_coil_Robot'))
-    #     suite.addTest(websocket_request('test03_read_modbus_coil'))
-    #     suite.addTest(websocket_request('test04_write_modbus_register'))
-    #     suite.addTest(websocket_request('test05_read_modbus_register'))
-    #     suite.addTest(websocket_request('test06_modbus_disconnect'))
-    #     # suite.addTest(websocket_request('tearDown'))
-    #     unittest.TextTestRunner(verbosity=2).run(suite)
+    # unittest.main()
+    for i in range(1,100):
+        suite = unittest.TestSuite()
+        # suite.addTest(websocket_request('setUp'))
+        suite.addTest(websocket_request('test01_write_modbus_register_uint16'))
+        suite.addTest(websocket_request('test02_write_modbus_register_double'))
+        suite.addTest(websocket_request('test03_write_modbus_register_int'))
+
+        # suite.addTest(websocket_request('tearDown'))
+        unittest.TextTestRunner(verbosity=2).run(suite)

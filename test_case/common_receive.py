@@ -20,14 +20,14 @@ import json
 
 class ReceiveFiles(unittest.TestCase):
     """向设备端写入文件"""
-    filename="plug.lua"    #写入文件的名字
-    path='C:\\Users\\test\\AppData\\Local\\Programs\\Python\\Python36\\autotest\\websocket_api_2.0\\scripts\\A到B插件.lua'  #需要写入设备端的文件
+    filename="io_extend.json"    #写入文件的名字
+    path='C:\\Users\\test\\AppData\\Local\\Programs\\Python\\Python36\\autotest\\websocket_api_2.0\\files\\io_extend.json'  #需要写入设备端的文件
 
     #C:\Users\test\AppData\Local\Programs\Python\Python36\autotest\websocket_api_2.0\scripts\400_arc.lua
 
     i=0  #当type为script时需要指定安装的序号，取值范围[0-20)；当type为config时指定index值，index为1代表modbus子文件，为0代表其他配置文件
     size=300*1024    #分包大小
-    type="expansion"       #发送文件类型  script/config/update/expansion   类型为expansion时需要debug权限操作安装和删除
+    type="config"       #发送文件类型  script/config/update/expansion   类型为expansion时需要debug权限操作安装和删除
     source_dir="C:\\Users\\test\\AppData\\Local\\Programs\\Python\\Python36\\autotest\\websocket_api_2.0\\test"  #需要打包生成zip的文件目录
     output_filename="C:\\Users\\test\\AppData\\Local\\Programs\\Python\\Python36\\autotest\\websocket_api_2.0\\test.zip"     #zip文件的输出目录
     def setUp(self):
@@ -46,7 +46,7 @@ class ReceiveFiles(unittest.TestCase):
     def test_ReceiveFiles(self):
         """控制器接收文件"""
         rm=read_message.ReadMessage()
-        data_login=rm.get_data("登录设备","login_debug")
+        data_login=rm.get_data("登录设备","login_admin")
         url=self.ws
         path=self.path
         filename=self.filename
