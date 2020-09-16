@@ -12,12 +12,17 @@
 
 
 import csv
-
+i=1
+zeo=317  #打表基数值
 with open('out.csv', 'w+', newline='',encoding='utf-8-sig') as csvfile:
     writer = csv.writer(csvfile, dialect='excel')
-    writer.writerow(["记录时间","打表值"])
+    writer.writerow(["重复次数","记录时间","偏差量(mm)"])
     # 读要转换的txt文件，文件每行各词间以字符分隔
     with open('out.txt', 'r', encoding='utf-8') as filein:
         for line in filein:
             line_list = line.strip('\n').split(',')
-            writer.writerow(line_list)
+            # line_list.append(i)
+            # writer.writerow(line_list)
+
+            writer.writerow([i,line_list[0],(float(line_list[1])-zeo)/100])
+            i=i+1
