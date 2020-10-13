@@ -94,7 +94,7 @@ for line in f:
     i=i+1
 
 
-sheet1.write(index,0,"标准精度：",style0)
+sheet1.write(index,0,"标准精度偏差：",style0)
 sheet1.write(index,1,"± %s"%jingdu,style3)
 sheet1.write(index+1,0,"合格次数：",style0)
 sheet1.write(index+1,1,count_p,style3)
@@ -106,7 +106,7 @@ sheet1.write(index+4,0,"不良率：",style0)
 sheet1.write(index+4,1,'{:.2f}%'.format(count_f/(i-1)*100),style3)
 
 
-sheet1.col(0).width = 3333
+sheet1.col(0).width = 4444
 sheet1.col(1).width = 5555
 sheet1.col(2).width = 2222
 sheet1.col(3).width = 3333
