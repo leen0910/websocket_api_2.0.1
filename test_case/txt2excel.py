@@ -71,7 +71,7 @@ index = 1
 i=1
 count_p=0
 count_f=0
-jingdu=0.05
+jingdu=0.03
 
 for line in f:
     data = line.strip('\n').split(',')
