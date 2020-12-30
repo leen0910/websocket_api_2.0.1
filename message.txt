@@ -84,6 +84,15 @@ file_send_config={
         "index" : 1
     }
     }
+file_send_config_zip={
+    "action" : "file.send",
+    "data" :
+    {
+        "type" : "config",
+        "index" : 1
+    }
+    }
+
 file_send_log={
     "action" : "file.send",
     "data" :
@@ -98,10 +107,57 @@ file_send_expansion={
     "data" :
     {
         "type" : "expansion",
-        "file_name" : "test.zip",
+        "file_name" : "EXTEND_ARCH.lua",
         "index" : 1
     }
     }
+
+file_send_expansion_zip={
+    "action" : "file.send",
+    "data" :
+    {
+        "type" : "expansion",
+        "index" : 1
+    }
+    }
+file_send_global_script={
+    "action" : "file.send",
+    "data" :
+    {
+        "type" : "global",
+        "file_name" : "global.lua",
+        "index" : 1
+    }
+    }
+
+file_send_global_script_zip={
+    "action" : "file.send",
+    "data" :
+    {
+        "type" : "global",
+        "index" : 1
+    }
+    }
+file_send_sub_script={
+    "action" : "file.send",
+    "data" :
+    {
+        "type" : "sub_script",
+        "file_name" : "sub.lua",
+        "index" : 1
+    }
+    }
+
+file_send_sub_script_zip={
+    "action" : "file.send",
+    "data" :
+    {
+        "type" : "sub_script",
+        "index" : 1
+    }
+    }
+
+
 
 [控制器接收文件]
 file_receive_script={
@@ -109,7 +165,7 @@ file_receive_script={
     "data" :
     {
         "type":"script",
-        "file_name":"test.lua",
+        "file_name":"test.zip",
         "total":1,
         "index":1,
         "md5":"fb89edad146dc6872ac6c7349782803e",
@@ -169,6 +225,27 @@ file_remove_script={
     "data":{
         "type":"script",
         "file_name":"test.zip"
+    }
+    }
+file_remove_global_script={
+    "action":"file.remove",
+    "data":{
+        "type":"global",
+        "file_name":"global.lua"
+    }
+    }
+file_remove_sub_script={
+    "action":"file.remove",
+    "data":{
+        "type":"sub_script",
+        "file_name":"sub.lua"
+    }
+    }
+file_remove_expansion={
+    "action":"file.remove",
+    "data":{
+        "type":"expansion",
+        "file_name":"expansion_test.lua"
     }
     }
 file_remove_config={
@@ -250,7 +327,18 @@ file_query_expansion={
         "type":"expansion"
     }
     }
-
+file_query_global_script={
+    "action":"file.query",
+    "data":{
+        "type":"global"
+    }
+    }
+file_query_sub_script={
+    "action":"file.query",
+    "data":{
+        "type":"sub_script"
+    }
+    }
 [控制器配置文件恢复]
 file_recovery={
     "action": "file.recovery",

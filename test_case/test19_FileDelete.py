@@ -43,6 +43,67 @@ class websocket_request(unittest.TestCase):
         print("step 3、释放设备：")
         c.checkAction(url,data_logout)
 
+
+    def test02_FileRemove_global_script(self):
+        """4.控制器删除文件/删除global_script文件 """
+        rm=read_message.ReadMessage()
+        data_login=rm.get_data("登录设备","login_admin")
+        url=self.ws
+        print("step 1、控制设备：")
+        c.checkAction(url,data_login)
+        time.sleep(1)
+
+        data_file_delete=rm.get_data("控制器删除文件","file_remove_global_script")
+        print("step 2、删除global文件：global.lua。")
+        t=c.checkAction(url,data_file_delete)
+        self.assertEqual(t["success"],True)
+        time.sleep(1)
+
+        data_logout=rm.get_data("退出登录","logout")
+        print("step 3、释放设备：")
+        c.checkAction(url,data_logout)
+
+    def test03_FileRemove_sub_script(self):
+        """4.控制器删除文件/删除sub_script文件 """
+        rm=read_message.ReadMessage()
+        data_login=rm.get_data("登录设备","login_admin")
+        url=self.ws
+        print("step 1、控制设备：")
+        c.checkAction(url,data_login)
+        time.sleep(1)
+
+        data_file_delete=rm.get_data("控制器删除文件","file_remove_sub_script")
+        print("step 2、删除sub_script文件：sub.lua。")
+        t=c.checkAction(url,data_file_delete)
+        self.assertEqual(t["success"],True)
+        time.sleep(1)
+
+        data_logout=rm.get_data("退出登录","logout")
+        print("step 3、释放设备：")
+        c.checkAction(url,data_logout)
+
+    def test04_FileRemove_expansion(self):
+        """4.控制器删除文件/删除expansion文件 """
+        rm=read_message.ReadMessage()
+        data_login=rm.get_data("登录设备","login_debug")
+        url=self.ws
+        print("step 1、控制设备：")
+        c.checkAction(url,data_login)
+        time.sleep(1)
+
+        data_file_delete=rm.get_data("控制器删除文件","file_remove_expansion")
+        print("step 2、删除expansion文件：expansion_test.lua。")
+        t=c.checkAction(url,data_file_delete)
+        self.assertEqual(t["success"],True)
+        time.sleep(1)
+
+        data_logout=rm.get_data("退出登录","logout")
+        print("step 3、释放设备：")
+        c.checkAction(url,data_logout)
+
+
+
+
     # def test02_FileRemove_config(self):
     #     """4.控制器删除文件/删除config文件 """
     #     rm=read_message.ReadMessage()
@@ -81,7 +142,7 @@ class websocket_request(unittest.TestCase):
     #     print("step 3、释放设备：")
     #     c.checkAction(url,data_logout)
 
-    def test04_reduce_FileReceive(self):
+    def test05_reduce_FileReceive(self):
         """再次执行一次 test01_FileReceive.py 文件，生成temp文件。"""
         os.system("python C:\\Users\\test\\AppData\\Local\\Programs\\Python\\Python36\\autotest\\websocket_api_2.0\\test_case\\test01_FileReceive.py")
         print("已写入tempFile文件。")

@@ -24,7 +24,7 @@ class install(unittest.TestCase):
     path='C:\\Users\\test\\AppData\\Local\\Programs\\Python\\Python36\\autotest\\websocket_api_2.0\\test.zip'
     i=2
     size=300*1024
-    type="script"
+    type="script"  #global,sub_script,expansion
     source_dir="C:\\Users\\test\\AppData\\Local\\Programs\\Python\\Python36\\autotest\\websocket_api_2.0\\test"
     output_filename="C:\\Users\\test\\AppData\\Local\\Programs\\Python\\Python36\\autotest\\websocket_api_2.0\\test.zip"
     def setUp(self):
@@ -40,7 +40,7 @@ class install(unittest.TestCase):
             print("websocket连接失败：%s"%e)
             pass
 
-    def test_install(self):
+    def test01_install_script(self):
         """控制器接收文件"""
         rm=read_message.ReadMessage()
         data_login=rm.get_data("登录设备","login_admin")

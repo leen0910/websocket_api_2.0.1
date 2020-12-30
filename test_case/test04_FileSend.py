@@ -80,7 +80,7 @@ class websocket_request(unittest.TestCase):
     #     c.checkAction(url,data_logout)
 
     def test03_LogFile_send(self):
-        """1. 控制器发送文件/日志文件/读取一个日志文件 """
+        """1. 控制器发送文件/日志文件/读取日志文件 """
         rm=read_message.ReadMessage()
         data_login=rm.get_data("登录设备","login_admin")
         url=self.ws
@@ -211,6 +211,197 @@ class websocket_request(unittest.TestCase):
         data_logout=rm.get_data("退出登录","logout")
         print("step 4、释放设备：")
         c.checkAction(url,data_logout)
+
+    def test07_ConfigFile_send_zip(self):
+        """当缺失file_name时，返回Config类型的所有文件的zip包: config.zip"""
+        rm=read_message.ReadMessage()
+        data_login=rm.get_data("登录设备","login_admin")
+        url=self.ws
+        print("step 1、控制设备：")
+        c.checkAction(url,data_login)
+        time.sleep(1)
+
+        print("step 2、从设备中读取config目录下所有文件:config.zip. ")
+        print("step 3、解码后保存到files目录。")
+
+        """保存文件"""
+        data_file_send=rm.get_data("控制器发送文件","file_send_config_zip")
+        print("开始读取config.zip文件")
+        t=c.checkAction(url,data_file_send)
+        time.sleep(1)
+        self.assertEqual(t["success"],True)
+        print("config.zip文件读取成功。")
+
+        str=t["data"]["value"]
+        file_content=Base_64.decode_b(str)
+        path='C:\\Users\\test\\AppData\\Local\\Programs\\Python\\Python36\\autotest\\websocket_api_2.0\\files\\'+"config.zip"
+        WR_file.WriteFile_b(path,file_content)
+        print("config.zip文件保存成功。")
+
+        data_logout=rm.get_data("退出登录","logout")
+        print("step 4、释放设备：")
+        c.checkAction(url,data_logout)
+
+    def test08_Expansion_send_zip(self):
+        """当缺失file_name时，返回Expansion类型的所有文件的zip包: expansion.zip"""
+        rm=read_message.ReadMessage()
+        data_login=rm.get_data("登录设备","login_admin")
+        url=self.ws
+        print("step 1、控制设备：")
+        c.checkAction(url,data_login)
+        time.sleep(1)
+
+        print("step 2、从设备中读取config目录下所有文件:expansion.zip. ")
+        print("step 3、解码后保存到files目录。")
+
+        """保存文件"""
+        data_file_send=rm.get_data("控制器发送文件","file_send_expansion_zip")
+        print("开始读取expansion.zip文件")
+        t=c.checkAction(url,data_file_send)
+        time.sleep(1)
+        self.assertEqual(t["success"],True)
+        print("config.zip文件读取成功。")
+
+        str=t["data"]["value"]
+        file_content=Base_64.decode_b(str)
+        path='C:\\Users\\test\\AppData\\Local\\Programs\\Python\\Python36\\autotest\\websocket_api_2.0\\files\\'+"expansion.zip"
+        WR_file.WriteFile_b(path,file_content)
+        print("expansion.zip文件保存成功。")
+
+        data_logout=rm.get_data("退出登录","logout")
+        print("step 4、释放设备：")
+        c.checkAction(url,data_logout)
+
+
+
+    def test09_global_script_send_all(self):
+        """1. 控制器发送文件/脚本文件/读取所有global文件 """
+        rm=read_message.ReadMessage()
+        data_login=rm.get_data("登录设备","login_admin")
+        url=self.ws
+        print("step 1、控制设备：")
+        c.checkAction(url,data_login)
+        time.sleep(1)
+
+        print("step 2、从设备中读取PROGRAME/global目录下所有脚本文件。 ")
+        fpath='C:\\Users\\test\\AppData\\Local\\Programs\\Python\\Python36\\autotest\\websocket_api_2.0\\files\\global_script.txt'
+        for f_name in WR_file.ReadFile(fpath):
+            """重新设置global文件名"""
+            data_file_send=rm.get_data("控制器发送文件","file_send_global_script")
+            data_dict=json.loads(data_file_send)
+            data_dict["data"]["file_name"]="%s"%f_name
+            print("开始读取global文件："+data_dict["data"]["file_name"])
+            data_file_send=json.dumps(data_dict)
+            t=c.checkAction(url,data_file_send)
+            time.sleep(1)
+            self.assertEqual(t["success"],True)
+            print("%s global文件读取成功。"%f_name)
+
+            print("step 3、解码后保存到files目录。")
+            str=t["data"]["value"]
+            file_content=Base_64.decode_b(str)
+            path='C:\\Users\\test\\AppData\\Local\\Programs\\Python\\Python36\\autotest\\websocket_api_2.0\\files\\'+f_name
+            WR_file.WriteFile_b(path,file_content)
+            print("%s global文件保存成功。"%f_name)
+
+        data_logout=rm.get_data("退出登录","logout")
+        print("step 4、释放设备：")
+        c.checkAction(url,data_logout)
+
+    def test10_global_script_send_zip(self):
+        """当缺失file_name时，返回global类型的所有文件的zip包: global.zip"""
+        rm=read_message.ReadMessage()
+        data_login=rm.get_data("登录设备","login_admin")
+        url=self.ws
+        print("step 1、控制设备：")
+        c.checkAction(url,data_login)
+        time.sleep(1)
+
+        print("step 2、从设备中读取global目录下所有文件:global.zip. ")
+        print("step 3、解码后保存到files目录。")
+
+        """保存文件"""
+        data_file_send=rm.get_data("控制器发送文件","file_send_global_script_zip")
+        print("开始读取global.zip文件")
+        t=c.checkAction(url,data_file_send)
+        time.sleep(1)
+        self.assertEqual(t["success"],True)
+        print("global.zip文件读取成功。")
+
+        str=t["data"]["value"]
+        file_content=Base_64.decode_b(str)
+        path='C:\\Users\\test\\AppData\\Local\\Programs\\Python\\Python36\\autotest\\websocket_api_2.0\\files\\'+"global.zip"
+        WR_file.WriteFile_b(path,file_content)
+        print("global.zip文件保存成功。")
+
+        data_logout=rm.get_data("退出登录","logout")
+        print("step 4、释放设备：")
+        c.checkAction(url,data_logout)
+
+    def test11_sub_script_send_all(self):
+        """1. 控制器发送文件/脚本文件/读取所有sub_script文件 """
+        rm=read_message.ReadMessage()
+        data_login=rm.get_data("登录设备","login_admin")
+        url=self.ws
+        print("step 1、控制设备：")
+        c.checkAction(url,data_login)
+        time.sleep(1)
+
+        print("step 2、从设备中读取PROGRAME/sub_script目录下所有脚本文件。 ")
+        fpath='C:\\Users\\test\\AppData\\Local\\Programs\\Python\\Python36\\autotest\\websocket_api_2.0\\files\\sub_script.txt'
+        for f_name in WR_file.ReadFile(fpath):
+            """重新设置sub_script文件名"""
+            data_file_send=rm.get_data("控制器发送文件","file_send_sub_script")
+            data_dict=json.loads(data_file_send)
+            data_dict["data"]["file_name"]="%s"%f_name
+            print("开始读取sub_script文件："+data_dict["data"]["file_name"])
+            data_file_send=json.dumps(data_dict)
+            t=c.checkAction(url,data_file_send)
+            time.sleep(1)
+            self.assertEqual(t["success"],True)
+            print("%s sub_script文件读取成功。"%f_name)
+
+            print("step 3、解码后保存到files目录。")
+            str=t["data"]["value"]
+            file_content=Base_64.decode_b(str)
+            path='C:\\Users\\test\\AppData\\Local\\Programs\\Python\\Python36\\autotest\\websocket_api_2.0\\files\\'+f_name
+            WR_file.WriteFile_b(path,file_content)
+            print("%s sub_script文件保存成功。"%f_name)
+
+        data_logout=rm.get_data("退出登录","logout")
+        print("step 4、释放设备：")
+        c.checkAction(url,data_logout)
+
+    def test12_sub_script_send_zip(self):
+        """当缺失file_name时，返回sub_script类型的所有文件的zip包: sub_script.zip"""
+        rm=read_message.ReadMessage()
+        data_login=rm.get_data("登录设备","login_admin")
+        url=self.ws
+        print("step 1、控制设备：")
+        c.checkAction(url,data_login)
+        time.sleep(1)
+
+        print("step 2、从设备中读取sub_script目录下所有文件:sub_script.zip. ")
+        print("step 3、解码后保存到files目录。")
+
+        """保存文件"""
+        data_file_send=rm.get_data("控制器发送文件","file_send_sub_script_zip")
+        print("开始读取sub_script.zip文件")
+        t=c.checkAction(url,data_file_send)
+        time.sleep(1)
+        self.assertEqual(t["success"],True)
+        print("sub_script.zip文件读取成功。")
+
+        str=t["data"]["value"]
+        file_content=Base_64.decode_b(str)
+        path='C:\\Users\\test\\AppData\\Local\\Programs\\Python\\Python36\\autotest\\websocket_api_2.0\\files\\'+"sub_script.zip"
+        WR_file.WriteFile_b(path,file_content)
+        print("sub_script.zip文件保存成功。")
+
+        data_logout=rm.get_data("退出登录","logout")
+        print("step 4、释放设备：")
+        c.checkAction(url,data_logout)
+
 
 
 
