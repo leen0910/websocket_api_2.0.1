@@ -9,7 +9,7 @@ import time
 import json
 
 class websocket_request(unittest.TestCase):
-    server_index=[5]
+    server_index=[6]
 
 
     """modbus通讯"""
@@ -87,7 +87,7 @@ class websocket_request(unittest.TestCase):
                 if t["success"]==True:
                     print("%s号机器的%s 线圈地址值读取为：%s。"%(index,address,t["data"]["value"]))
                 else:
-                    print("%s号机器的%s 线圈地址设置失败。"%(index,address))
+                    print("%s号机器的%s 线圈地址读取失败。"%(index,address))
                 time.sleep(0.5)
 
         data_logout=rm.get_data("退出登录","logout")
@@ -140,7 +140,7 @@ class websocket_request(unittest.TestCase):
                         print("%s号机器的%s 线圈地址值读取为：%s。"%(index,address,t1["data"]["value"]))
 
                     else:
-                        print("%s号机器的%s 线圈地址设置失败。"%(index,address))
+                        print("%s号机器的%s 线圈地址设置：%s 失败。"%(index,address,value))
                     time.sleep(0.5)
 
         data_logout=rm.get_data("退出登录","logout")

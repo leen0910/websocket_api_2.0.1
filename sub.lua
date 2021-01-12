@@ -1,3 +1,3 @@
---测试写入sub_script文件
+--测试写入sub_script文件123
 
-R.DELAY(1)
+R.DELAY(5)

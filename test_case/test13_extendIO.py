@@ -34,7 +34,7 @@ class websocket_request(unittest.TestCase):
 
         data_io_read=rm.get_data("读取extendIO","io_read_extend")
         print("step 2、按配置参数读取总线io：")
-        io_list=["X0","X1","X2","X3","X4","X5","X6","X7","X8","X9","X10","X11","X12","X13","X14","Y16","Y17"]
+        io_list=["X0","X1","X2","X3","X4","X5","X6","X7","X8","X9","X10","X11","X12","Y16","Y17"]
 
         data_dict=json.loads(data_io_read)
         for name in io_list:
@@ -64,7 +64,7 @@ class websocket_request(unittest.TestCase):
 
         data_io_set=rm.get_data("设置extendIO","io_write_extend")
         print("step 2、设置io:")
-        io_list=["Y0","Y1","Y2","Y3","Y4","Y5","Y6","Y7","Y8","Y9","Y10","Y11","Y12","Y13","Y14","Y15"]
+        io_list=["Y0","Y1","Y2","Y3","Y4","Y5","Y6","Y7","Y8","Y9","Y10","Y11","Y12","Y13","Y14","Y15","Y16","Y17"]
         values=[0,1]
         data_dict=json.loads(data_io_set)
         data_io_read=rm.get_data("读取extendIO","io_read_extend")
@@ -106,6 +106,6 @@ if __name__ == "__main__":
     # for i in range(1,100000):
     #     suite = unittest.TestSuite()
     #     suite.addTest(websocket_request('setUp'))
-    #     suite.addTest(websocket_request('test01_read_busIO'))
-    #     suite.addTest(websocket_request('test02_write_busIO'))
+    #     suite.addTest(websocket_request('test01_read_extendIO'))
+    #     suite.addTest(websocket_request('test02_write_extendIO'))
     #     unittest.TextTestRunner(verbosity=2).run(suite)

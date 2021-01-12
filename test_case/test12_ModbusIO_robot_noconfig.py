@@ -11,7 +11,7 @@ import json
 class websocket_request(unittest.TestCase):
     server_index=[2]
     IO_type=["X","Y","C","D"]
-    address=[0,1,2,3,4,5,6,7,8,9,10,11,12,100,200]
+    address=[0,44,100,1000,1999]
     value1=[0,1]
     value2=[6,115,25455]
     """modbus通讯:robot设备，无配置文件"""

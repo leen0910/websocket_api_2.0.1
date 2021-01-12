@@ -148,7 +148,7 @@ class websocket_request(unittest.TestCase):
 
         data_io_read=rm.get_data("读取本地IO","io_read_local_Z0")
         print("step 2、读取default_io：")
-        io_list=["X0","lua_start_stop_in","X1","lua_pa_re_in","X2","speed_sub_in","X3","break_flag_in","X4","motor_power_on_in","X5","speed_add_in","X6","em_stop_in","Y0","output0","Y1","output1","Y2","output2","Y3","output3","Y4","output4","Y5","output5","Y6","output6","Y7","output7","Y8","em_stop_out","Y9","sys_red","Y10","sys_green","Y11","sys_yellow"]
+        io_list=["X0","X1","X2","X3","X4","X5","X6","Y0","Y1","Y2","Y3","Y4","Y5","Y6","Y7","Y8","Y9","Y10","Y11"]
 
         data_dict=json.loads(data_io_read)
         for name in io_list:

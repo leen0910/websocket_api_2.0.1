@@ -20,8 +20,8 @@ import json
 
 class ReceiveFiles(unittest.TestCase):
     """向设备端写入文件"""
-    filename="io_extend.json"    #写入文件的名字
-    path='C:\\Users\\test\\AppData\\Local\\Programs\\Python\\Python36\\autotest\\websocket_api_2.0\\files\\io_extend.json'  #需要写入设备端的文件
+    filename="modbus_info.json"    #写入文件的名字
+    path='C:\\Users\\test\\AppData\\Local\\Programs\\Python\\Python36\\autotest\\websocket_api_2.0\\files\\modbus_info.json'  #需要写入设备端的文件
 
     #C:\Users\test\AppData\Local\Programs\Python\Python36\autotest\websocket_api_2.0\scripts\400_arc.lua
 
@@ -46,7 +46,7 @@ class ReceiveFiles(unittest.TestCase):
     def test_ReceiveFiles(self):
         """控制器接收文件"""
         rm=read_message.ReadMessage()
-        data_login=rm.get_data("登录设备","login_admin")
+        data_login=rm.get_data("登录设备","login_debug")
         url=self.ws
         path=self.path
         filename=self.filename
