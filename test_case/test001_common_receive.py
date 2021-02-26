@@ -48,7 +48,7 @@ class ReceiveFiles(unittest.TestCase):
             pass
 
     def test01_ReceiveFiles_global(self):
-        """控制器接收文件"""
+        """控制器接收文件global.lua"""
         rm=read_message.ReadMessage()
         data_login=rm.get_data("登录设备","login_admin")
         url=self.ws
@@ -135,7 +135,7 @@ class ReceiveFiles(unittest.TestCase):
         c.checkAction(url,data_logout)
 
     def test02_ReceiveFiles_sub_script(self):
-        """控制器接收文件"""
+        """控制器接收文件sub.lua"""
         rm=read_message.ReadMessage()
         data_login=rm.get_data("登录设备","login_admin")
         url=self.ws
@@ -223,7 +223,7 @@ class ReceiveFiles(unittest.TestCase):
 
 
     def test03_ReceiveFiles_expansion(self):
-        """控制器接收文件"""
+        """控制器接收文件expansion_test.lua"""
         rm=read_message.ReadMessage()
         data_login=rm.get_data("登录设备","login_debug")
         url=self.ws
