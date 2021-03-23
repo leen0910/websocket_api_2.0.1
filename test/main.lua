@@ -1,7 +1,7 @@
 --[[
 --400设备直线轨迹
 vel=100;
-blend=50;
+blend={BLEND=100};
 
 
 --平行四边形
@@ -26,7 +26,7 @@ end
 ]]--
 --400设备直线轨迹
 vel=100;
-blend=50;
+blend={BLEND=100};
 
 
 --平行四边形
@@ -43,9 +43,9 @@ while(1)
 do
 --平行四边形
 
-    R.MP(pose1,vel,blend)
-	R.MP(pose2,vel,blend)
-	R.MP(pose3,vel,blend)
-	R.MP(pose4,vel,blend)
+    R.ML(pose1,vel,blend)
+	R.ML(pose2,vel,blend)
+	R.ML(pose3,vel,blend)
+	R.ML(pose4,vel,blend)
 
 end

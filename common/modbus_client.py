@@ -14,7 +14,7 @@ for x in range(run_time):
     while i < thread_count:
         i += 1
         # 远程连接到服务器端
-        master = mt.TcpMaster("192.168.1.113", 1502)
+        master = mt.TcpMaster("10.0.0.123", 1502)
         master.set_timeout(5.0)
         # @slave=1 : identifier of the slave. from 1 to 247.  0为广播所有的slave
         # @function_code=READ_HOLDING_REGISTERS：功能码
