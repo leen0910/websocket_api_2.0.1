@@ -17,7 +17,7 @@ t2： IO间隔时间
 function plug(p1,p11,p2,p21)
 
 vel=100
-blend=0
+blend={BLEND=50}
 t2=100
 
 R.MP(p11,vel,blend)  --移动到抓取位置上方

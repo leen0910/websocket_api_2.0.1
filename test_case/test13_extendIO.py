@@ -64,7 +64,7 @@ class websocket_request(unittest.TestCase):
 
         data_io_set=rm.get_data("设置extendIO","io_write_extend")
         print("step 2、设置io:")
-        io_list=["Y0","Y1","Y2","Y3","Y4","Y5","Y6","Y7","Y8","Y9","Y10","Y11","Y12","Y13","Y14","Y15","Y16","Y17"]
+        io_list=["Y0","Y1","Y2","Y3","Y4","Y5","Y6","Y7","Y8","Y9","Y10","Y11","Y12","Y13","Y14","Y15","Y16","Y17     "]
         values=[0,1]
         data_dict=json.loads(data_io_set)
         data_io_read=rm.get_data("读取extendIO","io_read_extend")
