@@ -27,7 +27,7 @@ class websocket_request(unittest.TestCase):
             pass
 
     def test01_modbus_connect(self):
-        """激活modbus：RTU serverID:5 """
+        """激活modbus：RTU serverID:6 """
         rm=read_message.ReadMessage()
         data_login=rm.get_data("登录设备","login_admin")
         url=self.ws
@@ -54,7 +54,7 @@ class websocket_request(unittest.TestCase):
         c.checkAction(url,data_logout)
 
     def test02_read_modbus_coil(self):
-        """读取MODBUS/四路继电器 /读线圈"""
+        """读取MODBUS/八路继电器 /读线圈"""
         """
         "server_index":1,
         "IO_type":"D",
@@ -95,7 +95,7 @@ class websocket_request(unittest.TestCase):
         c.checkAction(url,data_logout)
 
     def test03_write_modbus_coil_Robot(self):
-        """设置MODBUS/四路继电器/写线圈 """
+        """设置MODBUS/八路继电器/写线圈 """
         """
         "server_index":1,
         "IO_type":"D",
