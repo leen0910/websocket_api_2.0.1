@@ -25,9 +25,9 @@ then
 count=2
 end
     R.FOLLOW_NEXT()
-    R.MP(pose0,100,100)
-    R.MP(pose1,100,100)
-    R.MP(pose0,100,100)
+    R.MP(pose0,100)
+    R.MP(pose1,100)
+    R.MP(pose0,100)
     R.FOLLOW_EXIT()
 count=count-1
 end

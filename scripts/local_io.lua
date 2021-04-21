@@ -1,5 +1,5 @@
 --5%%^^5
-RR.DELAY(1)
+R.DELAY(1)
 while(1)
 do
 repeat

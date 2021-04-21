@@ -11,8 +11,8 @@ import os
 
 
 class websocket_request(unittest.TestCase):
-    filename="sub.lua"    #要移除的文件名
-    type="sub_script"   #要移除的文件类型[script/config/temp_script/temp_config/temp_update/expansion/global/sub_script]
+    filename="test.zip"    #要移除的文件名
+    type="script"   #要移除的文件类型[script/config/temp_script/temp_config/temp_update/expansion/global/sub_script]
     def setUp(self):
         rt=read_info.ReadInfo()
         web=rt.get_device_ip()

@@ -9,7 +9,7 @@
     -- 运动速度
     vel  =100
     -- 过渡参数
-    blend=100
+    blend={BLEND=100}
     -- 拱门运动
 while (1)
 do

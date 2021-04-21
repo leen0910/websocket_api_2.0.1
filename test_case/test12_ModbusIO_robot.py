@@ -21,6 +21,7 @@ class websocket_request(unittest.TestCase):
     value1=[4,0,12,35,15749,22233]
     value2=[0,1.2,35.25555,3.141592678521,55,96956]
     value3=[0,-15,-135565]
+    value_y=[0,1]
     """modbus通讯:robot设备，需要配置文件"""
     def setUp(self):
         rt=read_info.ReadInfo()
@@ -364,6 +365,59 @@ class websocket_request(unittest.TestCase):
         print("step 3、退出登录。")
         c.checkAction(url,data_logout)
 
+    def test06_write_modbus_output_coil(self):
+        """设置MODBUS/本机&其它设备/写线圈 /需要配置文件"""
+        rm=read_message.ReadMessage()
+        data_login=rm.get_data("登录设备","login_admin")
+        url=self.ws
+        print("step 1、管理员登录。")
+        c.checkAction(url,data_login)
+        time.sleep(1)
+
+        data_modbus_set=rm.get_data("设置MODBUS","io_write_modbus")
+        data_modbus_read=rm.get_data("读取MODBUS","io_read_modbus")
+        print("step 2、写入输出线圈。")
+
+        """
+        "server_index":1,
+        "IO_type":"D",
+        "address":10,
+        "value":1
+        """
+        server_index=self.server_index
+        add=self.address_Y
+        values=self.value_y
+        IO_type=self.IO_type_Y
+        data_dict=json.loads(data_modbus_set)
+        data_dict1=json.loads(data_modbus_read)
+        for index in server_index:
+            data_dict["data"]["server_index"]=index
+            data_dict1["data"]["server_index"]=index
+            data_dict["data"]["IO_type"]=IO_type
+            data_dict1["data"]["IO_type"]=IO_type
+            print("modbus机器号：%s"%index )
+            for address in add:
+                data_dict["data"]["address"]=address
+                data_dict1["data"]["address"]=address
+                print("写入输出线圈的地址：%s"%address)
+                for value in values:
+                    data_dict["data"]["value"]=value
+                    data_modbus_set=json.dumps(data_dict)
+                    t=c.checkAction(url,data_modbus_set)
+                    if t["success"]==True:
+                        print("%s号机器的%s 输出线圈地址值设置：%s成功。"%(index,address,value))
+                        data_modbus_read=json.dumps(data_dict1)
+                        t1=c.checkAction(url,data_modbus_read)
+                        print("%s号机器的 %s 输出线圈地址的值读取为：%s。"%(index,address,t1["data"]["value"]))
+                    else:
+                        print("%s号机器的%s 输出线圈地址设置失败。"%(index,address))
+                    time.sleep(0.5)
+        data_logout=rm.get_data("退出登录","logout")
+        print("step 3、退出登录。")
+        c.checkAction(url,data_logout)
+
+
+
 
 
     # def test06_modbus_disconnect(self):
@@ -401,7 +455,7 @@ class websocket_request(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
-    # for i in range(1,10):
+    # for i in range(1,2):
     #     suite = unittest.TestSuite()
     #     # suite.addTest(websocket_request('setUp'))
     #     suite.addTest(websocket_request('test01_write_modbus_register_uint16'))
@@ -409,5 +463,6 @@ if __name__ == "__main__":
     #     suite.addTest(websocket_request('test03_write_modbus_register_int'))
     #     suite.addTest(websocket_request('test04_read_modbus_input_coil'))
     #     suite.addTest(websocket_request('test05_read_modbus_output_coil'))
+    #     suite.addTest(websocket_request('test06_write_modbus_output_coil'))
     #     # suite.addTest(websocket_request('tearDown'))
     #     unittest.TextTestRunner(verbosity=2).run(suite)
