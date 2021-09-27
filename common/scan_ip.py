@@ -10,7 +10,6 @@ if __name__ == "__main__":
     if len(sys.argv) > 3:
         print("error param num,expect [3~4]")
         exit(0)
-
     if len(sys.argv) == 3:
         PORT = sys.argv[2]
 
