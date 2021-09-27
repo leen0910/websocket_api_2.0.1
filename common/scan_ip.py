@@ -13,7 +13,6 @@ if __name__ == "__main__":
     if len(sys.argv) == 3:
         PORT = sys.argv[2]
 
-
     HOST = '0.0.0.0'
     BUFSIZE = 1024
     ADDR = (HOST, PORT)
