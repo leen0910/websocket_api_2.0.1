@@ -8,7 +8,7 @@ def checkAction(ws,data):
     action=data_json["action"]
     try:
         ws.send(data)
-        for i in range(1,50):
+        for i in range(1,100):
             t=ws.recv()
             t=json.loads(t)
             if t["action"]==action:

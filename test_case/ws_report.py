@@ -39,12 +39,17 @@ def ws_connect():
                 t=json.loads(ws.recv())
                 if t["action"]=="publish.status":
                     print("状态机状态为：%s"%t["data"]["state_machine"])
+                    print("运行模式：%s"%t["data"]["running_mode"])
+                    print("操作模式：%s"%t["data"]["operate_mode"])
                     print("motion模块状态：%s"%t["data"]["motion_state"])
+                    print("motion当前运动段的id：%s"%t["data"]["motion_move_id"])
                     print("系统当前全局速度：%s"%t["data"]["global_vel"])
                     print("系统当前示教速度：%s"%t["data"]["teach_vel"])
+                    print("关节模块状态：%s"%t["data"]["joints_state"])
                     print("lua模块状态：%s"%t["data"]["lua_state"])
                     print("脚本运行模式：%s"%t["data"]["lua_run_mode"])
                     print("脚本当前运行的行数：%s"%t["data"]["lua_current_line"])
+                    print("当前运行程序序号：%s"%t["data"]["lua_running_index"])
                 if t["action"]=="publish.motion.info":
                     print("末端世界坐标系的位置：%s"%t["data"]["chain_info"][0]["pose"])
                     lenth=len(t["data"]["joint_info"])

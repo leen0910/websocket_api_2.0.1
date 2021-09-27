@@ -2,7 +2,7 @@
 --400设备直线轨迹
 vel=100;
 blend={BLEND=50};
-
+param4={ABS_VEL=true}
 
 --平行四边形
 pose0 ={J1 = 1, J2 =  -1, J3= 0,J4= 0}

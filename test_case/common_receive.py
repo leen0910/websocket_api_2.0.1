@@ -20,12 +20,12 @@ import json
 
 class ReceiveFiles(unittest.TestCase):
     """向设备端写入文件"""
-    filename="device_custom.json"    #写入文件的名字 modbus_extend_info.json
-    path='C:\\Users\\test\\AppData\\Local\\Programs\\Python\\Python36\\autotest\\websocket_api_2.0\\files\\device_custom.json'  #需要写入设备端的文件 modbus_info.json
+    filename="modbus_qxrobot.json"    #写入文件的名字 modbus_extend_info.json
+    path='C:\\Users\\test\\AppData\\Local\\Programs\\Python\\Python36\\autotest\\websocket_api_2.0\\files\\modbus_qxrobot.json'  #需要写入设备端的文件 modbus_info.json
 
     #C:\Users\test\AppData\Local\Programs\Python\Python36\autotest\websocket_api_2.0\scripts\400_arc.lua
 
-    i=0 #当type为script时需要指定安装的序号，取值范围[0-20)；当type为config时指定index值，index为1代表modbus子文件，为0代表其他配置文件
+    i=1 #当type为script时需要指定安装的序号，取值范围[0-20)；当type为config时指定index值，index为1代表modbus子文件，为0代表其他配置文件
     size=300*1024    #分包大小
     type="config"       #发送文件类型  script/config/update/expansion   类型为expansion时需要debug权限操作安装和删除
     source_dir="C:\\Users\\test\\AppData\\Local\\Programs\\Python\\Python36\\autotest\\websocket_api_2.0\\test"  #需要打包生成zip的文件目录

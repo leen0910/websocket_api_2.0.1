@@ -13,14 +13,14 @@ class websocket_request(unittest.TestCase):
     IO_type="D"
     IO_type_X="X"
     IO_type_Y="Y"
-    address1=[0,1,2,3,4,5,6,7]  # uint16
+    address1=[0,1,2,3,4,5,6,7] # uint16
     address2=[100,104,108,112,116,120,124,128,132,136,140,144,148,154,158,452,456,460,464,468,472,482,486,490,494,498,502,512,516,520,524,528,532,542,546,550,554,558,562,602,606,610,614,618,636,640,644,648,662,666,670,674,678,692,696,700,704,708]  #double
-    address3=[152,162,400,402,404,406,408,410,450,480,510,540,600,630,660,690]  #int
+    address3=[152,162,400,402,404,406,408,410,412,414,450,480,510,540,600,630,660,690]  #int
     address_X=[0,1,2,3,4,5,6,100,101,102,103,104,105,106,107,108,109,110,111,112]
     address_Y=[0,1,2,3,4,5,6,7,8,9,10,11,100,101,102,103,104,105,106,107,108,109,110,111,112,113,114,115,116,117]
     value1=[4,0,12,35,15749,22233]
     value2=[0,1.2,35.25555,3.141592678521,55,96956]
-    value3=[0,-15,-135565]
+    value3=[0,-15,-135565,20]
     value_y=[0,1]
     """modbus通讯:robot设备，需要配置文件"""
     def setUp(self):
@@ -189,8 +189,8 @@ class websocket_request(unittest.TestCase):
                         t1=c.checkAction(url,data_modbus_read)
                         print("%s号机器的 %s 寄存器索引地址的值读取为：%s。"%(index,address,t1["data"]["value"]))
                     else:
-                        print("%s号机器的%s 寄存器索引地址设置失败。"%(index,address))
-                    time.sleep(0.5)
+                         print("%s号机器的%s 寄存器索引地址设置失败。"%(index,address))
+                    time.sleep(0.2)
         data_logout=rm.get_data("退出登录","logout")
         print("step 3、退出登录。")
         c.checkAction(url,data_logout)
@@ -454,15 +454,15 @@ class websocket_request(unittest.TestCase):
         self.ws.close()
 
 if __name__ == "__main__":
-    unittest.main()
-    # for i in range(1,2):
-    #     suite = unittest.TestSuite()
-    #     # suite.addTest(websocket_request('setUp'))
-    #     suite.addTest(websocket_request('test01_write_modbus_register_uint16'))
-    #     suite.addTest(websocket_request('test02_write_modbus_register_double'))
-    #     suite.addTest(websocket_request('test03_write_modbus_register_int'))
-    #     suite.addTest(websocket_request('test04_read_modbus_input_coil'))
-    #     suite.addTest(websocket_request('test05_read_modbus_output_coil'))
-    #     suite.addTest(websocket_request('test06_write_modbus_output_coil'))
-    #     # suite.addTest(websocket_request('tearDown'))
-    #     unittest.TextTestRunner(verbosity=2).run(suite)
+    # unittest.main()
+    for i in range(1,2):
+        suite = unittest.TestSuite()
+        suite.addTest(websocket_request('setUp'))
+        suite.addTest(websocket_request('test01_write_modbus_register_uint16'))
+        suite.addTest(websocket_request('test02_write_modbus_register_double'))
+        suite.addTest(websocket_request('test03_write_modbus_register_int'))
+        suite.addTest(websocket_request('test04_read_modbus_input_coil'))
+        suite.addTest(websocket_request('test05_read_modbus_output_coil'))
+        suite.addTest(websocket_request('test06_write_modbus_output_coil'))
+        suite.addTest(websocket_request('tearDown'))
+        unittest.TextTestRunner(verbosity=2).run(suite)

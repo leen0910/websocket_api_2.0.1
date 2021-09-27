@@ -65,7 +65,7 @@ class websocket_request(unittest.TestCase):
         data_io_set=rm.get_data("设置extendIO","io_write_extend")
         print("step 2、设置io:")
         io_list=["Y0","Y1","Y2","Y3","Y4","Y5","Y6","Y7","Y8","Y9","Y10","Y11","Y12","Y13","Y14","Y15","Y16","Y17"]
-        values=[0,1]
+        values=[1,0]
         data_dict=json.loads(data_io_set)
         data_io_read=rm.get_data("读取extendIO","io_read_extend")
         data_dict_read=json.loads(data_io_read)
@@ -102,10 +102,10 @@ class websocket_request(unittest.TestCase):
         self.ws.close()
 
 if __name__ == "__main__":
-    unittest.main()
-    # for i in range(1,100000):
-    #     suite = unittest.TestSuite()
-    #     suite.addTest(websocket_request('setUp'))
-    #     suite.addTest(websocket_request('test01_read_extendIO'))
-    #     suite.addTest(websocket_request('test02_write_extendIO'))
-    #     unittest.TextTestRunner(verbosity=2).run(suite)
+    # unittest.main()
+    for i in range(1,1000):
+        suite = unittest.TestSuite()
+        suite.addTest(websocket_request('setUp'))
+        suite.addTest(websocket_request('test01_read_extendIO'))
+        suite.addTest(websocket_request('test02_write_extendIO'))
+        unittest.TextTestRunner(verbosity=2).run(suite)

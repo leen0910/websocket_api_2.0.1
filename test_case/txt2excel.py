@@ -66,14 +66,26 @@ for i in range(0,len(row0)):
 
 f = open('out.txt', encoding = 'utf-8',errors='ignore')
 # next(f)
-zeo=f.readline().strip('\n').split(',')[1]
+lines=f.readlines()
+line=len(lines)
+start_line=lines[0]
+last_line=lines[-1]
+start_time=start_line.split(',')[0]
+zeo=start_line.split(',')[1]
+end_time=last_line.split(',')[0]
+f.close()
+# zeo=f.readline().strip('\n').split(',')[1]
+# start_time=f.readline().strip('\n').split(',')[0]
+# end_time=f.readline().strip('\n').split(',')[-1]
+
 index = 1
 i=1
 count_p=0
 count_f=0
 jingdu=0.05
 
-for line in f:
+d = open('out.txt', encoding = 'utf-8',errors='ignore')
+for line in d:
     data = line.strip('\n').split(',')
 
 
@@ -94,16 +106,23 @@ for line in f:
     i=i+1
 
 
-sheet1.write(index,0,"标准精度偏差：",style0)
-sheet1.write(index,1,"± %s"%jingdu,style3)
-sheet1.write(index+1,0,"合格次数：",style0)
-sheet1.write(index+1,1,count_p,style3)
-sheet1.write(index+2,0,"失败次数：",style0)
-sheet1.write(index+2,1,count_f,style3)
-sheet1.write(index+3,0,"总测试次数：",style0)
-sheet1.write(index+3,1,i-1,style3)
-sheet1.write(index+4,0,"不良率：",style0)
-sheet1.write(index+4,1,'{:.2f}%'.format(count_f/(i-1)*100),style3)
+sheet1.write(index+1,0,"测试开始时间：",style0)
+sheet1.write(index+1,1,str(start_time),style3)
+sheet1.write(index+2,0,"测试结束时间：",style0)
+sheet1.write(index+2,1,str(end_time),style3)
+
+sheet1.write(index+3,0,"标准精度偏差：",style0)
+sheet1.write(index+3,1,"± %s"%jingdu,style3)
+sheet1.write(index+4,0,"合格次数：",style0)
+sheet1.write(index+4,1,count_p,style3)
+sheet1.write(index+5,0,"失败次数：",style0)
+sheet1.write(index+5,1,count_f,style3)
+sheet1.write(index+6,0,"总测试次数：",style0)
+sheet1.write(index+6,1,i-1,style3)
+sheet1.write(index+7,0,"不良率：",style0)
+sheet1.write(index+7,1,'{:.2f}%'.format(count_f/(i-1)*100),style3)
+
+
 
 
 sheet1.col(0).width = 4444
@@ -112,3 +131,4 @@ sheet1.col(2).width = 2222
 sheet1.col(3).width = 3333
 sheet1.col(4).width = 2222
 workbook.save('out1.xls')
+d.close()

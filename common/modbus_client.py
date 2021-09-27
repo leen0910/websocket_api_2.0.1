@@ -3,8 +3,8 @@ import modbus_tk.defines as md
 import time
 
 
-run_time =1000#执行次数
-thread_count = 1000 #并发数
+run_time =100#执行次数
+thread_count = 100 #并发数
 
 
 
@@ -14,7 +14,7 @@ for x in range(run_time):
     while i < thread_count:
         i += 1
         # 远程连接到服务器端
-        master = mt.TcpMaster("10.0.0.123", 1502)
+        master = mt.TcpMaster("10.0.0.124", 1502)
         master.set_timeout(5.0)
         # @slave=1 : identifier of the slave. from 1 to 247.  0为广播所有的slave
         # @function_code=READ_HOLDING_REGISTERS：功能码
@@ -25,10 +25,10 @@ for x in range(run_time):
         # @expected_length
 
 
-        Hold_value = master.execute(slave=1, function_code=md.READ_HOLDING_REGISTERS, starting_address=0, quantity_of_x=6, output_value=5)
-        time.sleep(0.1)
-        Coils_value = master.execute(slave=1, function_code=md.READ_COILS, starting_address=0,  quantity_of_x=5, output_value=5)
-        time.sleep(0.1)
+        Hold_value = master.execute(slave=1, function_code=md.READ_HOLDING_REGISTERS, starting_address=0, quantity_of_x=10, output_value=5)
+        # time.sleep(0.1)
+        Coils_value = master.execute(slave=1, function_code=md.READ_COILS, starting_address=0,  quantity_of_x=10, output_value=5)
+        # time.sleep(0.1)
         print(Hold_value)  # 取到的寄存器的值格式为元组(55, 12, 44)
         print(Coils_value)  # 取到的寄存器的值格式为元组(1, 1, 1)
 

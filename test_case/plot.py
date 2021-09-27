@@ -10,7 +10,7 @@ table = data.sheets()[0]
 x_data=table.col_values(0)
 y_data=table.col_values(3)
 
-plt.plot(x_data[1:-6], y_data[1:-6], 'bo', linewidth =1,label='offset')
+plt.plot(x_data[1:-9], y_data[1:-9], 'bo', linewidth =1,label='offset')
 plt.title('重复精度',fontproperties=font_set)
 plt.grid()
 plt.legend()
