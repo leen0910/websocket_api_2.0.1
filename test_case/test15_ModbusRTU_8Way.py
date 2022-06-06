@@ -182,4 +182,12 @@ class websocket_request(unittest.TestCase):
         self.ws.close()
 
 if __name__ == "__main__":
-    unittest.main()
+    # unittest.main()
+    for i in range(1,2):
+        suite = unittest.TestSuite()
+        suite.addTest(websocket_request('setUp'))
+        suite.addTest(websocket_request('test01_modbus_connect'))
+        suite.addTest(websocket_request('test02_read_modbus_coil'))
+        suite.addTest(websocket_request('test03_write_modbus_coil_Robot'))
+        suite.addTest(websocket_request('test04_modbus_disconnect'))
+        unittest.TextTestRunner(verbosity=2).run(suite)

@@ -102,10 +102,10 @@ class websocket_request(unittest.TestCase):
         self.ws.close()
 
 if __name__ == "__main__":
-    # unittest.main()
-    for i in range(1,1000):
-        suite = unittest.TestSuite()
-        suite.addTest(websocket_request('setUp'))
-        suite.addTest(websocket_request('test01_read_extendIO'))
-        suite.addTest(websocket_request('test02_write_extendIO'))
-        unittest.TextTestRunner(verbosity=2).run(suite)
+    unittest.main()
+    # for i in range(1,1000):
+    #     suite = unittest.TestSuite()
+    #     suite.addTest(websocket_request('setUp'))
+    #     suite.addTest(websocket_request('test01_read_extendIO'))
+    #     suite.addTest(websocket_request('test02_write_extendIO'))
+    #     unittest.TextTestRunner(verbosity=2).run(suite)
