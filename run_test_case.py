@@ -3,7 +3,7 @@ import unittest
 import HTMLTestRunner
 import time
 
-for i in range(1,30):
+for i in range(1,2):
 
     # 相对路径
     test_dir ='C:\\Users\\test\\AppData\\Local\\Programs\\Python\\Python36\\autotest\\websocket_api_2.0\\test_case'
@@ -15,6 +15,6 @@ for i in range(1,30):
     # 二进制打开，准备写入文件
     fp = open(filename, 'wb')
     # 定义测试报告
-    runner = HTMLTestRunner.HTMLTestRunner(stream=fp, title=u'websocket接口自动化测试报告/V_2.5.2', description=u'用例执行情况')
+    runner = HTMLTestRunner.HTMLTestRunner(stream=fp, title=u'websocket接口自动化测试报告/V_2.5.6', description=u'用例执行情况')
     runner.run(discover)
     fp.close()

@@ -128,7 +128,7 @@ class websocket_request(unittest.TestCase):
             data_file_send=rm.get_data("控制器发送文件","file_send_log")
             data_dict=json.loads(data_file_send)
             data_dict["data"]["file_name"]="%s"%f_name
-            print("开始读取log文件："+data_dict["data"]["file_name"])
+            print("开始读取log文件：%s 。"%f_name)
             data_file_send=json.dumps(data_dict)
             t=c.checkAction(url,data_file_send)
             time.sleep(1)

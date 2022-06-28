@@ -13,11 +13,12 @@ def checkAction(ws,data):
             t=json.loads(t)
             if t["action"]==action:
                 print("返回action：%s的数据："%action)
-                print(t)
+                # print(t)
                 if t["success"]==True:
                     print("%s返回数据成功。"%action)
                 else:
                     print("%s返回数据失败。"%action)
+                    print(t)
                 break
         else:
             print("返回数据错误！")

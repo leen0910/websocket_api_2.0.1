@@ -20,14 +20,18 @@ import json
 
 class ReceiveFiles(unittest.TestCase):
     """向设备端写入文件"""
-    filename="modbus_8_way_relay.json"    #写入文件的名字 modbus_extend_info.json
-    path='C:\\Users\\test\\AppData\\Local\\Programs\\Python\\Python36\\autotest\\websocket_api_2.0\\files\\modbus_8_way_relay.json'  #需要写入设备端的文件 modbus_info.json
+    filename="io_l.json"    #写入文件的名字 modbus_extend_info.json
+    path='C:\\Users\\test\\AppData\\Local\\Programs\\Python\\Python36\\autotest\\websocket_api_2.0\\files\\io_local.json'  #需要写入设备端的文件 modbus_info.json
 
     #C:\Users\test\AppData\Local\Programs\Python\Python36\autotest\websocket_api_2.0\scripts\400_arc.lua
 
-    i=1 #当type为script时需要指定安装的序号，取值范围[0-20)；当type为config时指定index值，index为1代表modbus子文件，为0代表其他配置文件
+    i=2 #当type为script时需要指定安装的序号，取值范围>0；
+        # 当type为config时指定index值，index为2代表lua文件的json形式或客户端所需保存的json文件,index为1代表modbus子文件，为0代表其他配置文件;
+        # 当type为expansion时为脚本文件名,如test.lua；
+        # type字段值为global时为全局脚本名，例如global.lua；
+        # type字段值为sub_script时为全局脚本名，例如sub.lua。
     size=300*1024    #分包大小
-    type="config"       #发送文件类型  script/config/update/expansion   类型为expansion时需要debug权限操作安装和删除
+    type="config"       #发送文件类型  script/config/update/expansion/global/sub_script   类型为expansion时需要debug权限操作安装和删除
     source_dir="C:\\Users\\test\\AppData\\Local\\Programs\\Python\\Python36\\autotest\\websocket_api_2.0\\test"  #需要打包生成zip的文件目录
     output_filename="C:\\Users\\test\\AppData\\Local\\Programs\\Python\\Python36\\autotest\\websocket_api_2.0\\test.zip"     #zip文件的输出目录
     def setUp(self):

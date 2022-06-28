@@ -22,7 +22,7 @@ class ReceiveFiles(unittest.TestCase):
     """当type为config时指定index值，index为1代表modbus子文件，为0代表其他配置文件"""
     filename0=["modbus_info.json","motion_param_config.json","lua.json","device_custom.json"]
     # filenameX=["io_extend.json","io_local.json","io_bind.json","motion_base_config.json","device_info.json","driver_config.json"]
-    filename1=["modbus_own_info.json","modbus_8_way_relay.json" ]
+    filename1=["modbus_1_reg_config.json","modbus_2_reg_config.json", "modbus_3_reg_config.json", "modbus_4_reg_config.json", "modbus_5_reg_config.json", "modbus_6_reg_config.json"]
     filename_base=["device_info.json","driver_config.json","io_extend.json","io_local.json","motion_base_config.json"]
     path='C:\\Users\\test\\AppData\\Local\\Programs\\Python\\Python36\\autotest\\websocket_api_2.0\\files\\'  #需要写入设备端的文件的目录
 
@@ -31,6 +31,7 @@ class ReceiveFiles(unittest.TestCase):
 
     def setUp(self):
         rt=read_info.ReadInfo()
+
         web=rt.get_device_ip()
         port=rt.get_port()
         url=web+":"+port
