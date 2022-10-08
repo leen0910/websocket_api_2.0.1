@@ -469,6 +469,13 @@ script_query_script_default={
 
 [IO控制]
 [读取本地IO]
+io_read_local={
+    "action":"io.read.local",
+    "data":{
+        "name":""
+    }
+    }
+
 io_read_local_Z0={
     "action":"io.read.local",
     "data":{
