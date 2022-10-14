@@ -9,7 +9,8 @@ import time
 import json
 
 class websocket_request(unittest.TestCase):
-    server_index=[6,5,7,8,9,10,11,12,13,14,15,16,17,18,19]
+    server_index=[5]
+    # server_index=[6,5,7,8,9,10,11,12,13,14,15,16,17,18,19]
 
 
     """modbus通讯"""

@@ -9,7 +9,7 @@ import time
 import json
 
 class websocket_request(unittest.TestCase):
-    server_index=[2]
+    server_index=[0,2]
     IO_type=["X","Y","C","D"]
     address=[0,44,100,1000,1999]
     value1=[0,1]

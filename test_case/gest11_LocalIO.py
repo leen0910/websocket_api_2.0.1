@@ -287,12 +287,12 @@ class websocket_request(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
-    # for i in range(1,100):
+    # for i in range(1,2):
     #     suite = unittest.TestSuite()
     #     suite.addTest(websocket_request('setUp'))
-    #     # suite.addTest(websocket_request('test01_read_io_input'))
-    #     # suite.addTest(websocket_request('test02_write_io_off'))
-    #     # suite.addTest(websocket_request('test03_write_io_on'))
+    #     suite.addTest(websocket_request('test01_read_io_input'))
+    #     suite.addTest(websocket_request('test02_write_io_output_off'))
+    #     suite.addTest(websocket_request('test03_write_io_on'))
     #     suite.addTest(websocket_request('test04_read_io_default'))
     #     # suite.addTest(websocket_request('test05_write_io_default_off'))
     #     # suite.addTest(websocket_request('test06_write_io_default_on'))
