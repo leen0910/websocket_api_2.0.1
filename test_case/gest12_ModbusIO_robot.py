@@ -455,7 +455,7 @@ class websocket_request(unittest.TestCase):
 
 if __name__ == "__main__":
     # unittest.main()
-    for i in range(1,2):
+    for i in range(1,20):
         suite = unittest.TestSuite()
         suite.addTest(websocket_request('setUp'))
         suite.addTest(websocket_request('test01_write_modbus_register_uint16'))

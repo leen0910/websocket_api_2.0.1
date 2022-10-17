@@ -22,7 +22,7 @@ class install(unittest.TestCase):
     """安装test脚本程序"""
     filename="test.zip"
     path='C:\\Users\\test\\AppData\\Local\\Programs\\Python\\Python36\\autotest\\websocket_api_2.0\\test.zip'
-    i=10
+    i=5
     size=300*1024
     type="script"  #global,sub_script,expansion
     source_dir="C:\\Users\\test\\AppData\\Local\\Programs\\Python\\Python36\\autotest\\websocket_api_2.0\\test"

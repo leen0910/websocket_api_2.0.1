@@ -3,7 +3,7 @@ import unittest
 import HTMLTestRunner
 import time
 
-for i in range(1,2):
+for i in range(1,200):
 
     # 相对路径
     test_dir ='C:\\Users\\test\\AppData\\Local\\Programs\\Python\\Python36\\autotest\\websocket_api_2.0\\test_case'
