@@ -160,7 +160,7 @@ class websocket_request(unittest.TestCase):
                 print("读取default_io:%s成功"%name)
             else:
                 print("读取default_io: %s失败。"%name)
-            time.sleep(0.1)
+            time.sleep(1)
 
         data_logout=rm.get_data("退出登录","logout")
         print("step 3、退出登录。")
