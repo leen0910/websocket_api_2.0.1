@@ -534,6 +534,12 @@ io_write_local_on={
         "state":1
     }
     }
+io_write_local_all={
+    "action": "io.write.all.local",
+    "data": {
+        "value": 4294967295
+    }
+    }
 
 [读取MODBUS]
 io_read_modbus={
