@@ -9,7 +9,7 @@ import time
 import json
 
 class websocket_request(unittest.TestCase):
-    server_index=[5]
+    server_index=[5,6,7,8,9]
 
 
     """modbus通讯"""
@@ -183,11 +183,11 @@ class websocket_request(unittest.TestCase):
 
 if __name__ == "__main__":
     # unittest.main()
-    for i in range(1,200):
+    for i in range(1,2000):
         suite = unittest.TestSuite()
         suite.addTest(websocket_request('setUp'))
         suite.addTest(websocket_request('test01_modbus_connect'))
         suite.addTest(websocket_request('test02_read_modbus_coil'))
         suite.addTest(websocket_request('test03_write_modbus_coil_Robot'))
-        suite.addTest(websocket_request('test04_modbus_disconnect'))
+        # suite.addTest(websocket_request('test04_modbus_disconnect'))
         unittest.TextTestRunner(verbosity=2).run(suite)
