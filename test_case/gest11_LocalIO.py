@@ -281,7 +281,7 @@ class websocket_request(unittest.TestCase):
 
 
     def tearDown(self):
-        time.sleep(3)
+        time.sleep(2)
         self.ws.close()
 
 if __name__ == "__main__":
