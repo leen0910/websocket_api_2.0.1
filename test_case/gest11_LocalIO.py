@@ -194,7 +194,7 @@ class websocket_request(unittest.TestCase):
         data_io_set=rm.get_data("设置本地IO","io_write_local_all")
         print("step 2、设置output_IO全部状态")
 
-        value_list=[0,4294967295,3804175089,2058836592,45613040,4294844403          ,0,4294967295]
+        value_list=[0,4294967295,3804175089,2058836592,45613040,4294844403,0,4294967295]
         data_dict=json.loads(data_io_set)
 
         # data_io_read=rm.get_data("读取本地IO","io_read_local_Z0")
@@ -373,10 +373,10 @@ if __name__ == "__main__":
     # unittest.main()
 
 
-    for i in range(1,10000):
+    for i in range(1,20):
         suite = unittest.TestSuite()
         suite.addTest(websocket_request('setUp'))
-        # suite.addTest(websocket_request('test01_read_io_input'))
+        suite.addTest(websocket_request('test01_read_io_input'))
         suite.addTest(websocket_request('test02_write_io_output_off'))
         suite.addTest(websocket_request('test03_write_io_on'))
         suite.addTest(websocket_request('test02_write_io_output_off'))
