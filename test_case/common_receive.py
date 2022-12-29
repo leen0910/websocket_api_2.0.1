@@ -20,12 +20,12 @@ import json
 
 class ReceiveFiles(unittest.TestCase):
     """向设备端写入文件"""
-    filename="io_l.json"    #写入文件的名字 modbus_extend_info.json
-    path='C:\\Users\\test\\AppData\\Local\\Programs\\Python\\Python36\\autotest\\websocket_api_2.0\\files\\io_local.json'  #需要写入设备端的文件 modbus_info.json
+    filename="modbus_qxrobot.json"    #写入文件的名字 modbus_extend_info.json
+    path='C:\\Users\\test\\AppData\\Local\\Programs\\Python\\Python36\\autotest\\websocket_api_2.0\\files\\modbus_qxrobot.json'  #需要写入设备端的文件 modbus_info.json
 
     #C:\Users\test\AppData\Local\Programs\Python\Python36\autotest\websocket_api_2.0\scripts\400_arc.lua
 
-    i=2 #当type为script时需要指定安装的序号，取值范围>0；
+    i=1 #当type为script时需要指定安装的序号，取值范围>0；
         # 当type为config时指定index值，index为2代表lua文件的json形式或客户端所需保存的json文件,index为1代表modbus子文件，为0代表其他配置文件;
         # 当type为expansion时为脚本文件名,如test.lua；
         # type字段值为global时为全局脚本名，例如global.lua；

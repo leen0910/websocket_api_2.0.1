@@ -9,7 +9,7 @@ import time
 import json
 
 class websocket_request(unittest.TestCase):
-    server_index=[0,2]
+    server_index=[3]
     IO_type=["X","Y","C","D"]
     address=[0,44,100,1000,1999]
     value1=[0,1]
@@ -68,12 +68,12 @@ class websocket_request(unittest.TestCase):
                     data_modbus_set=json.dumps(data_dict)
                     t=c.checkAction(url,data_modbus_set)
                     if t["success"]==True:
-                        print("%s号机器的%s 线圈地址，值设置：%s 成功。"%(index,address,value))
+                        print("Index: %s号机器的%s 线圈地址，值设置：%s 成功。"%(index,address,value))
                         data_modbus_read=json.dumps(data_dict1)
                         t1=c.checkAction(url,data_modbus_read)
-                        print("%s号机器的 %s 线圈地址的值读取为：%s。"%(index,address,t1["data"]["value"]))
+                        print("Index: %s号机器的 %s 线圈地址的值读取为：%s。"%(index,address,t1["data"]["value"]))
                     else:
-                        print("%s号机器的%s 线圈地址设置失败。"%(index,address))
+                        print("Index: %s号机器的%s 线圈地址设置失败。"%(index,address))
                     time.sleep(0.5)
         data_logout=rm.get_data("退出登录","logout")
         print("step 3、退出登录。")
@@ -109,9 +109,9 @@ class websocket_request(unittest.TestCase):
                 data_modbus_read=json.dumps(data_dict1)
                 t1=c.checkAction(url,data_modbus_read)
                 if t1["success"]==True:
-                    print("%s号机器的 %s 线圈地址的值读取为：%s。"%(index,address,t1["data"]["value"]))
+                    print("Index: %s号机器的 %s 线圈地址的值读取为：%s。"%(index,address,t1["data"]["value"]))
                 else:
-                    print("%s号机器的%s 线圈地址读取失败。"%(index,address))
+                    print("Index: %s号机器的%s 线圈地址读取失败。"%(index,address))
             time.sleep(0.5)
         data_logout=rm.get_data("退出登录","logout")
         print("step 3、退出登录。")
@@ -156,12 +156,12 @@ class websocket_request(unittest.TestCase):
                     data_modbus_set=json.dumps(data_dict)
                     t=c.checkAction(url,data_modbus_set)
                     if t["success"]==True:
-                        print("%s号机器的%s 寄存器地址，值设置：%s 成功。"%(index,address,value))
+                        print("Index: %s号机器的%s 寄存器地址，值设置：%s 成功。"%(index,address,value))
                         data_modbus_read=json.dumps(data_dict1)
                         t1=c.checkAction(url,data_modbus_read)
-                        print("%s号机器的 %s 寄存器地址的值读取为：%s。"%(index,address,t1["data"]["value"]))
+                        print("Index: %s号机器的 %s 寄存器地址的值读取为：%s。"%(index,address,t1["data"]["value"]))
                     else:
-                        print("%s号机器的%s 寄存器地址设置失败。"%(index,address))
+                        print("Index: %s号机器的%s 寄存器地址设置失败。"%(index,address))
                     time.sleep(0.5)
         data_logout=rm.get_data("退出登录","logout")
         print("step 3、退出登录。")
@@ -197,9 +197,9 @@ class websocket_request(unittest.TestCase):
                 data_modbus_read=json.dumps(data_dict1)
                 t1=c.checkAction(url,data_modbus_read)
                 if t1["success"]==True:
-                    print("%s号机器的 %s 寄存器地址的值读取为：%s。"%(index,address,t1["data"]["value"]))
+                    print("Index: %s号机器的 %s 寄存器地址的值读取为：%s。"%(index,address,t1["data"]["value"]))
                 else:
-                    print("%s号机器的%s 寄存器地址读取失败。"%(index,address))
+                    print("Index: %s号机器的%s 寄存器地址读取失败。"%(index,address))
             time.sleep(0.5)
         data_logout=rm.get_data("退出登录","logout")
         print("step 3、退出登录。")

@@ -54,7 +54,9 @@ class websocket_request(unittest.TestCase):
         c.checkAction(url,data_logout)
 
     def test02_file_recovery_all(self):
-        """控制器配置文件备份:is_all=true 恢复OPTIONAL下所有文件,当前仅支持[device_custom.json/modbus_info.json/motion_param_config.json/lua.json],不包含SUPPORT下的子文件"""
+        """控制器配置文件备份:is_all=true 恢复OPTIONAL下所有文件,
+        当前仅支持[device_custom.json/modbus_info.json/motion_param_config.json/lua.json],
+        不包含SUPPORT下的子文件"""
         rm=read_message.ReadMessage()
         data_login=rm.get_data("登录设备","login_admin")
         url=self.ws

@@ -9,6 +9,7 @@ from common import Base_64
 from common import WR_file
 import time
 import json
+import os
 
 
 
@@ -123,33 +124,34 @@ class websocket_request(unittest.TestCase):
         print("step 2、从设备中读取log目录下所有配置文件。 ")
         print("step 3、解码后保存到files目录。")
         fpath='C:\\Users\\test\\AppData\\Local\\Programs\\Python\\Python36\\autotest\\websocket_api_2.0\\files\\LogFile_name.txt'
-        for f_name in WR_file.ReadFile(fpath):
-            """重新设置日志文件名"""
-            data_file_send=rm.get_data("控制器发送文件","file_send_log")
-            data_dict=json.loads(data_file_send)
-            data_dict["data"]["file_name"]="%s"%f_name
-            print("开始读取log文件：%s 。"%f_name)
-            data_file_send=json.dumps(data_dict)
-            t=c.checkAction(url,data_file_send)
-            time.sleep(1)
-            self.assertEqual(t["success"],True)
-            print("%s log文件读取成功。"%f_name)
-            time.sleep(0.2)
-            print("获取: %s log文件总包个数。"%f_name)
-            num=t["data"]["total"]
-            print("%s : log文件包数：%s。"%(f_name,num))
-            log_index=1
-            str=""
-            for i in range(num):
-                data_dict["data"]["index"]=log_index
+        if os.path.exists(fpath):
+            for f_name in WR_file.ReadFile(fpath):
+                """重新设置日志文件名"""
+                data_file_send=rm.get_data("控制器发送文件","file_send_log")
+                data_dict=json.loads(data_file_send)
+                data_dict["data"]["file_name"]="%s"%f_name
+                print("开始读取log文件：%s 。"%f_name)
                 data_file_send=json.dumps(data_dict)
                 t=c.checkAction(url,data_file_send)
-                str=str+t["data"]["value"]
-                log_index=log_index+1
-            file_content=Base_64.decode_b(str)
-            path='C:\\Users\\test\\AppData\\Local\\Programs\\Python\\Python36\\autotest\\websocket_api_2.0\\files\\'+f_name
-            WR_file.WriteFile_b(path,file_content)
-            print("%s log文件保存成功。"%f_name)
+                time.sleep(1)
+                self.assertEqual(t["success"],True)
+                print("%s log文件读取成功。"%f_name)
+                time.sleep(0.2)
+                print("获取: %s log文件总包个数。"%f_name)
+                num=t["data"]["total"]
+                print("%s : log文件包数：%s。"%(f_name,num))
+                log_index=1
+                str=""
+                for i in range(num):
+                    data_dict["data"]["index"]=log_index
+                    data_file_send=json.dumps(data_dict)
+                    t=c.checkAction(url,data_file_send)
+                    str=str+t["data"]["value"]
+                    log_index=log_index+1
+                file_content=Base_64.decode_b(str)
+                path='C:\\Users\\test\\AppData\\Local\\Programs\\Python\\Python36\\autotest\\websocket_api_2.0\\files\\'+f_name
+                WR_file.WriteFile_b(path,file_content)
+                print("%s log文件保存成功。"%f_name)
 
         data_logout=rm.get_data("退出登录","logout")
         print("step 4、释放设备：")
@@ -170,23 +172,24 @@ class websocket_request(unittest.TestCase):
         print("step 2、从设备中读取config目录下所有配置文件。 ")
         print("step 3、解码后保存到files目录。")
         fpath='C:\\Users\\test\\AppData\\Local\\Programs\\Python\\Python36\\autotest\\websocket_api_2.0\\files\\ConfigFile_name.txt'
-        for f_name in WR_file.ReadFile(fpath):
-            """重新设置配置文件名"""
-            data_file_send=rm.get_data("控制器发送文件","file_send_config")
-            data_dict=json.loads(data_file_send)
-            data_dict["data"]["file_name"]="%s"%f_name
-            print("开始读取config文件："+data_dict["data"]["file_name"])
-            data_file_send=json.dumps(data_dict)
-            t=c.checkAction(url,data_file_send)
-            time.sleep(1)
-            self.assertEqual(t["success"],True)
-            print("%s config文件读取成功。"%f_name)
+        if os.path.exists(fpath):
+            for f_name in WR_file.ReadFile(fpath):
+                """重新设置配置文件名"""
+                data_file_send=rm.get_data("控制器发送文件","file_send_config")
+                data_dict=json.loads(data_file_send)
+                data_dict["data"]["file_name"]="%s"%f_name
+                print("开始读取config文件："+data_dict["data"]["file_name"])
+                data_file_send=json.dumps(data_dict)
+                t=c.checkAction(url,data_file_send)
+                time.sleep(1)
+                self.assertEqual(t["success"],True)
+                print("%s config文件读取成功。"%f_name)
 
-            str=t["data"]["value"]
-            file_content=Base_64.decode_b(str)
-            path='C:\\Users\\test\\AppData\\Local\\Programs\\Python\\Python36\\autotest\\websocket_api_2.0\\files\\'+f_name
-            WR_file.WriteFile_b(path,file_content)
-            print("%s config文件保存成功。"%f_name)
+                str=t["data"]["value"]
+                file_content=Base_64.decode_b(str)
+                path='C:\\Users\\test\\AppData\\Local\\Programs\\Python\\Python36\\autotest\\websocket_api_2.0\\files\\'+f_name
+                WR_file.WriteFile_b(path,file_content)
+                print("%s config文件保存成功。"%f_name)
 
         data_logout=rm.get_data("退出登录","logout")
         print("step 4、释放设备：")
@@ -203,24 +206,25 @@ class websocket_request(unittest.TestCase):
 
         print("step 2、从设备中读取PROGRAME目录下所有脚本文件。 ")
         fpath='C:\\Users\\test\\AppData\\Local\\Programs\\Python\\Python36\\autotest\\websocket_api_2.0\\files\\ScriptFile_name.txt'
-        for f_name in WR_file.ReadFile(fpath):
-            """重新设置脚本文件名"""
-            data_file_send=rm.get_data("控制器发送文件","file_send_script")
-            data_dict=json.loads(data_file_send)
-            data_dict["data"]["file_name"]="%s"%f_name
-            print("开始读取脚本文件："+data_dict["data"]["file_name"])
-            data_file_send=json.dumps(data_dict)
-            t=c.checkAction(url,data_file_send)
-            time.sleep(1)
-            self.assertEqual(t["success"],True)
-            print("%s 脚本文件读取成功。"%f_name)
+        if os.path.exists(fpath):
+            for f_name in WR_file.ReadFile(fpath):
+                """重新设置脚本文件名"""
+                data_file_send=rm.get_data("控制器发送文件","file_send_script")
+                data_dict=json.loads(data_file_send)
+                data_dict["data"]["file_name"]="%s"%f_name
+                print("开始读取脚本文件："+data_dict["data"]["file_name"])
+                data_file_send=json.dumps(data_dict)
+                t=c.checkAction(url,data_file_send)
+                time.sleep(1)
+                self.assertEqual(t["success"],True)
+                print("%s 脚本文件读取成功。"%f_name)
 
-            print("step 3、解码后保存到files目录。")
-            str=t["data"]["value"]
-            file_content=Base_64.decode_b(str)
-            path='C:\\Users\\test\\AppData\\Local\\Programs\\Python\\Python36\\autotest\\websocket_api_2.0\\files\\'+f_name
-            WR_file.WriteFile_b(path,file_content)
-            print("%s 脚本文件保存成功。"%f_name)
+                print("step 3、解码后保存到files目录。")
+                str=t["data"]["value"]
+                file_content=Base_64.decode_b(str)
+                path='C:\\Users\\test\\AppData\\Local\\Programs\\Python\\Python36\\autotest\\websocket_api_2.0\\files\\'+f_name
+                WR_file.WriteFile_b(path,file_content)
+                print("%s 脚本文件保存成功。"%f_name)
 
         data_logout=rm.get_data("退出登录","logout")
         print("step 4、释放设备：")
@@ -237,24 +241,25 @@ class websocket_request(unittest.TestCase):
 
         print("step 2、从设备中读取PROGRAME/EXPANSION目录下所有脚本文件。 ")
         fpath='C:\\Users\\test\\AppData\\Local\\Programs\\Python\\Python36\\autotest\\websocket_api_2.0\\files\\Expansion.txt'
-        for f_name in WR_file.ReadFile(fpath):
-            """重新设置expansion文件名"""
-            data_file_send=rm.get_data("控制器发送文件","file_send_expansion")
-            data_dict=json.loads(data_file_send)
-            data_dict["data"]["file_name"]="%s"%f_name
-            print("开始读取expansion文件："+data_dict["data"]["file_name"])
-            data_file_send=json.dumps(data_dict)
-            t=c.checkAction(url,data_file_send)
-            time.sleep(1)
-            self.assertEqual(t["success"],True)
-            print("%s expansion文件读取成功。"%f_name)
+        if os.path.exists(fpath):
+            for f_name in WR_file.ReadFile(fpath):
+                """重新设置expansion文件名"""
+                data_file_send=rm.get_data("控制器发送文件","file_send_expansion")
+                data_dict=json.loads(data_file_send)
+                data_dict["data"]["file_name"]="%s"%f_name
+                print("开始读取expansion文件："+data_dict["data"]["file_name"])
+                data_file_send=json.dumps(data_dict)
+                t=c.checkAction(url,data_file_send)
+                time.sleep(1)
+                self.assertEqual(t["success"],True)
+                print("%s expansion文件读取成功。"%f_name)
 
-            print("step 3、解码后保存到files目录。")
-            str=t["data"]["value"]
-            file_content=Base_64.decode_b(str)
-            path='C:\\Users\\test\\AppData\\Local\\Programs\\Python\\Python36\\autotest\\websocket_api_2.0\\files\\'+f_name
-            WR_file.WriteFile_b(path,file_content)
-            print("%s 脚本文件保存成功。"%f_name)
+                print("step 3、解码后保存到files目录。")
+                str=t["data"]["value"]
+                file_content=Base_64.decode_b(str)
+                path='C:\\Users\\test\\AppData\\Local\\Programs\\Python\\Python36\\autotest\\websocket_api_2.0\\files\\'+f_name
+                WR_file.WriteFile_b(path,file_content)
+                print("%s 脚本文件保存成功。"%f_name)
 
         data_logout=rm.get_data("退出登录","logout")
         print("step 4、释放设备：")
@@ -333,24 +338,25 @@ class websocket_request(unittest.TestCase):
 
         print("step 2、从设备中读取PROGRAME/global目录下所有脚本文件。 ")
         fpath='C:\\Users\\test\\AppData\\Local\\Programs\\Python\\Python36\\autotest\\websocket_api_2.0\\files\\global_script.txt'
-        for f_name in WR_file.ReadFile(fpath):
-            """重新设置global文件名"""
-            data_file_send=rm.get_data("控制器发送文件","file_send_global_script")
-            data_dict=json.loads(data_file_send)
-            data_dict["data"]["file_name"]="%s"%f_name
-            print("开始读取global文件："+data_dict["data"]["file_name"])
-            data_file_send=json.dumps(data_dict)
-            t=c.checkAction(url,data_file_send)
-            time.sleep(1)
-            self.assertEqual(t["success"],True)
-            print("%s global文件读取成功。"%f_name)
+        if os.path.exists(fpath):
+            for f_name in WR_file.ReadFile(fpath):
+                """重新设置global文件名"""
+                data_file_send=rm.get_data("控制器发送文件","file_send_global_script")
+                data_dict=json.loads(data_file_send)
+                data_dict["data"]["file_name"]="%s"%f_name
+                print("开始读取global文件："+data_dict["data"]["file_name"])
+                data_file_send=json.dumps(data_dict)
+                t=c.checkAction(url,data_file_send)
+                time.sleep(1)
+                self.assertEqual(t["success"],True)
+                print("%s global文件读取成功。"%f_name)
 
-            print("step 3、解码后保存到files目录。")
-            str=t["data"]["value"]
-            file_content=Base_64.decode_b(str)
-            path='C:\\Users\\test\\AppData\\Local\\Programs\\Python\\Python36\\autotest\\websocket_api_2.0\\files\\'+f_name
-            WR_file.WriteFile_b(path,file_content)
-            print("%s global文件保存成功。"%f_name)
+                print("step 3、解码后保存到files目录。")
+                str=t["data"]["value"]
+                file_content=Base_64.decode_b(str)
+                path='C:\\Users\\test\\AppData\\Local\\Programs\\Python\\Python36\\autotest\\websocket_api_2.0\\files\\'+f_name
+                WR_file.WriteFile_b(path,file_content)
+                print("%s global文件保存成功。"%f_name)
 
         data_logout=rm.get_data("退出登录","logout")
         print("step 4、释放设备：")
@@ -397,24 +403,25 @@ class websocket_request(unittest.TestCase):
 
         print("step 2、从设备中读取PROGRAME/sub_script目录下所有脚本文件。 ")
         fpath='C:\\Users\\test\\AppData\\Local\\Programs\\Python\\Python36\\autotest\\websocket_api_2.0\\files\\sub_script.txt'
-        for f_name in WR_file.ReadFile(fpath):
-            """重新设置sub_script文件名"""
-            data_file_send=rm.get_data("控制器发送文件","file_send_sub_script")
-            data_dict=json.loads(data_file_send)
-            data_dict["data"]["file_name"]="%s"%f_name
-            print("开始读取sub_script文件："+data_dict["data"]["file_name"])
-            data_file_send=json.dumps(data_dict)
-            t=c.checkAction(url,data_file_send)
-            time.sleep(1)
-            self.assertEqual(t["success"],True)
-            print("%s sub_script文件读取成功。"%f_name)
+        if os.path.exists(fpath):
+            for f_name in WR_file.ReadFile(fpath):
+                """重新设置sub_script文件名"""
+                data_file_send=rm.get_data("控制器发送文件","file_send_sub_script")
+                data_dict=json.loads(data_file_send)
+                data_dict["data"]["file_name"]="%s"%f_name
+                print("开始读取sub_script文件："+data_dict["data"]["file_name"])
+                data_file_send=json.dumps(data_dict)
+                t=c.checkAction(url,data_file_send)
+                time.sleep(1)
+                self.assertEqual(t["success"],True)
+                print("%s sub_script文件读取成功。"%f_name)
 
-            print("step 3、解码后保存到files目录。")
-            str=t["data"]["value"]
-            file_content=Base_64.decode_b(str)
-            path='C:\\Users\\test\\AppData\\Local\\Programs\\Python\\Python36\\autotest\\websocket_api_2.0\\files\\'+f_name
-            WR_file.WriteFile_b(path,file_content)
-            print("%s sub_script文件保存成功。"%f_name)
+                print("step 3、解码后保存到files目录。")
+                str=t["data"]["value"]
+                file_content=Base_64.decode_b(str)
+                path='C:\\Users\\test\\AppData\\Local\\Programs\\Python\\Python36\\autotest\\websocket_api_2.0\\files\\'+f_name
+                WR_file.WriteFile_b(path,file_content)
+                print("%s sub_script文件保存成功。"%f_name)
 
         data_logout=rm.get_data("退出登录","logout")
         print("step 4、释放设备：")

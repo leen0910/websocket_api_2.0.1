@@ -92,6 +92,7 @@ class websocket_request(unittest.TestCase):
         if os.path.exists(path):
             os.remove(path)   #先删除之前写过的文件
 
+
         for file in file_list:
             print(file)
             WR_file.WriteFile_add(path,file)    #追加写入脚本文件名
@@ -163,6 +164,7 @@ class websocket_request(unittest.TestCase):
         # files=t["data"]["file_list"]
         # file_list=list(files)
 
+
         num=len(t['data']["file_list"])
         id=0
         file_list=[]
@@ -201,6 +203,7 @@ class websocket_request(unittest.TestCase):
         # files=t["data"]["file_list"]
         # file_list=list(files)
 
+
         num=len(t['data']["file_list"])
         id=0
         file_list=[]
@@ -238,6 +241,7 @@ class websocket_request(unittest.TestCase):
 
         if os.path.exists(path):
             os.remove(path)   #先删除之前写过的文件
+
 
         num=len(t['data']["file_list"])
         id=0
@@ -278,6 +282,7 @@ class websocket_request(unittest.TestCase):
         if os.path.exists(path):
             os.remove(path)   #先删除之前写过的文件
 
+
         num=len(t['data']["file_list"])
         id=0
         file_list=[]
@@ -316,6 +321,7 @@ class websocket_request(unittest.TestCase):
         if os.path.exists(path):
             os.remove(path)   #先删除之前写过的文件
 
+
         num=len(t['data']["file_list"])
         id=0
         file_list=[]
@@ -348,7 +354,7 @@ class websocket_request(unittest.TestCase):
         self.assertEqual(t["success"],True)
         time.sleep(1)
 
-        print("step 3、列出global_script目录文件名称：")
+        print("step 3、列出sub_script目录文件名称：")
 
         path='C:\\Users\\test\\AppData\\Local\\Programs\\Python\\Python36\\autotest\\websocket_api_2.0\\files\\sub_script.txt'
 
@@ -358,7 +364,7 @@ class websocket_request(unittest.TestCase):
         num=len(t['data']["file_list"])
         id=0
         file_list=[]
-        while id<num:
+        while id < num:
             file_list.append(t['data']["file_list"][id]["file_name"])
             id=id+1
 
